@@ -4,12 +4,14 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
     font-family: "Montserrat", sans-serif;
-    color: white;
 }
 
-body {
+body, html {
     background-color: #171717;
+    overflow-x: hidden;
+    color: white;
 }
 
 nav {
@@ -37,6 +39,7 @@ nav {
     border: none;
     margin-right: 1em;
     width: 40%;
+    color: white;
 }
 
 .search-bar {
@@ -48,6 +51,7 @@ nav {
     font-size: 1em;
     width: 60%;
     margin-left: 1em;
+    color: white;
 }
 
 .sub-nav {
@@ -65,3 +69,207 @@ nav {
     margin-right: 3em;
     font-weight: 500;
 }
+
+.slider-card {
+    width: 100%;
+    padding: 1em 3em;
+}
+
+.row-ttl-home {
+    display: flex;
+    justify-content: space-around;
+    margin: 1em;
+    padding: 1em;
+}
+
+.row-ttl-home div {
+    width: 87%;
+    padding: .5em;
+}
+
+.container{
+    width: 100%;
+    padding: 20px 40px;
+    background-color: #282828;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+.container .swiper-container{
+    width: 100%;
+    height: 100%;
+}
+
+  .container .swiper-slide {
+    position: relative;
+    text-align: center;
+    font-size: 18px;
+    border-radius: 15px;
+    text-align: start;
+   
+  }
+  .container .swiper-slide img{
+     display: block;
+      width: 100%;
+      height: 180px;
+      object-fit: contain;
+  
+  }
+  .container .swiper-slide{
+      padding:1rem 1rem;
+      user-select: none;
+  }
+
+  .container .swiper-slide{
+     text-align: center;
+    
+  }
+
+  .swiper-button-next{
+      right: 26px !important;
+  }
+  
+  .swiper-button-prev{
+      left: 26px !important;
+  }
+
+  .swiper-button-next:after {
+    font-size: 30px;
+    color: white;
+  }
+
+  .swiper-button-prev:after {
+    font-size: 30px;
+    color: white;
+  }
+
+  .swiper-button-next,  .swiper-button-prev {
+    background-color: #282828;
+    width: 50px;
+    top: 25em;
+  }
+
+  .swiper-button-next2,  .swiper-button-prev2 {
+    top: 56em;
+  }
+
+  .swiper-button-next svg, .swiper-button-prev svg {
+    width: 40% !important;
+  }
+
+  .data-product {
+    padding-top: .6em;
+    text-align: center;
+  }
+
+  .product-name {
+    margin-bottom: 10px;
+  }
+
+  .product-price {
+    color: #ff3e3e;
+    font-weight: 600;
+  }
+
+  footer {
+    margin-top: 50px;
+    background-color: #5B5B5B;
+    padding: 2em 3em;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .business-info {
+    width: 80%;
+    padding: 1em 6em 1em 1em;
+  }
+
+  .business-info h5 {
+    font-size: 1.5em;
+  }
+
+  .business-info p {
+    font-size: 1em;
+    padding-top: 1em;
+  }
+
+  .business-contact {
+    width: 20%;
+    padding: 1em;
+  }
+
+  .business-contact h5 {
+    font-size: 1.5em;
+  }
+
+  .business-contact ul li {
+    margin-top: 1em;
+  }
+
+  .dropdown-menu {
+    position: absolute;
+    width: 25vw;
+    height: fit-content;
+    padding: 1em;
+    display: none;
+    justify-content: center;
+    top: 8vh;
+    left: 31vw;
+    background-color: #5B5B5B;
+    border-radius: 15px;
+  }
+
+  .row-1{
+    width: 60%;
+  }
+
+  .row-2 {
+    width: 40%;
+  }
+
+  .dropdown-menu ul {
+    list-style: none;
+  }
+
+  .dropdown-menu ul li{
+    margin: 15px;
+  }
+
+  .dropdown-menu ul li:hover {
+    text-decoration:underline;
+    font-weight: 600;
+    animation: hoverCategories .5s forwards;
+    cursor: pointer;
+  }
+
+  @keyframes hoverCategories {
+    to {
+        transform: translateX(5px);
+    }
+  }
+
+  @keyframes showDropdown {
+    from {
+        opacity: 0;
+        display: none;
+    }
+    to {
+        opacity: 1;
+        display: flex;
+    }
+  }
+
+  @keyframes hideDropdown {
+    from {
+        opacity: 1;
+        display: flex;
+    }
+    to {
+        opacity: 0;
+        display: none;
+    }
+  }
+
+  .product-image {
+    border-radius: 5px;
+  }
