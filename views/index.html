@@ -11,12 +11,12 @@
     
     <header>
         <nav>
-            <h1 class="ttl-nav">AllTechno</h1>
+            <a href="#"><h1 class="ttl-nav">AllTechno</h1></a>
             <div class="items-nav">
                 <button class="btn-categories">☰ &nbsp;&nbsp; Categorias</button>
                 <input class="search-bar" type="text" placeholder="Ingresa tu busqueda">
             </div>
-            <img src="../resources/usuario.png" alt="user icon" width="35px" height="35px">
+            <img src="../resources/usuario.png" class="user-icon" alt="user icon" width="30px" height="30px">
         </nav>
 
         <div class="dropdown-menu">
@@ -37,11 +37,18 @@
             </div>
         </div>
 
+
+        <div class="dropdown-menu dropdown-menu-user">
+              <ul>
+                  <a href="page-login.html"><li>Iniciar Sesión</li></a>
+              </ul>
+      </div>
+
         <div class="sub-nav">
             <ul>
-                <li>Tienda</li>
-                <li>Equipos armados</li>
-                <li>Mejores precios</li>
+                <a href=""><li>Tienda</li></a>
+                <a href=""><li>Equipos armados</li></a>
+                <a href=""><li>Mejores precios</li></a>
             </ul>
         </div>
     </header>
@@ -578,6 +585,15 @@
         <div class="business-info">
             <h5>NUESTRA EMPRESA</h5>
             <p>El nombre de esta página web fue creado con el único propósito de simular una empresa ficticia con el fin de demostrar habilidades de diseño y desarrollo web, y se utiliza exclusivamente con propósitos educativos y como parte de mi portafolio. Es importante destacar que cualquier coincidencia con el nombre de una empresa real es puramente fortuita, y esta página no tiene ninguna relación ni afiliación con dicha entidad comercial.</p>
+            
+            <br><hr><p>Franklin Cortés © 
+              <span class="year-footer">
+                <script>
+                  //acceder a año para el footer
+                  const date = new Date()
+                  document.querySelector(".year-footer").innerHTML = date.getFullYear()
+                </script>
+            </span></p>
         </div>
         <div class="business-contact">
             <h5>CONTÁCTANOS</h5>
@@ -592,6 +608,7 @@
 
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
-    <script src="js/script.js"></script>
+    <script src="js/swipers.js"></script>
+    <script src="js/dropdowns.js"></script>
 </body>
 </html>

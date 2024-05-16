@@ -73,35 +73,3 @@ var swiper2 = new Swiper('.swiper-container2', {
 	  },
 	} 
     });
-
-// Aparicion de dropdown
-const btnCategories = document.querySelector(".btn-categories");
-const dropdown = document.querySelector(".dropdown-menu");
-
-let isDropdownVisible = false;
-
-btnCategories.addEventListener("mouseenter", () => {
-    isDropdownVisible = true;
-    dropdown.style.display = "flex";
-    dropdown.style.animation = "showDropdown .5s forwards";
-});
-
-btnCategories.addEventListener("mouseleave", () => {
-    isDropdownVisible = false;
-    setTimeout(() => {
-        if (!isDropdownVisible) {
-            dropdown.style.animation = "hideDropdown 1s forwards";
-            dropdown.style.animationDelay = ".5s";
-        }
-    }, 500); // Añadimos un pequeño retraso para evitar que se oculte inmediatamente al salir del botón
-});
-
-dropdown.addEventListener("mouseenter", () => {
-    isDropdownVisible = true;
-});
-
-dropdown.addEventListener("mouseleave", () => {
-    isDropdownVisible = false;
-    dropdown.style.animation = "hideDropdown 1s forwards";
-    dropdown.style.animationDelay = ".5s";
-});

@@ -1,0 +1,11 @@
+.swiper-wrapper {
+    width: 20%;
+    margin: 1em;
+}
+
+.container {
+    display: ruby-text;
+    justify-content: space-around;
+    user-select: none;
+    padding: 20px;
+}
