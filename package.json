@@ -2,7 +2,7 @@
   "name": "alltechno",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.mjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -12,6 +12,8 @@
   "author": "Franklin Cortés",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.19.2"
+    "express": "4.19.2",
+    "mysql2": "^3.9.7",
+    "zod": "3.23.8"
   }
 }

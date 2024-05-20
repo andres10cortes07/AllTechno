@@ -1,6 +1,6 @@
 import express, {json} from "express";
 const app = express ();
-import {router} from "./routes/allTechno.mjs";
+import {router} from "./routes/routerAllTechno.mjs";
 
 // desactivar header por defecto de express
 app.disable("x-powered-by");

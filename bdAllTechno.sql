@@ -51,7 +51,6 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `alltechno`.`celulares` (
   `id` BINARY(16) NOT NULL,
-  `marca` VARCHAR(100) NOT NULL,
   `modelo` VARCHAR(100) NOT NULL,
   `bateria` INT NOT NULL,
   `procesador` VARCHAR(100) NOT NULL,
@@ -81,7 +80,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `alltechno`.`fuentesdepoder` (
   `id` BINARY(16) NOT NULL,
-  `marca` VARCHAR(100) NOT NULL,
+  `modelo` VARCHAR(100) NOT NULL,
   `voltaje` INT NOT NULL,
   `potencia` INT NOT NULL,
   `certificacion` VARCHAR(50) NOT NULL,
@@ -104,8 +103,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `alltechno`.`pantallas` (
   `id` BINARY(16) NOT NULL,
-  `marca` VARCHAR(100) NOT NULL,
-  `referencia` VARCHAR(100) NOT NULL,
+  `modelo` VARCHAR(100) NOT NULL,
   `dimensiones` VARCHAR(100) NOT NULL,
   `pulgadas` INT NOT NULL,
   `resolucion` VARCHAR(50) NOT NULL,
@@ -129,7 +127,6 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `alltechno`.`portatiles` (
   `id` BINARY(16) NOT NULL,
-  `marca` VARCHAR(100) NOT NULL,
   `modelo` VARCHAR(100) NOT NULL,
   `procesador` VARCHAR(100) NOT NULL,
   `grafica` VARCHAR(100) NOT NULL DEFAULT 'Graficos Integrados',

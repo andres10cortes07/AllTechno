@@ -9,3 +9,50 @@
     user-select: none;
     padding: 20px;
 }
+
+.search-filter {
+    display: flex;
+    justify-content: end;
+    padding-right: 3em;
+    position: relative;
+    margin-top: -1em;
+}
+
+.select-filter {
+    appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+}
+ 
+.select-filter{
+    width: 15%;
+	display: inline-block;
+	cursor: pointer;
+  	padding: 7px 10px;
+  	height: 42px;
+	background: #ffffff;
+	font-size: 1em;
+	color: #999;
+	border: none;
+    outline: none;
+    border-radius: 12px;
+    position: relative;
+    transition: all 0.25s ease;
+}
+ 
+.select-filter i{
+	position: absolute;
+	right: 20px;
+	top: calc(50% - 13px);
+	width: 16px;
+	height: 16px;
+	display: block;
+	border-left:4px solid #2AC176;
+	border-bottom:4px solid #2AC176;
+	transform: rotate(-45deg);
+	transition: all 0.25s ease;
+}
+ 
+.select-filter:hover i{
+	margin-top: 3px;
+}
