@@ -9,6 +9,12 @@
 	height: 15em;
 }
 
+.swiper-slide {
+	border: none;
+	border-top: 2px solid #444;
+	border-bottom: 2px solid #444;
+}
+
 .container {
     display: ruby-text;
     justify-content: space-around;
@@ -24,7 +30,7 @@
     margin-top: -1em;
 }
 
-.select-filter {
+.select-filter:hover{
     appearance: none;
 	-webkit-appearance: none;
 	-moz-appearance: none;

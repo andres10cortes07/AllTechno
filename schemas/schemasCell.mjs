@@ -1,8 +1,8 @@
 import zod from "zod";
 
 const schemaCellphone = zod.object({
-    marca : zod.string(),
-    modelo : zod.string(),
+    marca : zod.string().length(100),
+    modelo : zod.string().length(100),
     bateria : zod.number().int().max(20000),
     procesador : zod.string().length(100),
     camaraFrontal : zod.number().int(),

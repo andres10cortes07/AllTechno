@@ -1,16 +1,26 @@
-import { Router } from "express";
 import { ControllerCellphones } from "../controllers/cellphones.mjs";
+import { ControllerLaptops } from "../controllers/laptops.mjs";
+
+import { Router } from "express";
 export const router = Router();
 
+
+//? cellphone routes
+
 router.get("/cellphones", ControllerCellphones.getAll);
-
 router.get("/cellphones:id", ControllerCellphones.getById);
-
 router.post("/cellphones", ControllerCellphones.createCellphone);
-
 router.patch("/cellphones:id", ControllerCellphones.modifyCellphone);
-
 router.delete("/cellphones:id", ControllerCellphones.deleteCellphone);
+
+
+//? laptops routes
+router.get("/laptops", ControllerLaptops.getAll);
+router.get("/laptops:id", ControllerLaptops.getById);
+router.post("/laptops", ControllerLaptops.createLaptop);
+router.patch("/laptops:id", ControllerLaptops.modifyLaptop);
+router.delete("/laptops:id", ControllerLaptops.deleteLaptop);
+
 
 
 // Definicion de los origenes aceptados para prevencion de ERROR CORS
