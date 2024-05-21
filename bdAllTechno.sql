@@ -51,6 +51,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `alltechno`.`celulares` (
   `id` BINARY(16) NOT NULL,
+  `marca` VARCHAR(100) NOT NULL,
   `modelo` VARCHAR(100) NOT NULL,
   `bateria` INT NOT NULL,
   `procesador` VARCHAR(100) NOT NULL,
@@ -80,7 +81,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `alltechno`.`fuentesdepoder` (
   `id` BINARY(16) NOT NULL,
-  `modelo` VARCHAR(100) NOT NULL,
+  `marca` VARCHAR(100) NOT NULL,
   `voltaje` INT NOT NULL,
   `potencia` INT NOT NULL,
   `certificacion` VARCHAR(50) NOT NULL,
@@ -103,7 +104,8 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `alltechno`.`pantallas` (
   `id` BINARY(16) NOT NULL,
-  `modelo` VARCHAR(100) NOT NULL,
+  `marca` VARCHAR(100) NOT NULL,
+  `referencia` VARCHAR(100) NOT NULL,
   `dimensiones` VARCHAR(100) NOT NULL,
   `pulgadas` INT NOT NULL,
   `resolucion` VARCHAR(50) NOT NULL,
@@ -127,6 +129,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `alltechno`.`portatiles` (
   `id` BINARY(16) NOT NULL,
+  `marca` VARCHAR(100) NOT NULL,
   `modelo` VARCHAR(100) NOT NULL,
   `procesador` VARCHAR(100) NOT NULL,
   `grafica` VARCHAR(100) NOT NULL DEFAULT 'Graficos Integrados',
@@ -231,27 +234,27 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 
-INSERT INTO celulares (id, marca, modelo, bateria, procesador, camaraFrontal, camaraPosterior, resolucion, huella, almacenamiento, ram, precio, colores) VALUES
-(UUID_TO_BIN(UUID()), 'Samsung', 'Galaxy S21', 4000, 'Exynos 2100', 32, 108, '1080 x 2400 pixels', 'En pantalla', 128, 8, 3800000, 'Negro, Gris, Azul'),
-(UUID_TO_BIN(UUID()), 'Apple', 'iPhone 13', 3095, 'Apple A15 Bionic', 12, 12, '1170 x 2532 pixels', 'En pantalla', 256, 6, 4800000, 'Gris, Blanco, Plateado'),
-(UUID_TO_BIN(UUID()), 'Xiaomi', 'Redmi Note 10', 5000, 'Snapdragon 678', 13, 48, '1080 x 2400 pixels', 'En panel lateral', 128, 4, 1200000, 'Azul, Blanco'),
-(UUID_TO_BIN(UUID()), 'Motorola', 'Moto G Power', 5000, 'Snapdragon 662', 16, 48, '1080 x 2300 pixels', 'En panel lateral', 64, 4, 900000, 'Negro, Verde'),
-(UUID_TO_BIN(UUID()), 'OnePlus', 'Nord N200', 5000, 'Snapdragon 480', 16, 13, '720 x 1600 pixels', 'En pantalla', 64, 4, 1100000, 'Gris, Plateado'),
-(UUID_TO_BIN(UUID()), 'Realme', '8i', 5000, 'MediaTek Helio G96', 16, 50, '1080 x 2400 pixels', 'En panel lateral', 128, 4, 1300000, 'Azul, Negro'),
-(UUID_TO_BIN(UUID()), 'Samsung', 'Galaxy A32', 5000, 'Mediatek Helio G80', 20, 64, '720 x 1600 pixels', 'En pantalla', 128, 4, 1300000, 'Negro, Blanco'),
-(UUID_TO_BIN(UUID()), 'Xiaomi', 'Mi 11 Lite', 4250, 'Snapdragon 732G', 16, 64, '1080 x 2400 pixels', 'En pantalla', 128, 6, 1600000, 'Gris, Verde'),
-(UUID_TO_BIN(UUID()), 'Apple', 'iPhone SE', 1821, 'Apple A13 Bionic', 7, 12, '750 x 1334 pixels', 'En pantalla', 64, 3, 2200000, 'Azul, Rojo'),
-(UUID_TO_BIN(UUID()), 'Motorola', 'Moto E7i Power', 5000, 'MediaTek Helio G25', 5, 13, '720 x 1600 pixels', 'En panel lateral', 32, 2, 600000, 'Negro, Azul'),
-(UUID_TO_BIN(UUID()), 'OnePlus', '9 Pro', 4500, 'Snapdragon 888', 16, 48, '1440 x 3216 pixels', 'En pantalla', 256, 12, 5800000, 'Gris, Negro'),
-(UUID_TO_BIN(UUID()), 'Realme', 'Narzo 50A', 6000, 'MediaTek Helio G85', 8, 50, '720 x 1600 pixels', 'En panel lateral', 64, 4, 900000, 'Azul, Amarillo'),
-(UUID_TO_BIN(UUID()), 'Samsung', 'Galaxy A03s', 5000, 'Mediatek MT6739W', 5, 13, '720 x 1600 pixels', 'En pantalla', 32, 3, 600000, 'Negro, Blanco'),
-(UUID_TO_BIN(UUID()), 'Xiaomi', 'Redmi 10', 5000, 'MediaTek Helio G88', 8, 50, '1080 x 2400 pixels', 'En pantalla', 128, 4, 1400000, 'Gris, Plateado'),
-(UUID_TO_BIN(UUID()), 'Apple', 'iPhone 12 Mini', 2227, 'Apple A14 Bionic', 12, 12, '1080 x 2340 pixels', 'En pantalla', 256, 4, 3800000, 'Azul, Negro'),
-(UUID_TO_BIN(UUID()), 'Motorola', 'Moto G60', 6000, 'Snapdragon 732G', 32, 108, '1080 x 2460 pixels', 'En panel lateral', 128, 6, 1700000, 'Negro, Rojo'),
-(UUID_TO_BIN(UUID()), 'OnePlus', 'Nord 2', 4500, 'MediaTek Dimensity 1200-AI', 32, 50, '1080 x 2400 pixels', 'En pantalla', 256, 12, 3500000, 'Gris, Verde'),
-(UUID_TO_BIN(UUID()), 'Realme', 'C25s', 6000, 'MediaTek Helio G85', 8, 48, '720 x 1600 pixels', 'En panel lateral', 128, 4, 1000000, 'Azul, Gris'),
-(UUID_TO_BIN(UUID()), 'Samsung', 'Galaxy M32', 6000, 'Mediatek Helio G80', 20, 64, '1080 x 2400 pixels', 'En pantalla', 128, 6, 1500000, 'Negro, Verde'),
-(UUID_TO_BIN(UUID()), 'Xiaomi', 'Poco X3 Pro', 5160, 'Snapdragon 860', 20, 48, '1080 x 2400 pixels', 'En pantalla', 256, 8, 1900000, 'Gris, Azul');
+INSERT INTO celulares (id, marca, modelo, bateria, procesador, camaraFrontal, camaraPosterior, resolucion, huella, almacenamiento, ram, precio, colores, recursos_id_recurso) VALUES
+(UUID_TO_BIN(UUID()), 'Samsung', 'Galaxy S21', 4000, 'Exynos 2100', 32, 108, '1080 x 2400 pixels', 'En pantalla', 128, 8, 3800000, 'Negro, Gris, Azul', 18),
+(UUID_TO_BIN(UUID()), 'Apple', 'iPhone 13', 3095, 'Apple A15 Bionic', 12, 12, '1170 x 2532 pixels', 'En pantalla', 256, 6, 4800000, 'Gris, Blanco, Plateado', 11),
+(UUID_TO_BIN(UUID()), 'Xiaomi', 'Redmi Note 10', 5000, 'Snapdragon 678', 13, 48, '1080 x 2400 pixels', 'En panel lateral', 128, 4, 1200000, 'Azul, Blanco', 16),
+(UUID_TO_BIN(UUID()), 'Motorola', 'Moto G Power', 5000, 'Snapdragon 662', 16, 48, '1080 x 2300 pixels', 'En panel lateral', 64, 4, 900000, 'Negro, Verde', 9),
+(UUID_TO_BIN(UUID()), 'OnePlus', 'Nord N200', 5000, 'Snapdragon 480', 16, 13, '720 x 1600 pixels', 'En pantalla', 64, 4, 1100000, 'Gris, Plateado', 15),
+(UUID_TO_BIN(UUID()), 'Realme', '8i', 5000, 'MediaTek Helio G96', 16, 50, '1080 x 2400 pixels', 'En panel lateral', 128, 4, 1300000, 'Azul, Negro', 1),
+(UUID_TO_BIN(UUID()), 'Samsung', 'Galaxy A32', 5000, 'Mediatek Helio G80', 20, 64, '720 x 1600 pixels', 'En pantalla', 128, 4, 1300000, 'Negro, Blanco', 5),
+(UUID_TO_BIN(UUID()), 'Xiaomi', 'Mi 11 Lite', 4250, 'Snapdragon 732G', 16, 64, '1080 x 2400 pixels', 'En pantalla', 128, 6, 1600000, 'Gris, Verde', 12),
+(UUID_TO_BIN(UUID()), 'Apple', 'iPhone SE', 1821, 'Apple A13 Bionic', 7, 12, '750 x 1334 pixels', 'En pantalla', 64, 3, 2200000, 'Azul, Rojo', 19),
+(UUID_TO_BIN(UUID()), 'Motorola', 'Moto E7i Power', 5000, 'MediaTek Helio G25', 5, 13, '720 x 1600 pixels', 'En panel lateral', 32, 2, 600000, 'Negro, Azul', 7),
+(UUID_TO_BIN(UUID()), 'OnePlus', '9 Pro', 4500, 'Snapdragon 888', 16, 48, '1440 x 3216 pixels', 'En pantalla', 256, 12, 5800000, 'Gris, Negro', 2),
+(UUID_TO_BIN(UUID()), 'Realme', 'Narzo 50A', 6000, 'MediaTek Helio G85', 8, 50, '720 x 1600 pixels', 'En panel lateral', 64, 4, 900000, 'Azul, Amarillo', 3),
+(UUID_TO_BIN(UUID()), 'Samsung', 'Galaxy A03s', 5000, 'Mediatek MT6739W', 5, 13, '720 x 1600 pixels', 'En pantalla', 32, 3, 600000, 'Negro, Blanco', 4),
+(UUID_TO_BIN(UUID()), 'Xiaomi', 'Redmi 10', 5000, 'MediaTek Helio G88', 8, 50, '1080 x 2400 pixels', 'En pantalla', 128, 4, 1400000, 'Gris, Plateado', 17),
+(UUID_TO_BIN(UUID()), 'Apple', 'iPhone 12 Mini', 2227, 'Apple A14 Bionic', 12, 12, '1080 x 2340 pixels', 'En pantalla', 256, 4, 3800000, 'Azul, Negro', 10),
+(UUID_TO_BIN(UUID()), 'Motorola', 'Moto G60', 6000, 'Snapdragon 732G', 32, 108, '1080 x 2460 pixels', 'En panel lateral', 128, 6, 1700000, 'Negro, Rojo', 8),
+(UUID_TO_BIN(UUID()), 'OnePlus', 'Nord 2', 4500, 'MediaTek Dimensity 1200-AI', 32, 50, '1080 x 2400 pixels', 'En pantalla', 256, 12, 3500000, 'Gris, Verde', 14),
+(UUID_TO_BIN(UUID()), 'Realme', 'C25s', 6000, 'MediaTek Helio G85', 8, 48, '720 x 1600 pixels', 'En panel lateral', 128, 4, 1000000, 'Azul, Gris', 6),
+(UUID_TO_BIN(UUID()), 'Samsung', 'Galaxy M32', 6000, 'Mediatek Helio G80', 20, 64, '1080 x 2400 pixels', 'En pantalla', 128, 6, 1500000, 'Negro, Verde', 13),
+(UUID_TO_BIN(UUID()), 'Xiaomi', 'Poco X3 Pro', 5160, 'Snapdragon 860', 20, 48, '1080 x 2400 pixels', 'En pantalla', 256, 8, 1900000, 'Gris, Azul', 20);
 
 
 INSERT INTO portatiles (id, marca, modelo, procesador, grafica, resolucion, tamañoPantalla, almacenamiento, ram, precio, colores) VALUES
@@ -397,3 +400,31 @@ INSERT INTO pantallas (id, marca, referencia, dimensiones, pulgadas, resolucion,
 (UUID_TO_BIN(UUID()), 'BenQ', 'GL2780', '64.1 x 16.6 x 47.7 cm', 27, '1920 x 1080', 'TN LED', 900000),
 (UUID_TO_BIN(UUID()), 'HP', '27x', '64.4 x 21.8 x 44.2 cm', 27, '1920 x 1080', 'TN LED', 950000),
 (UUID_TO_BIN(UUID()), 'Samsung', 'LS27AM500NUXEN', '64.6 x 24.3 x 48.9 cm', 27, '1920 x 1080', 'VA LED', 1200000);
+
+
+
+INSERT INTO recursos (url1, url2, url3, url4, url5, url6) VALUES
+("../../resources/uploads/cellphones/8i.webp", "../../resources/uploads/cellphones/8i-1.jpeg", "../../resources/uploads/cellphones/8i-2.webp", "../../resources/uploads/cellphones/8i-3.jpeg", "../../resources/uploads/cellphones/8i-4.jpg", "../../resources/uploads/cellphones/8i-5.jpg"),
+("../../resources/uploads/cellphones/9pro.webp", "../../resources/uploads/cellphones/9pro-1.webp", "../../resources/uploads/cellphones/9pro-2.webp", "../../resources/uploads/cellphones/9pro-3.webp", "../../resources/uploads/cellphones/9pro-4.webp", "../../resources/uploads/cellphones/9pro-5.webp"),
+("../../resources/uploads/cellphones/50a.webp", "../../resources/uploads/cellphones/50a-1.webp", "../../resources/uploads/cellphones/50a-2.webp", "../../resources/uploads/cellphones/50a-3.webp", "../../resources/uploads/cellphones/50a-4.webp", "../../resources/uploads/cellphones/50a-5.webp"),
+("../../resources/uploads/cellphones/a03.jpeg", "../../resources/uploads/cellphones/a03-1.jpeg", "../../resources/uploads/cellphones/a03-2.jpeg", "../../resources/uploads/cellphones/a03-3.jpeg", "../../resources/uploads/cellphones/a03-4.jpeg", "../../resources/uploads/cellphones/a03-5.jpeg"),
+("../../resources/uploads/cellphones/a32.jpg", "../../resources/uploads/cellphones/a32-1.jpg", "../../resources/uploads/cellphones/a32-2.webp", "../../resources/uploads/cellphones/a32-3.jpg", "../../resources/uploads/cellphones/a32-4.webp", "../../resources/uploads/cellphones/a32-5.jpg"),
+("../../resources/uploads/cellphones/c25.webp", "../../resources/uploads/cellphones/c25-1.webp", "../../resources/uploads/cellphones/c25-2.webp", "../../resources/uploads/cellphones/c25-3.webp", "../../resources/uploads/cellphones/c25-4.webp", "../../resources/uploads/cellphones/c25-5.webp"),
+("../../resources/uploads/cellphones/e7.jpeg", "../../resources/uploads/cellphones/e7-1.jpeg", "../../resources/uploads/cellphones/e7-2.jpeg", "../../resources/uploads/cellphones/e7-3.jpeg", "../../resources/uploads/cellphones/e7-4.jpeg", "../../resources/uploads/cellphones/e7-5.jpeg"),
+("../../resources/uploads/cellphones/g60.jpeg", "../../resources/uploads/cellphones/g60-1.jpeg", "../../resources/uploads/cellphones/g60-2.jpeg", "../../resources/uploads/cellphones/g60-3.jpeg", "../../resources/uploads/cellphones/g60-4.jpeg", "../../resources/uploads/cellphones/g60-5.jpeg"),
+("../../resources/uploads/cellphones/gpower.jpg", "../../resources/uploads/cellphones/gpower-1.jpg", "../../resources/uploads/cellphones/gpower-2.jpg", "../../resources/uploads/cellphones/gpower-3.jpg", "../../resources/uploads/cellphones/gpower-4.jpg", "../../resources/uploads/cellphones/gpower-5.jpg"),
+("../../resources/uploads/cellphones/i12.webp", "../../resources/uploads/cellphones/i12-1.webp", "../../resources/uploads/cellphones/i12-2.webp", "../../resources/uploads/cellphones/i12-3.webp", "../../resources/uploads/cellphones/i12-4.webp", "../../resources/uploads/cellphones/i12-5.webp"),
+("../../resources/uploads/cellphones/i13.webp", "../../resources/uploads/cellphones/i13-1.webp", "../../resources/uploads/cellphones/i13-2.webp", "../../resources/uploads/cellphones/i13-3.webp", "../../resources/uploads/cellphones/i13-4.webp", "../../resources/uploads/cellphones/i13-5.webp"),
+("../../resources/uploads/cellphones/m11.jpeg", "../../resources/uploads/cellphones/m11-1.jpeg", "../../resources/uploads/cellphones/m11-2.jpeg", "../../resources/uploads/cellphones/m11-3.jpeg", "../../resources/uploads/cellphones/m11-4.jpeg", "../../resources/uploads/cellphones/m11-5.jpeg"),
+("../../resources/uploads/cellphones/m32.jpeg", "../../resources/uploads/cellphones/m32-1.jpeg", "../../resources/uploads/cellphones/m32-2.jpeg", "../../resources/uploads/cellphones/m32-3.jpeg", "../../resources/uploads/cellphones/m32-4.jpeg", "../../resources/uploads/cellphones/m32-5.jpeg"),
+("../../resources/uploads/cellphones/n20.webp", "../../resources/uploads/cellphones/n20-1.webp", "../../resources/uploads/cellphones/n20-2.webp", "../../resources/uploads/cellphones/n20-3.webp", "../../resources/uploads/cellphones/n20-4.webp", "../../resources/uploads/cellphones/n20-5.webp"),
+("../../resources/uploads/cellphones/n200.webp", "../../resources/uploads/cellphones/n200-1.webp", "../../resources/uploads/cellphones/n200-2.webp", "../../resources/uploads/cellphones/n200-3.webp", "../../resources/uploads/cellphones/n200-4.webp", "../../resources/uploads/cellphones/n200-5.webp"),
+("../../resources/uploads/cellphones/note10.webp", "../../resources/uploads/cellphones/note10-1.webp", "../../resources/uploads/cellphones/note10-2.webp", "../../resources/uploads/cellphones/note10-3.webp", "../../resources/uploads/cellphones/note10-4.webp", "../../resources/uploads/cellphones/note10-5.webp"),
+("../../resources/uploads/cellphones/redmi10.webp", "../../resources/uploads/cellphones/redmi10-1.webp", "../../resources/uploads/cellphones/redmi10-2.webp", "../../resources/uploads/cellphones/redmi10-3.webp", "../../resources/uploads/cellphones/redmi10-4.webp", "../../resources/uploads/cellphones/redmi10-5.webp"),
+("../../resources/uploads/cellphones/s21.webp", "../../resources/uploads/cellphones/s21-1.webp", "../../resources/uploads/cellphones/s21-2.webp", "../../resources/uploads/cellphones/s21-3.webp", "../../resources/uploads/cellphones/s21-4.webp", "../../resources/uploads/cellphones/s21-5.webp"),
+("../../resources/uploads/cellphones/se.webp", "../../resources/uploads/cellphones/se-1.webp", "../../resources/uploads/cellphones/se-2.webp", "../../resources/uploads/cellphones/se-3.webp", "../../resources/uploads/cellphones/se-4.webp", "../../resources/uploads/cellphones/se-5.webp"),
+("../../resources/uploads/cellphones/x3.jpeg", "../../resources/uploads/cellphones/x3-1.jpeg", "../../resources/uploads/cellphones/x3-2.jpeg", "../../resources/uploads/cellphones/x3-3.jpeg", "../../resources/uploads/cellphones/x3-4.jpeg", "../../resources/uploads/cellphones/x3-5.jpeg");
+
+-- CONSULTA PARA CELULARES CON SUS FOTOS
+SELECT BIN_TO_UUID(cel.id) AS id, cel.marca, cel.modelo, cel.bateria, cel.procesador, cel.camaraFrontal, cel.camaraPosterior, cel.resolucion, cel.huella, cel.almacenamiento, cel.ram, cel.precio, cel.colores, 
+r.url1, r.url2, r.url3, r.url4, r.url5, r.url6 FROM celulares cel INNER JOIN recursos r ON cel.recursos_id_recurso = r.id_recurso ;

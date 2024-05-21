@@ -61,16 +61,12 @@
             <div>
                 <hr>
             </div>
-        </div>
-
-        <div class="search-filter">
             <select name="filter" class="select-filter">
                 <option value="">Ordenar por más nuevos</option>
                 <option value="">Ordenar por precio: de menor a mayor</option>
                 <option value="">Ordenar por precio: de mayor a menor</option>
                 <option value="">Ordenar por popularidad</option>
             </select>
-            <i></i>
         </div>
 
         <!-- Swiper -->
@@ -82,6 +78,7 @@
                     .then(res => res.json())
                     .then(cellphones => {
                         const html = cellphones.map(cellphone => {
+                            
                             return `
                                 <div class="swiper-wrapper" data-id="${cellphone.id}">
                                     <div class="swiper-slide">
@@ -89,38 +86,38 @@
                                         zoom="true"  pagination="true" pagination-clickable="true">
                                             <swiper-slide>
                                             <div class="swiper-zoom-container">
-                                                <img src="../../resources/diadema-astro-a30-logitech-wireless-1.jpg" />
+                                                <img src="${cellphone.url1}" />
                                             </div>
                                             </swiper-slide>
                                             <swiper-slide>
                                             <div class="swiper-zoom-container">
-                                                <img src="../../resources/diadema-astro-a30-logitech-wireless-1.jpg" />
+                                                <img src="${cellphone.url2}" />
                                             </div>
                                             </swiper-slide>
                                             <swiper-slide>
                                             <div class="swiper-zoom-container">
-                                                <img src="../../resources/diadema-astro-a30-logitech-wireless-1.jpg" />
+                                                <img src="${cellphone.url3}" />
                                             </div>
                                             </swiper-slide>
                                             <swiper-slide>
                                             <div class="swiper-zoom-container">
-                                                <img src="../../resources/diadema-astro-a30-logitech-wireless-1.jpg" />
+                                                <img src="${cellphone.url4}" />
                                             </div>
                                             </swiper-slide>
                                             <swiper-slide>
                                             <div class="swiper-zoom-container">
-                                                <img src="../../resources/diadema-astro-a30-logitech-wireless-1.jpg" />
+                                                <img src="${cellphone.url5}" />
                                             </div>
                                             </swiper-slide>
                                             <swiper-slide>
                                             <div class="swiper-zoom-container">
-                                                <img src="../../resources/diadema-astro-a30-logitech-wireless-1.jpg" />
+                                                <img src="${cellphone.url6}" />
                                             </div>
                                             </swiper-slide>
                                         </swiper-container>
                                         <div class="data-product">
                                             <h4 class="product-name">${cellphone.marca} ${cellphone.modelo}</h4>
-                                            <span class="product-price">$${cellphone.precio}</span>
+                                            <span class="product-price">$${cellphone.precio.toLocaleString()}</span>
                                         </div>
                                     </div>
                                 </div>

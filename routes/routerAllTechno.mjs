@@ -12,17 +12,23 @@ router.patch("/cellphones:id", ControllerCellphones.modifyCellphone);
 
 router.delete("/cellphones:id", ControllerCellphones.deleteCellphone);
 
-//* no usare el router.options donde se colocan los header para decir los origenes y metodos aceptados
-//! puede mandar error (si manda lo descomentarea GENIOO)
 
-// router.options("/", (req, res) => {
-//     const origin = req.header("origin");
-//     if(ACCEPTED_ORIGINS.includes(origin)){
-//         res.header("Access-Control-Allow-Origin", origin);
-//         res.header("Access-Control-Allow-Methods", "GET, POST, PATCH, DELETE")
-//         res.sendStatus(200)
-//     }
-//     else {
-//         res.sendStatus(403)
-//     }
-// })
+// Definicion de los origenes aceptados para prevencion de ERROR CORS
+export const ACCEPTED_ORIGINS = [
+    "http://localhost:5000/allTechno",
+    "http://localhost:5000/allTechno/cellphones",
+    "http://127.0.0.1:5500",
+    "http://127.0.0.1:5500/"
+]
+
+router.options("/cellphones", (req, res) => {
+    const origin = req.header("origin");
+    if(ACCEPTED_ORIGINS.includes(origin) || !origin){
+        res.header("Access-Control-Allow-Origin", origin);
+        res.header("Access-Control-Allow-Methods", "GET, POST, PATCH, DELETE")
+        res.sendStatus(200)
+    }
+    else {
+        res.sendStatus(403)
+    }
+})

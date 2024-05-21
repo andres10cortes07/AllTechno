@@ -1,10 +1,15 @@
 import { cellphoneModels } from "../models/cellphones.mjs";
 import { validateCellphone, validateModifyCell } from "../schemas/schemasCell.mjs";
+import { ACCEPTED_ORIGINS } from "../routes/routerAllTechno.mjs";
 
 
 export class ControllerCellphones {
 
     static getAll = async (req, res) => {
+        const origin = req.header("origin");
+        if (ACCEPTED_ORIGINS.includes(origin)){
+            res.header("Access-Control-Allow-Origin", origin);
+        }
         const cellphones = await cellphoneModels.getAll();
         res.json(cellphones)
     }

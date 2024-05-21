@@ -3,11 +3,17 @@
     margin: 1em;
 }
 
+.swiper-zoom-container {
+	background-color: #ffffff;
+	border-radius: 5px;
+	height: 15em;
+}
+
 .container {
     display: ruby-text;
     justify-content: space-around;
     user-select: none;
-    padding: 20px;
+    padding: .5em;
 }
 
 .search-filter {
@@ -39,20 +45,18 @@
     position: relative;
     transition: all 0.25s ease;
 }
- 
-.select-filter i{
-	position: absolute;
-	right: 20px;
-	top: calc(50% - 13px);
-	width: 16px;
-	height: 16px;
-	display: block;
-	border-left:4px solid #2AC176;
-	border-bottom:4px solid #2AC176;
-	transform: rotate(-45deg);
-	transition: all 0.25s ease;
+
+.row-ttl-home {
+	align-items: center;
+	padding: 2em 3em;
+	margin: 0;
 }
- 
-.select-filter:hover i{
-	margin-top: 3px;
+
+.row-ttl-home hr {
+	width: 90%;
+	margin: 0 3em;
+}
+
+.row-ttl-home h3 {
+	font-size: 1.5em;
 }
