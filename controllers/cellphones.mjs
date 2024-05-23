@@ -15,10 +15,14 @@ export class ControllerCellphones {
     }
 
     static getById = async (req, res) => {
-        const { id } = req.params;
-        const cellphone = cellphoneModels.getById({ id });
+        const origin = req.header("origin");
+        if (ACCEPTED_ORIGINS.includes(origin) | !origin){
+            res.header("Access-Control-Allow-Origin", origin);
+        }
 
-        //! validar si en el caso de que si esté el celular mande un status 200
+        const { id } = req.params;
+        const cellphone = await cellphoneModels.getById({ id });
+
         if (cellphone) res.json(cellphone)
         else res.status(404).json({message: "Cellphone not found"})
     }

@@ -15,10 +15,16 @@ export class ControllerLaptops {
     }
 
     static getById = async (req, res) => {
+        const origin = req.header("origin");
+
+        if (ACCEPTED_ORIGINS.includes(origin) || !origin) {
+            res.header("Access-Control-Allow-Origin", origin)
+        }
+
         const { id } = req.params;
         const laptop = await laptopModels.getById({ id });
 
-        if (laptop) return res.json(laptop).status(200)
+        if (laptop) return res.json(laptop)
         return res.json({ message : "Laptop not found" }).status(404)
 
     }

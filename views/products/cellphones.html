@@ -4,7 +4,7 @@
     <meta charset="UTF-8" lang="es">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AllTechno</title>
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/style_products.css">
     <link type="image/png" sizes="16x16" rel="icon" href="../../resources/icono.png">
@@ -73,61 +73,42 @@
         <div class="slider-card">
             <div class="container">
 
-                <script>
-                    fetch("http://localhost:5000/allTechno/cellphones")
-                    .then(res => res.json())
-                    .then(cellphones => {
-                        const html = cellphones.map(cellphone => {
-                            
-                            return `
-                                <div class="swiper-wrapper" data-id="${cellphone.id}">
-                                    <div class="swiper-slide">
-                                        <swiper-container style="--swiper-navigation-color: #fff; --swiper-pagination-color: #000;" class="mySwiper"
-                                        zoom="true"  pagination="true" pagination-clickable="true">
-                                            <swiper-slide>
-                                            <div class="swiper-zoom-container">
-                                                <img src="${cellphone.url1}" />
-                                            </div>
-                                            </swiper-slide>
-                                            <swiper-slide>
-                                            <div class="swiper-zoom-container">
-                                                <img src="${cellphone.url2}" />
-                                            </div>
-                                            </swiper-slide>
-                                            <swiper-slide>
-                                            <div class="swiper-zoom-container">
-                                                <img src="${cellphone.url3}" />
-                                            </div>
-                                            </swiper-slide>
-                                            <swiper-slide>
-                                            <div class="swiper-zoom-container">
-                                                <img src="${cellphone.url4}" />
-                                            </div>
-                                            </swiper-slide>
-                                            <swiper-slide>
-                                            <div class="swiper-zoom-container">
-                                                <img src="${cellphone.url5}" />
-                                            </div>
-                                            </swiper-slide>
-                                            <swiper-slide>
-                                            <div class="swiper-zoom-container">
-                                                <img src="${cellphone.url6}" />
-                                            </div>
-                                            </swiper-slide>
-                                        </swiper-container>
-                                        <div class="data-product">
-                                            <h4 class="product-name">${cellphone.marca} ${cellphone.modelo}</h4>
-                                            <span class="product-price">$${cellphone.precio.toLocaleString()}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            `
-                        }).join("")
+                <script type="module">
+                    import { loadProducts, loadProduct } from "../js/loadProduct(s).mjs";
+            
+                    const category = "cellphones";
+                    const id = null;
+                    
+                    const cards = document.querySelectorAll(".swiper-wrapper");
+                    cards.forEach(card => {
+                        card.addEventListener("click", (e) => {
+                            const cardClicked = e.target.closest(card.className);
+                            id = cardClicked.dataset.id;
+                            loadProduct(category, id)
+                        })
+                    });
 
-                        document.querySelector(".container").innerHTML = html;
+                    // Handle page load with potential state from URL
+                    window.addEventListener('load', () => {
+                        if (id !== null) {
+                            loadProduct(category, id);
+                        } else {
+                            loadProducts(category);
+                        }
+                    });
+            
+                    // Handle back/forward buttons
+                    window.addEventListener('popstate', () => {
+                        if (id !== null) {
+                            loadProduct(category, id);
+                        } else {
+                            loadProducts(category);
+                            const linkProduct = document.querySelector('link[href="../css/style_product.css"]')
+                            document.head.removeChild(linkProduct)
+                        }
+                    });
 
-                        // codigo faltante para edicion y eliminacion de este producto
-                    })
+                    loadProducts(category);
                 </script>
             
             
@@ -165,7 +146,6 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
-    <script src="../js/swipers.js"></script>
     <script src="../js/dropdowns.js"></script>
 </body>
 </html>

@@ -2,7 +2,7 @@
 GET http://localhost:5000/allTechno/cellphones
 
 ### get cellphone by id
-GET http://localhost:5000/allTechno/cellphones/id
+GET http://localhost:5000/allTechno/cellphones/c3d6fe5c-1885-11ef-a2c8-d85ed3ffda3c
 
 ### create cellphone
 POST http://localhost:5000/allTechno/cellphones

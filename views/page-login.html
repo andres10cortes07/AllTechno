@@ -12,7 +12,17 @@
 <body>
     
     <div>
-        <a href="index.html"><i class='bx bx-left-arrow-alt row'></i></a>
+        <i class='bx bx-left-arrow-alt row' id="row-login"></i>
+        <script>
+            document.addEventListener("DOMContentLoaded", (e)=> {
+                
+                const elementI = document.getElementById("row-login");
+                elementI.addEventListener("click", (e) => {
+                    window.history.go(-1)
+                })
+            })
+
+        </script>
     </div>
 
     <div class="ctn-form">

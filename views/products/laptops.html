@@ -69,73 +69,6 @@
             </select>
         </div>
 
-        <!-- Swiper -->
-        <div class="slider-card">
-            <div class="container">
-
-                <script>
-                    // fetch("http://localhost:5000/allTechno/cellphones")
-                    // .then(res => res.json())
-                    // .then(cellphones => {
-                    //     const html = cellphones.map(cellphone => {
-                            
-                    //         return `
-                    //             <div class="swiper-wrapper" data-id="${cellphone.id}">
-                    //                 <div class="swiper-slide">
-                    //                     <swiper-container style="--swiper-navigation-color: #fff; --swiper-pagination-color: #000;" class="mySwiper"
-                    //                     zoom="true"  pagination="true" pagination-clickable="true">
-                    //                         <swiper-slide>
-                    //                         <div class="swiper-zoom-container">
-                    //                             <img src="${cellphone.url1}" />
-                    //                         </div>
-                    //                         </swiper-slide>
-                    //                         <swiper-slide>
-                    //                         <div class="swiper-zoom-container">
-                    //                             <img src="${cellphone.url2}" />
-                    //                         </div>
-                    //                         </swiper-slide>
-                    //                         <swiper-slide>
-                    //                         <div class="swiper-zoom-container">
-                    //                             <img src="${cellphone.url3}" />
-                    //                         </div>
-                    //                         </swiper-slide>
-                    //                         <swiper-slide>
-                    //                         <div class="swiper-zoom-container">
-                    //                             <img src="${cellphone.url4}" />
-                    //                         </div>
-                    //                         </swiper-slide>
-                    //                         <swiper-slide>
-                    //                         <div class="swiper-zoom-container">
-                    //                             <img src="${cellphone.url5}" />
-                    //                         </div>
-                    //                         </swiper-slide>
-                    //                         <swiper-slide>
-                    //                         <div class="swiper-zoom-container">
-                    //                             <img src="${cellphone.url6}" />
-                    //                         </div>
-                    //                         </swiper-slide>
-                    //                     </swiper-container>
-                    //                     <div class="data-product">
-                    //                         <h4 class="product-name">${cellphone.marca} ${cellphone.modelo}</h4>
-                    //                         <span class="product-price">$${cellphone.precio.toLocaleString()}</span>
-                    //                     </div>
-                    //                 </div>
-                    //             </div>
-                    //         `
-                    //     }).join("")
-
-                    //     document.querySelector(".container").innerHTML = html;
-
-                    //     // codigo faltante para edicion y eliminacion de este producto
-                    // })
-                </script>
-            
-            
-            </div>
-        </div>
-        <!-- Swiper JS -->
-
-        
     </main>
 
     
@@ -167,5 +100,35 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
     <script src="../js/swipers.js"></script>
     <script src="../js/dropdowns.js"></script>
+
+
+    <script type="module">
+        import { loadProducts, loadProduct } from "../js/loadProduct(s).mjs";
+
+        const category = "laptops";
+        loadProducts(category)
+
+        // Handle page load with potential state from URL
+        window.addEventListener('load', () => {
+            const params = new URLSearchParams(window.location.search);
+            const id = params.get('id');
+            if (id) {
+                loadProduct(category, id);
+            } else {
+                loadProducts(category);
+            }
+        });
+
+        // Handle back/forward buttons
+        window.addEventListener('popstate', (event) => {
+            if (id) {
+                loadProduct(category, id);
+            } else {
+                loadProducts(category);
+                const linkProduct = document.querySelector('link[href="../css/style_product.css"]')
+                document.head.removeChild(linkProduct)
+            }
+        });
+    </script>
 </body>
 </html>
