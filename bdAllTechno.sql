@@ -280,6 +280,30 @@ INSERT INTO recursos (url1, url2, url3, url4, url5, url6) VALUES
 ('../../resources/uploads/laptops/xps.jpg', '../../resources/uploads/laptops/xps-1.jpg', '../../resources/uploads/laptops/xps-2.jpg', '../../resources/uploads/laptops/xps-3.jpg', '../../resources/uploads/laptops/xps-4.jpg', '../../resources/uploads/laptops/xps-5.jpg');
 
 
+INSERT INTO recursos (url1, url2, url3, url4, url5, url6) VALUES
+('../../resources/uploads/powerSupplies/earth.jpg', '../../resources/uploads/powerSupplies/earth-1.jpg', '../../resources/uploads/powerSupplies/earth-2.jpg', '../../resources/uploads/powerSupplies/earth-3.jpg', '../../resources/uploads/powerSupplies/earth-4.jpg', '../../resources/uploads/powerSupplies/earth-5.jpg'),
+('../../resources/uploads/powerSupplies/earth8.jpg', '../../resources/uploads/powerSupplies/earth8-1.jpg', '../../resources/uploads/powerSupplies/earth8-2.jpg', '../../resources/uploads/powerSupplies/earth8-3.jpg', '../../resources/uploads/powerSupplies/earth8-4.jpg', '../../resources/uploads/powerSupplies/earth8-5.jpg'),
+('../../resources/uploads/powerSupplies/gf1.webp', '../../resources/uploads/powerSupplies/gf1-1.webp', '../../resources/uploads/powerSupplies/gf1-2.webp', '../../resources/uploads/powerSupplies/gf1-3.webp', '../../resources/uploads/powerSupplies/gf1-4.webp', '../../resources/uploads/powerSupplies/gf1-5.webp'),
+('../../resources/uploads/powerSupplies/gf18.jpg', '../../resources/uploads/powerSupplies/gf18-1.jpg', '../../resources/uploads/powerSupplies/gf18-2.jpg', '../../resources/uploads/powerSupplies/gf18-3.jpg', '../../resources/uploads/powerSupplies/gf18-4.jpg', '../../resources/uploads/powerSupplies/gf18-5.jpg'),
+('../../resources/uploads/powerSupplies/gx.jpg', '../../resources/uploads/powerSupplies/gx-1.jpg', '../../resources/uploads/powerSupplies/gx-2.jpg', '../../resources/uploads/powerSupplies/gx-3.jpg', '../../resources/uploads/powerSupplies/gx-4.jpg', '../../resources/uploads/powerSupplies/gx-5.jpg'),
+('../../resources/uploads/powerSupplies/gx8.jpg', '../../resources/uploads/powerSupplies/gx8-1.jpg', '../../resources/uploads/powerSupplies/gx8-2.jpg', '../../resources/uploads/powerSupplies/gx8-3.jpg', '../../resources/uploads/powerSupplies/gx8-4.jpg', '../../resources/uploads/powerSupplies/gx8-5.jpg'),
+('../../resources/uploads/powerSupplies/hydro.jpg', '../../resources/uploads/powerSupplies/hydro-1.jpg', '../../resources/uploads/powerSupplies/hydro-2.jpg', '../../resources/uploads/powerSupplies/hydro-3.jpg', '../../resources/uploads/powerSupplies/hydro-4.jpg', '../../resources/uploads/powerSupplies/hydro-5.jpg'),
+('../../resources/uploads/powerSupplies/hydro8.jpg', '../../resources/uploads/powerSupplies/hydro8-1.jpg', '../../resources/uploads/powerSupplies/hydro8-2.jpg', '../../resources/uploads/powerSupplies/hydro8-3.jpg', '../../resources/uploads/powerSupplies/hydro8-4.jpg', '../../resources/uploads/powerSupplies/hydro8-5.jpg'),
+('../../resources/uploads/powerSupplies/mwe.webp', '../../resources/uploads/powerSupplies/mwe-1.webp', '../../resources/uploads/powerSupplies/mwe-2.webp', '../../resources/uploads/powerSupplies/mwe-3.webp', '../../resources/uploads/powerSupplies/mwe-4.webp', '../../resources/uploads/powerSupplies/mwe-5.webp'),
+('../../resources/uploads/powerSupplies/mwe8.jpg', '../../resources/uploads/powerSupplies/mwe8-1.jpg', '../../resources/uploads/powerSupplies/mwe8-2.jpg', '../../resources/uploads/powerSupplies/mwe8-3.jpg', '../../resources/uploads/powerSupplies/mwe8-4.jpg', '../../resources/uploads/powerSupplies/mwe8-5.jpg'),
+('../../resources/uploads/powerSupplies/nova.jpg', '../../resources/uploads/powerSupplies/nova-1.jpg', '../../resources/uploads/powerSupplies/nova-2.jpg', '../../resources/uploads/powerSupplies/nova-3.jpg', '../../resources/uploads/powerSupplies/nova-4.jpg', '../../resources/uploads/powerSupplies/nova-5.jpg'),
+('../../resources/uploads/powerSupplies/nova8.jpg', '../../resources/uploads/powerSupplies/nova8-1.jpg', '../../resources/uploads/powerSupplies/nova8-2.jpg', '../../resources/uploads/powerSupplies/nova8-3.jpg', '../../resources/uploads/powerSupplies/nova8-4.jpg', '../../resources/uploads/powerSupplies/nova8-5.jpg'),
+('../../resources/uploads/powerSupplies/nsxt7.jpg', '../../resources/uploads/powerSupplies/nsxt7-1.jpg', '../../resources/uploads/powerSupplies/nsxt7-2.jpg', '../../resources/uploads/powerSupplies/nsxt7-3.jpg', '../../resources/uploads/powerSupplies/nsxt7-4.jpg', '../../resources/uploads/powerSupplies/nsxt7-5.jpg'),
+('../../resources/uploads/powerSupplies/nsxt8.jpg', '../../resources/uploads/powerSupplies/nsxt8-1.jpg', '../../resources/uploads/powerSupplies/nsxt8-2.jpg', '../../resources/uploads/powerSupplies/nsxt8-3.jpg', '../../resources/uploads/powerSupplies/nsxt8-4.jpg', '../../resources/uploads/powerSupplies/nsxt8-5.jpg'),
+('../../resources/uploads/powerSupplies/power7.jpg', '../../resources/uploads/powerSupplies/power7-1.jpg', '../../resources/uploads/powerSupplies/power7-2.jpg', '../../resources/uploads/powerSupplies/power7-3.jpg', '../../resources/uploads/powerSupplies/power7-4.jpg', '../../resources/uploads/powerSupplies/power7-5.jpg'),
+('../../resources/uploads/powerSupplies/power8.jpg', '../../resources/uploads/powerSupplies/power8-1.jpg', '../../resources/uploads/powerSupplies/power8-2.jpg', '../../resources/uploads/powerSupplies/power8-3.jpg', '../../resources/uploads/powerSupplies/power8-4.jpg', '../../resources/uploads/powerSupplies/power8-5.jpg'),
+('../../resources/uploads/powerSupplies/rm.jpg', '../../resources/uploads/powerSupplies/rm-1.jpg', '../../resources/uploads/powerSupplies/rm-2.jpg', '../../resources/uploads/powerSupplies/rm-3.jpg', '../../resources/uploads/powerSupplies/rm-4.jpg', '../../resources/uploads/powerSupplies/rm-5.jpg'),
+('../../resources/uploads/powerSupplies/rm8.jpg', '../../resources/uploads/powerSupplies/rm8-1.jpg', '../../resources/uploads/powerSupplies/rm8-2.jpg', '../../resources/uploads/powerSupplies/rm8-3.jpg', '../../resources/uploads/powerSupplies/rm8-4.jpg', '../../resources/uploads/powerSupplies/rm8-5.jpg'),
+('../../resources/uploads/powerSupplies/sst.jpg', '../../resources/uploads/powerSupplies/sst-1.jpg', '../../resources/uploads/powerSupplies/sst-2.jpg', '../../resources/uploads/powerSupplies/sst-3.jpg', '../../resources/uploads/powerSupplies/sst-4.jpg', '../../resources/uploads/powerSupplies/sst-5.jpg'),
+('../../resources/uploads/powerSupplies/sst8.jpg', '../../resources/uploads/powerSupplies/sst8-1.jpg', '../../resources/uploads/powerSupplies/sst8-2.jpg', '../../resources/uploads/powerSupplies/sst8-3.jpg', '../../resources/uploads/powerSupplies/sst8-4.jpg', '../../resources/uploads/powerSupplies/sst8-5.jpg');
+
+
+
 
 INSERT INTO celulares (id, marca, modelo, bateria, procesador, camaraFrontal, camaraPosterior, resolucion, huella, almacenamiento, ram, precio, colores, recursos_id_recurso) VALUES
 (UUID_TO_BIN(UUID()), 'Samsung', 'Galaxy S21', 4000, 'Exynos 2100', 32, 108, '1080 x 2400 pixels', 'En pantalla', 128, 8, 3800000, 'Negro, Gris, Azul', 18),
@@ -399,26 +423,27 @@ INSERT INTO `alltechno`.`ram` (`id`, `marca`, `modelo`, `capacidad`, `velocidad`
 
 
 INSERT INTO `alltechno`.`fuentesdepoder` (`id`, `marca`, `modelo`, `voltaje`, `potencia`, `certificacion`, `precio`, `recursos_id_recurso`) VALUES
-(UUID_TO_BIN(UUID()), 'EVGA', 'SuperNOVA 750 G5', 120, 750, '80 Plus Gold', 550000, NULL),
-(UUID_TO_BIN(UUID()), 'Corsair', 'RM750x', 120, 750, '80 Plus Gold', 580000, NULL),
-(UUID_TO_BIN(UUID()), 'Seasonic', 'Focus GX-750', 120, 750, '80 Plus Platinum', 600000, NULL),
-(UUID_TO_BIN(UUID()), 'Thermaltake', 'Toughpower GF1 750W', 120, 750, '80 Plus Bronze', 530000, NULL),
-(UUID_TO_BIN(UUID()), 'Cooler Master', 'MWE Gold 750 Full Modular', 120, 750, '80 Plus Titanium', 560000, NULL),
-(UUID_TO_BIN(UUID()), 'be quiet!', 'Straight Power 11 750W', 120, 750, '80 Plus Silver', 590000, NULL),
-(UUID_TO_BIN(UUID()), 'NZXT', 'C750', 120, 750, '80 Plus Gold', 570000, NULL),
-(UUID_TO_BIN(UUID()), 'SilverStone', 'SST-ET750-G', 120, 750, '80 Plus Gold', 540000, NULL),
-(UUID_TO_BIN(UUID()), 'Antec', 'Earthwatts Gold Pro 750W', 120, 750, '80 Plus Bronze', 580000, NULL),
-(UUID_TO_BIN(UUID()), 'FSP', 'Hydro G Pro 750W', 120, 750, '80 Plus Gold', 610000, NULL),
-(UUID_TO_BIN(UUID()), 'EVGA', 'SuperNOVA 850 G5', 120, 850, '80 Plus Platinum', 620000, NULL),
-(UUID_TO_BIN(UUID()), 'Corsair', 'RM850x', 120, 850, '80 Plus Gold', 640000, NULL),
-(UUID_TO_BIN(UUID()), 'Seasonic', 'Focus GX-850', 120, 850, '80 Plus Titanium', 660000, NULL),
-(UUID_TO_BIN(UUID()), 'Thermaltake', 'Toughpower GF1 850W', 120, 850, '80 Plus Bronze', 630000, NULL),
-(UUID_TO_BIN(UUID()), 'Cooler Master', 'MWE Gold 850 Full Modular', 120, 850, '80 Plus Silver', 650000, NULL),
-(UUID_TO_BIN(UUID()), 'be quiet!', 'Straight Power 11 850W', 120, 850, '80 Plus Gold', 670000, NULL),
-(UUID_TO_BIN(UUID()), 'NZXT', 'C850', 120, 850, '80 Plus Platinum', 690000, NULL),
-(UUID_TO_BIN(UUID()), 'SilverStone', 'SST-ET850-G', 120, 850, '80 Plus Gold', 660000, NULL),
-(UUID_TO_BIN(UUID()), 'Antec', 'Earthwatts Gold Pro 850W', 120, 850, '80 Plus Bronze', 680000, NULL),
-(UUID_TO_BIN(UUID()), 'FSP', 'Hydro G Pro 850W', 120, 850, '80 Plus Titanium', 700000, NULL);
+(UUID_TO_BIN(UUID()), 'Antec', 'Earthwatts Gold Pro 750W', 120, 750, '80 Plus Bronze', 580000, 41),
+(UUID_TO_BIN(UUID()), 'Antec', 'Earthwatts Gold Pro 850W', 120, 850, '80 Plus Bronze', 680000, 42),
+(UUID_TO_BIN(UUID()), 'Thermaltake', 'Toughpower GF1 750W', 120, 750, '80 Plus Bronze', 530000, 43),
+(UUID_TO_BIN(UUID()), 'Thermaltake', 'Toughpower GF1 850W', 120, 850, '80 Plus Bronze', 630000, 44),
+(UUID_TO_BIN(UUID()), 'Seasonic', 'Focus GX-750', 120, 750, '80 Plus Platinum', 600000, 45),
+(UUID_TO_BIN(UUID()), 'Seasonic', 'Focus GX-850', 120, 850, '80 Plus Titanium', 660000, 46),
+(UUID_TO_BIN(UUID()), 'FSP', 'Hydro G Pro 750W', 120, 750, '80 Plus Gold', 610000, 47),
+(UUID_TO_BIN(UUID()), 'FSP', 'Hydro G Pro 850W', 120, 850, '80 Plus Titanium', 700000, 48),
+(UUID_TO_BIN(UUID()), 'Cooler Master', 'MWE Gold 750 Full Modular', 120, 750, '80 Plus Titanium', 560000, 49),
+(UUID_TO_BIN(UUID()), 'Cooler Master', 'MWE Gold 850 Full Modular', 120, 850, '80 Plus Silver', 650000, 50),
+(UUID_TO_BIN(UUID()), 'EVGA', 'SuperNOVA 750 G5', 120, 750, '80 Plus Gold', 550000, 51),
+(UUID_TO_BIN(UUID()), 'EVGA', 'SuperNOVA 850 G5', 120, 850, '80 Plus Platinum', 620000, 52),
+(UUID_TO_BIN(UUID()), 'NZXT', 'C750', 120, 750, '80 Plus Gold', 570000, 53),
+(UUID_TO_BIN(UUID()), 'NZXT', 'C850', 120, 850, '80 Plus Platinum', 690000, 54),
+(UUID_TO_BIN(UUID()), 'be quiet!', 'Straight Power 11 750W', 120, 750, '80 Plus Silver', 590000, 55),
+(UUID_TO_BIN(UUID()), 'be quiet!', 'Straight Power 11 850W', 120, 850, '80 Plus Gold', 670000, 56),
+(UUID_TO_BIN(UUID()), 'Corsair', 'RM750x', 120, 750, '80 Plus Gold', 580000, 57),
+(UUID_TO_BIN(UUID()), 'Corsair', 'RM850x', 120, 850, '80 Plus Gold', 640000, 58),
+(UUID_TO_BIN(UUID()), 'SilverStone', 'SST-ET750-G', 120, 750, '80 Plus Gold', 540000, 59),
+(UUID_TO_BIN(UUID()), 'SilverStone', 'SST-ET850-G', 120, 850, '80 Plus Gold', 660000, 60);
+
 
 
 
