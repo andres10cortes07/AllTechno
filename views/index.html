@@ -31,7 +31,7 @@
             </div>
             <div class="row-2">
                 <ul>
-                    <a href=""><li>Portatiles</li></a>
+                    <a href="products/laptops.html"><li>Portatiles</li></a>
                     <a href="products/cellphones.html"><li>Celulares</li></a>
                     <a href=""><li>Pantallas</li></a>
                 </ul>
@@ -105,98 +105,90 @@
                   fetch("http://localhost:5000/allTechno")
                   .then(res => res.json())
                   .then(res => {
-                    const codeRow1 = res.newProducts.map(newProduct => {
-                      return `
-                      <div class="swiper-slide" data-id="${newProduct.id}">
-                            <swiper-container style="--swiper-navigation-color: #fff; --swiper-pagination-color: #000" class="mySwiper"
-                            zoom="true"  pagination="true" pagination-clickable="true">
-                            <swiper-slide>
-                              <div class="swiper-zoom-container">
-                                <img src="${newProduct.url1}" />
-                              </div>
-                            </swiper-slide>
-                            <swiper-slide>
-                              <div class="swiper-zoom-container">
-                                <img src="${newProduct.url2}" />
-                              </div>
-                            </swiper-slide>
-                            <swiper-slide>
-                              <div class="swiper-zoom-container">
-                                <img src="${newProduct.url3}" />
-                              </div>
-                            </swiper-slide>
-                            <swiper-slide>
-                              <div class="swiper-zoom-container">
-                                <img src="${newProduct.url4}" />
-                              </div>
-                            </swiper-slide>
-                            <swiper-slide>
-                              <div class="swiper-zoom-container">
-                                <img src="${newProduct.url5}" />
-                              </div>
-                            </swiper-slide>
-                            <swiper-slide>
-                              <div class="swiper-zoom-container">
-                                <img src="${newProduct.url6}" />
-                              </div>
-                            </swiper-slide>
-                          </swiper-container>
-                            <div class="data-product">
+                    
+                    const codeRow1 = res.mostSelledProducts.map(newProduct => {
+                        let swiperSlidesHTML = ""; // Inicializamos una cadena vacía para contener el HTML de los swiper-slide
+
+                        // Iteramos sobre cada url y generamos el HTML del swiper-slide correspondiente
+                        for (let i = 1; i <= 6; i++) {
+                          const url = newProduct[`url${i}`]; // Obtenemos la URL correspondiente
+
+                          // Verificamos si la URL no es null
+                          if (url !== null && url !== "null") {
+                            swiperSlidesHTML += `
+                              <swiper-slide>
+                                <div class="swiper-zoom-container">
+                                  <img src="${url}" />
+                                </div>
+                              </swiper-slide>
+                            `;
+                          }
+                        }
+
+                        // Verificamos si hay al menos un swiper-slide generado
+                        if (swiperSlidesHTML !== "") {
+                          // Si hay swiper-slide generados, los incluimos dentro de un contenedor swiper-container
+                          return `
+                            <div class="swiper-slide" data-id="${newProduct.id}">
+                              <swiper-container style="--swiper-navigation-color: #fff; --swiper-pagination-color: #000" class="mySwiper"
+                                                zoom="true"  pagination="true" pagination-clickable="true" loop="true">
+                                ${swiperSlidesHTML}
+                              </swiper-container>
+                              <div class="data-product">
                                 <h4 class="product-name">${newProduct.marca + " " + newProduct.modelo}</h4>
                                 <span class="product-price">$${newProduct.precio.toLocaleString()}</span>
+                              </div>
                             </div>
-                        </div>
-                      `
-                    }).join("");
-                    const codeRow2 = res.mostSelledProducts.map(mostSelledProduct => {
-                      return `
-                      <div class="swiper-slide" data-id="${mostSelledProduct.id}">
-                            <swiper-container style="--swiper-navigation-color: #fff; --swiper-pagination-color: #000" class="mySwiper"
-                            zoom="true"  pagination="true" pagination-clickable="true">
-                            <swiper-slide>
-                              <div class="swiper-zoom-container">
-                                <img src="${mostSelledProduct.url1}" />
-                              </div>
-                            </swiper-slide>
-                            <swiper-slide>
-                              <div class="swiper-zoom-container">
-                                <img src="${mostSelledProduct.url2}" />
-                              </div>
-                            </swiper-slide>
-                            <swiper-slide>
-                              <div class="swiper-zoom-container">
-                                <img src="${mostSelledProduct.url3}" />
-                              </div>
-                            </swiper-slide>
-                            <swiper-slide>
-                              <div class="swiper-zoom-container">
-                                <img src="${mostSelledProduct.url4}" />
-                              </div>
-                            </swiper-slide>
-                            <swiper-slide>
-                              <div class="swiper-zoom-container">
-                                <img src="${mostSelledProduct.url5}" />
-                              </div>
-                            </swiper-slide>
-                            <swiper-slide>
-                              <div class="swiper-zoom-container">
-                                <img src="${mostSelledProduct.url6}" />
-                              </div>
-                            </swiper-slide>
-                          </swiper-container>
-                            <div class="data-product">
+                          `;
+                        } else {
+                          // Si no hay swiper-slide generados, retornamos una cadena vacía
+                          return "";
+                        }
+                      }).join("");
+                    const codeRow2 = res.newProducts.map(mostSelledProduct => {
+                        let swiperSlidesHTML = "";
+
+                        // Iteramos sobre cada url y generamos el HTML del swiper-slide correspondiente
+                        for (let i = 1; i <= 6; i++) {
+                          const url = mostSelledProduct[`url${i}`]; // Obtenemos la URL correspondiente
+
+                          // Verificamos si la URL no es null
+                          if (url !== null && url !== "null") {
+                            swiperSlidesHTML += `
+                              <swiper-slide>
+                                <div class="swiper-zoom-container">
+                                  <img src="${url}" />
+                                </div>
+                              </swiper-slide>
+                            `;
+                          }
+                        }
+
+                        // Verificamos si hay al menos un swiper-slide generado
+                        if (swiperSlidesHTML !== "") {
+                          // Si hay swiper-slide generados, los incluimos dentro de un contenedor swiper-container
+                          return `
+                            <div class="swiper-slide" data-id="${mostSelledProduct.id}">
+                              <swiper-container style="--swiper-navigation-color: #fff; --swiper-pagination-color: #000" class="mySwiper"
+                                                zoom="true"  pagination="true" pagination-clickable="true" loop="true">
+                                ${swiperSlidesHTML}
+                              </swiper-container>
+                              <div class="data-product">
                                 <h4 class="product-name">${mostSelledProduct.marca + " " + mostSelledProduct.modelo}</h4>
                                 <span class="product-price">$${mostSelledProduct.precio.toLocaleString()}</span>
+                              </div>
                             </div>
-                        </div>
-                      `
-                    }).join("");
+                          `;
+                        } else return ""
+                      }).join("");
+
                     
                     document.querySelector(".swiper-container1 > .swiper-wrapper").innerHTML = codeRow1
                     document.querySelector(".swiper-container2 > .swiper-wrapper").innerHTML = codeRow2
 
                   })
                   .catch(error => console.error("Error: ",error))
+
                 </script>
             </span></p>
         </div>
@@ -210,7 +202,7 @@
         </div>
     </footer>
 
-
+    
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
     <script src="js/swipers.js"></script>

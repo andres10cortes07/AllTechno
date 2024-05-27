@@ -292,7 +292,7 @@ INSERT INTO recursos (url1, url2, url3, url4, url5, url6) VALUES
 ('../../resources/uploads/powerSupplies/mwe.webp', '../../resources/uploads/powerSupplies/mwe-1.webp', '../../resources/uploads/powerSupplies/mwe-2.webp', '../../resources/uploads/powerSupplies/mwe-3.webp', '../../resources/uploads/powerSupplies/mwe-4.webp', '../../resources/uploads/powerSupplies/mwe-5.webp'),
 ('../../resources/uploads/powerSupplies/mwe8.jpg', '../../resources/uploads/powerSupplies/mwe8-1.jpg', '../../resources/uploads/powerSupplies/mwe8-2.jpg', '../../resources/uploads/powerSupplies/mwe8-3.jpg', '../../resources/uploads/powerSupplies/mwe8-4.jpg', '../../resources/uploads/powerSupplies/mwe8-5.jpg'),
 ('../../resources/uploads/powerSupplies/nova.jpg', '../../resources/uploads/powerSupplies/nova-1.jpg', '../../resources/uploads/powerSupplies/nova-2.jpg', '../../resources/uploads/powerSupplies/nova-3.jpg', '../../resources/uploads/powerSupplies/nova-4.jpg', '../../resources/uploads/powerSupplies/nova-5.jpg'),
-('../../resources/uploads/powerSupplies/nova8.jpg', '../../resources/uploads/powerSupplies/nova8-1.jpg', '../../resources/uploads/powerSupplies/nova8-2.jpg', '../../resources/uploads/powerSupplies/nova8-3.jpg', '../../resources/uploads/powerSupplies/nova8-4.jpg', '../../resources/uploads/powerSupplies/nova8-5.jpg'),
+('../../resources/uploads/powerSupplies/nova8.png', '../../resources/uploads/powerSupplies/nova8-1.jpg', '../../resources/uploads/powerSupplies/nova8-2.jpg', '../../resources/uploads/powerSupplies/nova8-3.jpg', '../../resources/uploads/powerSupplies/nova8-4.jpg', '../../resources/uploads/powerSupplies/nova8-5.jpg'),
 ('../../resources/uploads/powerSupplies/nsxt7.jpg', '../../resources/uploads/powerSupplies/nsxt7-1.jpg', '../../resources/uploads/powerSupplies/nsxt7-2.jpg', '../../resources/uploads/powerSupplies/nsxt7-3.jpg', '../../resources/uploads/powerSupplies/nsxt7-4.jpg', '../../resources/uploads/powerSupplies/nsxt7-5.jpg'),
 ('../../resources/uploads/powerSupplies/nsxt8.jpg', '../../resources/uploads/powerSupplies/nsxt8-1.jpg', '../../resources/uploads/powerSupplies/nsxt8-2.jpg', '../../resources/uploads/powerSupplies/nsxt8-3.jpg', '../../resources/uploads/powerSupplies/nsxt8-4.jpg', '../../resources/uploads/powerSupplies/nsxt8-5.jpg'),
 ('../../resources/uploads/powerSupplies/power7.jpg', '../../resources/uploads/powerSupplies/power7-1.jpg', '../../resources/uploads/powerSupplies/power7-2.jpg', '../../resources/uploads/powerSupplies/power7-3.jpg', '../../resources/uploads/powerSupplies/power7-4.jpg', '../../resources/uploads/powerSupplies/power7-5.jpg'),
@@ -302,6 +302,91 @@ INSERT INTO recursos (url1, url2, url3, url4, url5, url6) VALUES
 ('../../resources/uploads/powerSupplies/sst.jpg', '../../resources/uploads/powerSupplies/sst-1.jpg', '../../resources/uploads/powerSupplies/sst-2.jpg', '../../resources/uploads/powerSupplies/sst-3.jpg', '../../resources/uploads/powerSupplies/sst-4.jpg', '../../resources/uploads/powerSupplies/sst-5.jpg'),
 ('../../resources/uploads/powerSupplies/sst8.jpg', '../../resources/uploads/powerSupplies/sst8-1.jpg', '../../resources/uploads/powerSupplies/sst8-2.jpg', '../../resources/uploads/powerSupplies/sst8-3.jpg', '../../resources/uploads/powerSupplies/sst8-4.jpg', '../../resources/uploads/powerSupplies/sst8-5.jpg');
 
+
+INSERT INTO recursos (url1, url2, url3, url4, url5, url6) VALUES
+("../../resources/uploads/processors/5600g.jpg", "../../resources/uploads/processors/5600g-1.jpg", NULL, NULL, NULL, NULL),
+("../../resources/uploads/processors/5600.jpg", "../../resources/uploads/processors/5600-1.jpg", NULL, NULL, NULL, NULL),
+("../../resources/uploads/processors/5600x.jpg", "../../resources/uploads/processors/5600x-1.jpg", NULL, NULL, NULL, NULL),
+("../../resources/uploads/processors/5700g.jpg", "../../resources/uploads/processors/5700g-1.jpg", "../../resources/uploads/processors/5700g-2.jpg", NULL, NULL, NULL),
+("../../resources/uploads/processors/5800.webp", "../../resources/uploads/processors/5800-1.webp", NULL, NULL, NULL, NULL),
+("../../resources/uploads/processors/5800x.jpg", "../../resources/uploads/processors/5800x-1.jpg", "../../resources/uploads/processors/5800x-2.jpg", NULL, NULL, NULL),
+("../../resources/uploads/processors/5900.webp", "../../resources/uploads/processors/5900-1.webp", NULL, NULL, NULL, NULL),
+("../../resources/uploads/processors/5900x.webp", NULL, NULL, NULL, NULL, NULL),
+("../../resources/uploads/processors/5950x.jpg", "../../resources/uploads/processors/5950x-1.jpg", NULL, NULL, NULL, NULL),
+("../../resources/uploads/processors/10400f.jpg", "../../resources/uploads/processors/10400f-1.jpg", NULL, NULL, NULL, NULL),
+("../../resources/uploads/processors/10600k.jpg", "../../resources/uploads/processors/10600k-1.jpg", "../../resources/uploads/processors/10600k-2.jpg", NULL, NULL, NULL),
+("../../resources/uploads/processors/10700.jpg", "../../resources/uploads/processors/10700-1.jpg", NULL, NULL, NULL, NULL),
+("../../resources/uploads/processors/10700k.jpg", "../../resources/uploads/processors/10700k-1.jpg", "../../resources/uploads/processors/10700k-2.jpg", NULL, NULL, NULL),
+("../../resources/uploads/processors/10850k.jpg", "../../resources/uploads/processors/10850k-1.jpg", NULL, NULL, NULL, NULL),
+("../../resources/uploads/processors/10900.jpg", "../../resources/uploads/processors/10900-1.jpg", "../../resources/uploads/processors/10900-2.jpg", NULL, NULL, NULL),
+("../../resources/uploads/processors/10900k.jpg", "../../resources/uploads/processors/10900k-1.jpg", NULL, NULL, NULL, NULL),
+("../../resources/uploads/processors/11600k.jpg", "../../resources/uploads/processors/11600k-1.jpg", "../../resources/uploads/processors/11600k-2.jpg", NULL, NULL, NULL),
+("../../resources/uploads/processors/11700k.jpg", "../../resources/uploads/processors/11700k-1.jpg", "../../resources/uploads/processors/11700k-2.jpg", NULL, NULL, NULL),
+("../../resources/uploads/processors/11900k.jpg", "../../resources/uploads/processors/11900k-1.jpg", "../../resources/uploads/processors/11900k-2.jpg", NULL, NULL, NULL),
+("../../resources/uploads/processors/5900hs.webp", NULL, NULL, NULL, NULL, NULL);
+
+
+
+INSERT INTO recursos (url1, url2, url3, url4, url5, url6) VALUES
+("../../resources/uploads/ram/vengeance.jpg", "../../resources/uploads/ram/vengeance-1.jpg", "../../resources/uploads/ram/vengeance-2.jpg", "../../resources/uploads/ram/vengeance-3.jpg", NULL, NULL),
+("../../resources/uploads/ram/fury.webp", "../../resources/uploads/ram/fury-1.webp", "../../resources/uploads/ram/fury-2.webp", "../../resources/uploads/ram/fury-3.webp", NULL, NULL),
+("../../resources/uploads/ram/ripjaws.jpg", "../../resources/uploads/ram/ripjaws-1.jpg", "../../resources/uploads/ram/ripjaws-2.jpg", "../../resources/uploads/ram/ripjaws-3.jpg", NULL, NULL),
+("../../resources/uploads/ram/ballistix.jpg", "../../resources/uploads/ram/ballistix-1.jpg", "../../resources/uploads/ram/ballistix-2.jpg", "../../resources/uploads/ram/ballistix-3.jpg", "../../resources/uploads/ram/ballistix-4.jpg", NULL),
+("../../resources/uploads/ram/spectrix.jpg", "../../resources/uploads/ram/spectrix-1.jpg", "../../resources/uploads/ram/spectrix-2.jpg", "../../resources/uploads/ram/spectrix-3.jpg", "../../resources/uploads/ram/spectrix-4.jpg", NULL),
+("../../resources/uploads/ram/delta.jpg", "../../resources/uploads/ram/delta-1.jpg", "../../resources/uploads/ram/delta-2.jpg", "../../resources/uploads/ram/delta-3.jpg", "../../resources/uploads/ram/delta-4.jpg", NULL),
+("../../resources/uploads/ram/steel.jpg", "../../resources/uploads/ram/steel-1.jpg", "../../resources/uploads/ram/steel-2.jpg", "../../resources/uploads/ram/steel-3.jpg", NULL, NULL),
+("../../resources/uploads/ram/impact.jpg", "../../resources/uploads/ram/impact-1.jpg", "../../resources/uploads/ram/impact-2.jpg", NULL, NULL, NULL),
+("../../resources/uploads/ram/platinum.jpg", "../../resources/uploads/ram/platinum-1.webp", "../../resources/uploads/ram/platinum-2.webp", "../../resources/uploads/ram/platinum-3.webp", NULL, NULL),
+("../../resources/uploads/ram/trident.jpg", "../../resources/uploads/ram/trident-1.webp", "../../resources/uploads/ram/trident-2.webp", "../../resources/uploads/ram/trident-3.webp", "../../resources/uploads/ram/trident-4.webp", NULL),
+("../../resources/uploads/ram/value.webp", "../../resources/uploads/ram/value-1.webp", NULL, NULL, NULL, NULL),
+("../../resources/uploads/ram/crucial.png", "../../resources/uploads/ram/crucial-1.png", NULL, NULL, NULL, NULL),
+("../../resources/uploads/ram/gammix.jpg", "../../resources/uploads/ram/gammix-1.jpg", "../../resources/uploads/ram/gammix-2.jpg", "../../resources/uploads/ram/gammix-3.jpg", NULL, NULL),
+("../../resources/uploads/ram/elite.jpg", "../../resources/uploads/ram/elite-1.jpg", "../../resources/uploads/ram/elite-2.jpg", "../../resources/uploads/ram/elite-3.jpg", NULL, NULL),
+("../../resources/uploads/ram/patriot.jpg", "../../resources/uploads/ram/patriot-1.jpg", "../../resources/uploads/ram/patriot-2.jpg", "../../resources/uploads/ram/patriot-3.jpg", NULL, NULL),
+("../../resources/uploads/ram/xfury.jpg", "../../resources/uploads/ram/xfury-1.jpg", "../../resources/uploads/ram/xfury-2.jpg", NULL, NULL, NULL),
+("../../resources/uploads/ram/lpx.webp", "../../resources/uploads/ram/lpx-1.webp", "../../resources/uploads/ram/lpx-2.webp", "../../resources/uploads/ram/lpx-3.webp", "../../resources/uploads/ram/lpx-4.webp", NULL),
+("../../resources/uploads/ram/aegis.jpg", "../../resources/uploads/ram/aegis-1.jpg", "../../resources/uploads/ram/aegis-2.jpg", NULL, NULL, NULL),
+("../../resources/uploads/ram/predator.jpg", "../../resources/uploads/ram/predator-1.jpg", "../../resources/uploads/ram/predator-2.jpg", "../../resources/uploads/ram/predator-3.jpg", NULL, NULL),
+("../../resources/uploads/ram/ballistix2.png", "../../resources/uploads/ram/ballistix2-1.jpg", NULL, NULL, NULL, NULL);
+
+
+
+INSERT INTO recursos (url1, url2, url3, url4, url5, url6) VALUES
+("../../resources/uploads/screens/01r.jpg", "../../resources/uploads/screens/01r-1.jpg", "../../resources/uploads/screens/01r-2.jpg", "../../resources/uploads/screens/01r-3.jpg", "../../resources/uploads/screens/01r-4.jpg", NULL),
+("../../resources/uploads/screens/9he.jpg", "../../resources/uploads/screens/9he-1.jpg", "../../resources/uploads/screens/9he-2.jpg", NULL, NULL, NULL),
+("../../resources/uploads/screens/19h.jpg", "../../resources/uploads/screens/19h-1.jpg", "../../resources/uploads/screens/19h-2.jpg", "../../resources/uploads/screens/19h-3.jpg", NULL, NULL),
+("../../resources/uploads/screens/27x.jpg", "../../resources/uploads/screens/27x-1.jpg", "../../resources/uploads/screens/27x-2.jpg", "../../resources/uploads/screens/27x-3.jpg", "../../resources/uploads/screens/27x-4.jpg", "../../resources/uploads/screens/27x-5.jpg"),
+("../../resources/uploads/screens/42y.jpg", "../../resources/uploads/screens/42y-1.jpg", "../../resources/uploads/screens/42y-2.jpg", "../../resources/uploads/screens/42y-3.jpg", "../../resources/uploads/screens/42y-4.jpg", NULL),
+("../../resources/uploads/screens/59g.jpg", "../../resources/uploads/screens/59g-1.jpg", "../../resources/uploads/screens/59g-2.jpg", "../../resources/uploads/screens/59g-3.jpg", "../../resources/uploads/screens/59g-4.jpg", NULL),
+("../../resources/uploads/screens/276.jpg", "../../resources/uploads/screens/276-1.jpg", "../../resources/uploads/screens/276-2.jpg", "../../resources/uploads/screens/276-3.jpg", "../../resources/uploads/screens/276-4.jpg", NULL),
+("../../resources/uploads/screens/480.jpg", "../../resources/uploads/screens/480-1.jpg", "../../resources/uploads/screens/480-2.jpg", "../../resources/uploads/screens/480-3.jpg", "../../resources/uploads/screens/480-4.jpg", NULL),
+("../../resources/uploads/screens/cq.jpg", "../../resources/uploads/screens/cq-1.jpg", "../../resources/uploads/screens/cq-2.jpg", "../../resources/uploads/screens/cq-3.jpg", "../../resources/uploads/screens/cq-4.jpg", "../../resources/uploads/screens/cq-5.jpg"),
+("../../resources/uploads/screens/cq4.jpg", "../../resources/uploads/screens/cq4-1.jpg", "../../resources/uploads/screens/cq4-2.jpg", "../../resources/uploads/screens/cq4-3.jpg", "../../resources/uploads/screens/cq4-4.jpg", "../../resources/uploads/screens/cq4-5.jpg"),
+("../../resources/uploads/screens/dab.webp", "../../resources/uploads/screens/dab-1.webp", "../../resources/uploads/screens/dab-2.webp", "../../resources/uploads/screens/dab-3.webp", "../../resources/uploads/screens/dab-4.webp", NULL),
+("../../resources/uploads/screens/e1s.jpg", "../../resources/uploads/screens/e1s-1.jpg", "../../resources/uploads/screens/e1s-2.jpg", "../../resources/uploads/screens/e1s-3.jpg", NULL, NULL),
+("../../resources/uploads/screens/fdu.jpg", "../../resources/uploads/screens/fdu-1.jpg", "../../resources/uploads/screens/fdu-2.jpg", "../../resources/uploads/screens/fdu-3.jpg", "../../resources/uploads/screens/fdu-4.jpg", NULL),
+("../../resources/uploads/screens/fw.jpg", "../../resources/uploads/screens/fw-1.jpg", "../../resources/uploads/screens/fw-2.jpg", "../../resources/uploads/screens/fw-3.jpg", "../../resources/uploads/screens/fw-4.jpg", NULL),
+("../../resources/uploads/screens/hgf.jpg", "../../resources/uploads/screens/hgf-1.jpg", "../../resources/uploads/screens/hgf-2.jpg", "../../resources/uploads/screens/hgf-3.jpg", "../../resources/uploads/screens/hgf-4.jpg", "../../resources/uploads/screens/hgf-5.jpg"),
+("../../resources/uploads/screens/n600.jpg", "../../resources/uploads/screens/n600-1.jpg", "../../resources/uploads/screens/n600-2.jpg", "../../resources/uploads/screens/n600-3.jpg", "../../resources/uploads/screens/n600-4.jpg", NULL),
+("../../resources/uploads/screens/qrp.jpg", "../../resources/uploads/screens/qrp-1.jpg", "../../resources/uploads/screens/qrp-2.jpg", "../../resources/uploads/screens/qrp-3.jpg", "../../resources/uploads/screens/qrp-4.jpg", NULL),
+("../../resources/uploads/screens/sh.jpg", "../../resources/uploads/screens/sh-1.jpg", "../../resources/uploads/screens/sh-2.jpg", "../../resources/uploads/screens/sh-3.jpg", "../../resources/uploads/screens/sh-4.jpg", NULL),
+("../../resources/uploads/screens/vq.webp", "../../resources/uploads/screens/vq-1.webp", "../../resources/uploads/screens/vq-2.webp", "../../resources/uploads/screens/vq-3.webp", NULL, NULL),
+("../../resources/uploads/screens/xzs.jpg", "../../resources/uploads/screens/xzs-1.jpg", "../../resources/uploads/screens/xzs-2.jpg", "../../resources/uploads/screens/xzs-3.jpg", NULL, NULL);
+
+
+INSERT INTO recursos (url1, url2, url3, url4, url5, url6) VALUES
+("../../resources/uploads/desktops/1.jpg", NULL, NULL, NULL, NULL, NULL),
+("../../resources/uploads/desktops/2.jpg", NULL, NULL, NULL, NULL, NULL),
+("../../resources/uploads/desktops/3.jpg", NULL, NULL, NULL, NULL, NULL),
+("../../resources/uploads/desktops/4.jpg", NULL, NULL, NULL, NULL, NULL),
+("../../resources/uploads/desktops/5.jpg", NULL, NULL, NULL, NULL, NULL),
+("../../resources/uploads/desktops/6.jpg", NULL, NULL, NULL, NULL, NULL),
+("../../resources/uploads/desktops/7.jpg", NULL, NULL, NULL, NULL, NULL),
+("../../resources/uploads/desktops/8.jpg", NULL, NULL, NULL, NULL, NULL),
+("../../resources/uploads/desktops/9.jpg", NULL, NULL, NULL, NULL, NULL),
+("../../resources/uploads/desktops/10.jpg", NULL, NULL, NULL, NULL, NULL),
+("../../resources/uploads/desktops/11.jpg", NULL, NULL, NULL, NULL, NULL),
+("../../resources/uploads/desktops/12.jpg", NULL, NULL, NULL, NULL, NULL);
 
 
 
@@ -351,76 +436,6 @@ INSERT INTO portatiles (id, marca, modelo, procesador, grafica, resolucion, tama
 (UUID_TO_BIN(UUID()), 'Dell', 'XPS 13', 'Intel Core i7-1165G7', 'Intel Iris Xe Graphics', '3840 x 2400 pixels', 13, 512, 16, 8500000, 'Blanco', 40);
 
 
-INSERT INTO torreEscritorio (id, procesador, grafica, ram, almacenamiento, board, chasis, fuente, refrigeracion, precio) VALUES
-(UUID_TO_BIN(UUID()), 'Intel Core i5-10400F', 'NVIDIA GeForce GTX 1650', '16GB DDR4', '512GB NVMe SSD', 'GIGABYTE B460M DS3H', 'NZXT H510', 'EVGA 600W 80+ Bronze', 'Refrigeración por aire', 6800000),
-(UUID_TO_BIN(UUID()), 'AMD Ryzen 3 3300X', 'AMD Radeon RX 550', '8GB DDR4', '256GB NVMe SSD', 'ASRock A520M-HDV', 'Phanteks Eclipse P300A', 'Corsair 500W 80+ Bronze', 'Refrigeración por aire', 5000000),
-(UUID_TO_BIN(UUID()), 'Intel Core i7-10700', 'NVIDIA GeForce GTX 1660 Ti', '16GB DDR4', '1TB HDD', 'MSI Z490-A PRO', 'Corsair 4000D Airflow', 'EVGA 600W 80+ Bronze', 'Refrigeración por aire', 7500000),
-(UUID_TO_BIN(UUID()), 'AMD Ryzen 7 5800X', 'AMD Radeon RX 6700 XT', '32GB DDR4', '1TB NVMe SSD', 'ASUS TUF GAMING B550-PLUS', 'Cooler Master MasterBox TD500 Mesh', 'Corsair 650W 80+ Bronze', 'Refrigeración líquida', 10000000),
-(UUID_TO_BIN(UUID()), 'Intel Core i9-10850K', 'NVIDIA GeForce RTX 3070', '32GB DDR4', '1TB NVMe SSD', 'GIGABYTE Z490 AORUS Elite AC', 'NZXT H710i', 'Corsair 750W 80+ Gold', 'Refrigeración por aire', 11000000),
-(UUID_TO_BIN(UUID()), 'AMD Ryzen 9 5900X', 'AMD Radeon RX 6800 XT', '64GB DDR4', '2TB NVMe SSD', 'MSI MAG X570 TOMAHAWK WIFI', 'Fractal Design Meshify C', 'Corsair 850W 80+ Platinum', 'Refrigeración líquida', 15000000),
-(UUID_TO_BIN(UUID()), 'Intel Core i5-11600KF', 'NVIDIA GeForce RTX 3060 Ti', '16GB DDR4', '512GB NVMe SSD', 'ASRock B560 Steel Legend', 'NZXT H510', 'Corsair 650W 80+ Bronze', 'Refrigeración por aire', 8000000),
-(UUID_TO_BIN(UUID()), 'AMD Ryzen 5 5600X', 'AMD Radeon RX 6700', '16GB DDR4', '512GB NVMe SSD', 'ASUS PRIME B550M-A', 'Cooler Master MasterBox MB311L ARGB', 'Corsair 600W 80+ Bronze', 'Refrigeración por aire', 8500000),
-(UUID_TO_BIN(UUID()), 'Intel Core i9-10900F', 'NVIDIA GeForce GTX 1660', '32GB DDR4', '1TB NVMe SSD', 'ASUS ROG STRIX Z490-E GAMING', 'NZXT H510 Elite', 'Corsair 750W 80+ Gold', 'Refrigeración líquida', 13000000),
-(UUID_TO_BIN(UUID()), 'AMD Ryzen 7 3700X', 'NVIDIA GeForce GTX 1660 SUPER', '16GB DDR4', '512GB NVMe SSD', 'GIGABYTE B550 AORUS ELITE', 'Fractal Design Meshify C', 'EVGA 650W 80+ Bronze', 'Refrigeración por aire', 9000000),
-(UUID_TO_BIN(UUID()), 'Intel Core i5-10400F', 'NVIDIA GeForce GTX 1650', '16GB DDR4', '512GB NVMe SSD', 'GIGABYTE B460M DS3H', 'NZXT H510', 'EVGA 600W 80+ Bronze', 'Refrigeración por aire', 6800000),
-(UUID_TO_BIN(UUID()), 'AMD Ryzen 3 3300X', 'AMD Radeon RX 550', '8GB DDR4', '256GB NVMe SSD', 'ASRock A520M-HDV', 'Phanteks Eclipse P300A', 'Corsair 500W 80+ Bronze', 'Refrigeración por aire', 5000000),
-(UUID_TO_BIN(UUID()), 'Intel Core i7-10700', 'NVIDIA GeForce GTX 1660 Ti', '16GB DDR4', '1TB HDD', 'MSI Z490-A PRO', 'Corsair 4000D Airflow', 'EVGA 600W 80+ Bronze', 'Refrigeración por aire', 7500000),
-(UUID_TO_BIN(UUID()), 'AMD Ryzen 7 5800X', 'AMD Radeon RX 6700 XT', '32GB DDR4', '1TB NVMe SSD', 'ASUS TUF GAMING B550-PLUS', 'Cooler Master MasterBox TD500 Mesh', 'Corsair 650W 80+ Bronze', 'Refrigeración líquida', 10000000),
-(UUID_TO_BIN(UUID()), 'Intel Core i9-10850K', 'NVIDIA GeForce RTX 3070', '32GB DDR4', '1TB NVMe SSD', 'GIGABYTE Z490 AORUS Elite AC', 'NZXT H710i', 'Corsair 750W 80+ Gold', 'Refrigeración por aire', 11000000),
-(UUID_TO_BIN(UUID()), 'AMD Ryzen 9 5900X', 'AMD Radeon RX 6800 XT', '64GB DDR4', '2TB NVMe SSD', 'MSI MAG X570 TOMAHAWK WIFI', 'Fractal Design Meshify C', 'Corsair 850W 80+ Platinum', 'Refrigeración líquida', 15000000),
-(UUID_TO_BIN(UUID()), 'Intel Core i5-11600KF', 'NVIDIA GeForce RTX 3060 Ti', '16GB DDR4', '512GB NVMe SSD', 'ASRock B560 Steel Legend', 'NZXT H510', 'Corsair 650W 80+ Bronze', 'Refrigeración por aire', 8000000),
-(UUID_TO_BIN(UUID()), 'AMD Ryzen 5 5600X', 'AMD Radeon RX 6700', '16GB DDR4', '512GB NVMe SSD', 'ASUS PRIME B550M-A', 'Cooler Master MasterBox MB311L ARGB', 'Corsair 600W 80+ Bronze', 'Refrigeración por aire', 8500000),
-(UUID_TO_BIN(UUID()), 'Intel Core i9-10900F', 'NVIDIA GeForce GTX 1660', '32GB DDR4', '1TB NVMe SSD', 'ASUS ROG STRIX Z490-E GAMING', 'NZXT H510 Elite', 'Corsair 750W 80+ Gold', 'Refrigeración líquida', 13000000),
-(UUID_TO_BIN(UUID()), 'AMD Ryzen 7 3700X', 'NVIDIA GeForce GTX 1660 SUPER', '16GB DDR4', '512GB NVMe SSD', 'GIGABYTE B550 AORUS ELITE', 'Fractal Design Meshify C', 'EVGA 650W 80+ Bronze', 'Refrigeración por aire', 9000000);
-
-
-
-INSERT INTO procesadores (id, marca, modelo, numNucleos, numHilos, relojBase, precio) VALUES
-(UUID_TO_BIN(UUID()), 'Intel', 'Core i9-11900K', 8, 16, '3.5 GHz', 3500000),
-(UUID_TO_BIN(UUID()), 'AMD', 'Ryzen 9 5900X', 12, 24, '3.7 GHz', 3900000),
-(UUID_TO_BIN(UUID()), 'Intel', 'Core i7-11700K', 8, 16, '3.6 GHz', 3000000),
-(UUID_TO_BIN(UUID()), 'AMD', 'Ryzen 7 5800X', 8, 16, '3.8 GHz', 2800000),
-(UUID_TO_BIN(UUID()), 'Intel', 'Core i5-11600K', 6, 12, '3.9 GHz', 2500000),
-(UUID_TO_BIN(UUID()), 'AMD', 'Ryzen 5 5600X', 6, 12, '3.7 GHz', 1800000),
-(UUID_TO_BIN(UUID()), 'Intel', 'Core i9-10900K', 10, 20, '3.7 GHz', 3200000),
-(UUID_TO_BIN(UUID()), 'AMD', 'Ryzen 9 5950X', 16, 32, '3.4 GHz', 4500000),
-(UUID_TO_BIN(UUID()), 'Intel', 'Core i7-10700K', 8, 16, '3.8 GHz', 2800000),
-(UUID_TO_BIN(UUID()), 'AMD', 'Ryzen 7 5800', 8, 16, '3.4 GHz', 2600000),
-(UUID_TO_BIN(UUID()), 'Intel', 'Core i5-10600K', 6, 12, '4.1 GHz', 2300000),
-(UUID_TO_BIN(UUID()), 'AMD', 'Ryzen 5 5600', 6, 12, '3.6 GHz', 1700000),
-(UUID_TO_BIN(UUID()), 'Intel', 'Core i9-10850K', 10, 20, '3.6 GHz', 3000000),
-(UUID_TO_BIN(UUID()), 'AMD', 'Ryzen 9 5900', 12, 24, '3.0 GHz', 3700000),
-(UUID_TO_BIN(UUID()), 'Intel', 'Core i7-10700', 8, 16, '2.9 GHz', 2500000),
-(UUID_TO_BIN(UUID()), 'AMD', 'Ryzen 7 5700G', 8, 16, '3.8 GHz', 2400000),
-(UUID_TO_BIN(UUID()), 'Intel', 'Core i5-10400F', 6, 12, '2.9 GHz', 1800000),
-(UUID_TO_BIN(UUID()), 'AMD', 'Ryzen 5 5600G', 6, 12, '3.9 GHz', 2000000),
-(UUID_TO_BIN(UUID()), 'Intel', 'Core i9-10900', 10, 20, '2.8 GHz', 2800000),
-(UUID_TO_BIN(UUID()), 'AMD', 'Ryzen 9 5900HS', 8, 16, '3.3 GHz', 3500000);
-
-
-
-INSERT INTO `alltechno`.`ram` (`id`, `marca`, `modelo`, `capacidad`, `velocidad`, `tipo`, `led`, `precio`, `recursos_id_recurso`) VALUES
-(UUID_TO_BIN(UUID()), 'Corsair', 'Vengeance LPX', 16, 3200, 'DDR4', 'No', 550000, NULL),
-(UUID_TO_BIN(UUID()), 'Kingston', 'HyperX Fury', 8, 2666, 'DDR4', 'No', 350000, NULL),
-(UUID_TO_BIN(UUID()), 'G.Skill', 'Ripjaws V Series', 16, 3600, 'DDR4', 'Sí', 600000, NULL),
-(UUID_TO_BIN(UUID()), 'Crucial', 'Ballistix', 32, 3000, 'DDR4', 'No', 900000, NULL),
-(UUID_TO_BIN(UUID()), 'ADATA', 'XPG Spectrix D41', 32, 3200, 'DDR4', 'Sí', 850000, NULL),
-(UUID_TO_BIN(UUID()), 'Team Group', 'T-Force Delta RGB', 16, 3000, 'DDR4', 'Sí', 590000, NULL),
-(UUID_TO_BIN(UUID()), 'Patriot', 'Viper Steel Series', 16, 3200, 'DDR4', 'No', 580000, NULL),
-(UUID_TO_BIN(UUID()), 'HyperX', 'Impact', 8, 2666, 'DDR4', 'No', 340000, NULL),
-(UUID_TO_BIN(UUID()), 'Corsair', 'Dominator Platinum RGB', 32, 3600, 'DDR4', 'Sí', 950000, NULL),
-(UUID_TO_BIN(UUID()), 'G.Skill', 'Trident Z RGB', 16, 3200, 'DDR4', 'Sí', 620000, NULL),
-(UUID_TO_BIN(UUID()), 'Kingston', 'ValueRAM', 8, 2400, 'DDR4', 'No', 320000, NULL),
-(UUID_TO_BIN(UUID()), 'Crucial', 'Crucial DDR4', 8, 2666, 'DDR4', 'No', 330000, NULL),
-(UUID_TO_BIN(UUID()), 'ADATA', 'XPG Gammix D10', 16, 3000, 'DDR4', 'No', 570000, NULL),
-(UUID_TO_BIN(UUID()), 'Team Group', 'Elite Plus', 8, 2666, 'DDR4', 'No', 340000, NULL),
-(UUID_TO_BIN(UUID()), 'Patriot', 'Signature Line DDR4', 16, 2666, 'DDR4', 'No', 560000, NULL),
-(UUID_TO_BIN(UUID()), 'HyperX', 'Fury RGB', 16, 3200, 'DDR4', 'Sí', 630000, NULL),
-(UUID_TO_BIN(UUID()), 'Corsair', 'Vengeance RGB Pro', 32, 3200, 'DDR4', 'Sí', 930000, NULL),
-(UUID_TO_BIN(UUID()), 'G.Skill', 'Aegis', 16, 3000, 'DDR4', 'No', 600000, NULL),
-(UUID_TO_BIN(UUID()), 'Kingston', 'HyperX Predator', 16, 3200, 'DDR4', 'Sí', 680000, NULL),
-(UUID_TO_BIN(UUID()), 'Crucial', 'Crucial Ballistix', 8, 3000, 'DDR4', 'No', 340000, NULL);
-
 
 INSERT INTO `alltechno`.`fuentesdepoder` (`id`, `marca`, `modelo`, `voltaje`, `potencia`, `certificacion`, `precio`, `recursos_id_recurso`) VALUES
 (UUID_TO_BIN(UUID()), 'Antec', 'Earthwatts Gold Pro 750W', 120, 750, '80 Plus Bronze', 580000, 41),
@@ -446,29 +461,91 @@ INSERT INTO `alltechno`.`fuentesdepoder` (`id`, `marca`, `modelo`, `voltaje`, `p
 
 
 
+INSERT INTO procesadores (id, marca, modelo, numNucleos, numHilos, relojBase, precio, recursos_id_recurso) VALUES
+(UUID_TO_BIN(UUID()), 'AMD', 'Ryzen 5 5600G', 6, 12, '3.9 GHz', 2000000, 61),
+(UUID_TO_BIN(UUID()), 'AMD', 'Ryzen 5 5600', 6, 12, '3.6 GHz', 1700000, 62),
+(UUID_TO_BIN(UUID()), 'AMD', 'Ryzen 5 5600X', 6, 12, '3.7 GHz', 1800000, 63),
+(UUID_TO_BIN(UUID()), 'AMD', 'Ryzen 7 5700G', 8, 16, '3.8 GHz', 2400000, 64),
+(UUID_TO_BIN(UUID()), 'AMD', 'Ryzen 7 5800', 8, 16, '3.4 GHz', 2600000, 65),
+(UUID_TO_BIN(UUID()), 'AMD', 'Ryzen 7 5800X', 8, 16, '3.8 GHz', 2800000, 66),
+(UUID_TO_BIN(UUID()), 'AMD', 'Ryzen 9 5900', 12, 24, '3.0 GHz', 3700000, 67),
+(UUID_TO_BIN(UUID()), 'AMD', 'Ryzen 9 5900X', 12, 24, '3.7 GHz', 3900000, 68),
+(UUID_TO_BIN(UUID()), 'AMD', 'Ryzen 9 5950X', 16, 32, '3.4 GHz', 4500000, 69),
+(UUID_TO_BIN(UUID()), 'Intel', 'Core i5-10400F', 6, 12, '2.9 GHz', 1800000, 70),
+(UUID_TO_BIN(UUID()), 'Intel', 'Core i5-10600K', 6, 12, '4.1 GHz', 2300000, 71),
+(UUID_TO_BIN(UUID()), 'Intel', 'Core i7-10700', 8, 16, '2.9 GHz', 2500000, 72),
+(UUID_TO_BIN(UUID()), 'Intel', 'Core i7-10700K', 8, 16, '3.8 GHz', 2800000, 73),
+(UUID_TO_BIN(UUID()), 'Intel', 'Core i9-10850K', 10, 20, '3.6 GHz', 3000000, 74),
+(UUID_TO_BIN(UUID()), 'Intel', 'Core i9-10900', 10, 20, '2.8 GHz', 2800000, 75),
+(UUID_TO_BIN(UUID()), 'Intel', 'Core i9-10900K', 10, 20, '3.7 GHz', 3200000, 76),
+(UUID_TO_BIN(UUID()), 'Intel', 'Core i5-11600K', 6, 12, '3.9 GHz', 2500000, 77),
+(UUID_TO_BIN(UUID()), 'Intel', 'Core i7-11700K', 8, 16, '3.6 GHz', 3000000, 78),
+(UUID_TO_BIN(UUID()), 'Intel', 'Core i9-11900K', 8, 16, '3.5 GHz', 3500000, 79),
+(UUID_TO_BIN(UUID()), 'AMD', 'Ryzen 9 5900HS', 8, 16, '3.3 GHz', 3500000, 80);
+
+
+
+INSERT INTO `alltechno`.`ram` (`id`, `marca`, `modelo`, `capacidad`, `velocidad`, `tipo`, `led`, `precio`, `recursos_id_recurso`) VALUES
+(UUID_TO_BIN(UUID()), 'Corsair', 'Vengeance LPX', 16, 3200, 'DDR4', 'No', 550000, 81),
+(UUID_TO_BIN(UUID()), 'Kingston', 'HyperX Fury', 8, 2666, 'DDR4', 'No', 350000, 82),
+(UUID_TO_BIN(UUID()), 'G.Skill', 'Ripjaws V Series', 16, 3600, 'DDR4', 'Sí', 600000, 83),
+(UUID_TO_BIN(UUID()), 'Crucial', 'Ballistix', 32, 3000, 'DDR4', 'No', 900000, 84),
+(UUID_TO_BIN(UUID()), 'ADATA', 'XPG Spectrix D41', 32, 3200, 'DDR4', 'Sí', 850000, 85),
+(UUID_TO_BIN(UUID()), 'Team Group', 'T-Force Delta RGB', 16, 3000, 'DDR4', 'Sí', 590000, 86),
+(UUID_TO_BIN(UUID()), 'Patriot', 'Viper Steel Series', 16, 3200, 'DDR4', 'No', 580000, 87),
+(UUID_TO_BIN(UUID()), 'HyperX', 'Impact', 8, 2666, 'DDR4', 'No', 340000, 88),
+(UUID_TO_BIN(UUID()), 'Corsair', 'Dominator Platinum RGB', 32, 3600, 'DDR4', 'Sí', 950000, 89),
+(UUID_TO_BIN(UUID()), 'G.Skill', 'Trident Z RGB', 16, 3200, 'DDR4', 'Sí', 620000, 90),
+(UUID_TO_BIN(UUID()), 'Kingston', 'ValueRAM', 8, 2400, 'DDR4', 'No', 320000, 91),
+(UUID_TO_BIN(UUID()), 'Crucial', 'Crucial DDR4', 8, 2666, 'DDR4', 'No', 330000, 92),
+(UUID_TO_BIN(UUID()), 'ADATA', 'XPG Gammix D10', 16, 3000, 'DDR4', 'No', 570000, 93),
+(UUID_TO_BIN(UUID()), 'Team Group', 'Elite Plus', 8, 2666, 'DDR4', 'No', 340000, 94),
+(UUID_TO_BIN(UUID()), 'Patriot', 'Signature Line DDR4', 16, 2666, 'DDR4', 'No', 560000, 95),
+(UUID_TO_BIN(UUID()), 'HyperX', 'Fury RGB', 16, 3200, 'DDR4', 'Sí', 630000, 96),
+(UUID_TO_BIN(UUID()), 'Corsair', 'Vengeance RGB Pro', 32, 3200, 'DDR4', 'Sí', 930000, 97),
+(UUID_TO_BIN(UUID()), 'G.Skill', 'Aegis', 16, 3000, 'DDR4', 'No', 600000, 98),
+(UUID_TO_BIN(UUID()), 'Kingston', 'HyperX Predator', 16, 3200, 'DDR4', 'Sí', 680000, 99),
+(UUID_TO_BIN(UUID()), 'Crucial', 'Crucial Ballistix', 8, 3000, 'DDR4', 'No', 340000, 100);
+
+
 
 INSERT INTO pantallas (id, marca, modelo, dimensiones, pulgadas, resolucion, tipo, precio, recursos_id_recurso) VALUES
-(UUID_TO_BIN(UUID()), 'Samsung', 'S27R650FDU', '61.3 x 46.3 x 20.1 cm', 27, '2560 x 1440 píxeles', 'LED', 1200000, NULL),
-(UUID_TO_BIN(UUID()), 'LG', '27QN600', '61.1 x 45.2 x 27.5 cm', 27, '2560 x 1440 píxeles', 'IPS', 1300000, NULL),
-(UUID_TO_BIN(UUID()), 'Acer', 'ED320QRP', '71.1 x 52.1 x 18.2 cm', 31.5, '1920 x 1080 píxeles', 'Curvo', 850000, NULL),
-(UUID_TO_BIN(UUID()), 'Dell', 'S2421HGF', '56.1 x 42.1 x 18.2 cm', 24, '1920 x 1080 píxeles', 'LED', 900000, NULL),
-(UUID_TO_BIN(UUID()), 'HP', '27x', '62.1 x 47.3 x 22.1 cm', 27, '1920 x 1080 píxeles', 'TN', 800000, NULL),
-(UUID_TO_BIN(UUID()), 'ASUS', 'TUF Gaming VG27VQ', '61.9 x 52.2 x 23.1 cm', 27, '1920 x 1080 píxeles', 'Curvo', 1100000, NULL),
-(UUID_TO_BIN(UUID()), 'BenQ', 'EX3501R', '83.7 x 51.2 x 18.2 cm', 35, '3440 x 1440 píxeles', 'Curvo', 1800000, NULL),
-(UUID_TO_BIN(UUID()), 'MSI', 'MAG341CQ', '81.3 x 47.5 x 23.5 cm', 34, '3440 x 1440 píxeles', 'Curvo', 1700000, NULL),
-(UUID_TO_BIN(UUID()), 'Philips', '275E1S', '62.8 x 45.6 x 24.2 cm', 27, '3840 x 2160 píxeles', 'IPS', 1600000, NULL),
-(UUID_TO_BIN(UUID()), 'ViewSonic', 'VX3276', '72.8 x 51.1 x 25.2 cm', 32, '2560 x 1440 píxeles', 'IPS', 1400000, NULL),
-(UUID_TO_BIN(UUID()), 'Samsung', 'LU28R550UQLXZS', '73.2 x 48.9 x 22.5 cm', 28, '3840 x 2160 píxeles', 'LED', 1500000, NULL),
-(UUID_TO_BIN(UUID()), 'LG', '24MP59G', '56.1 x 43.6 x 17.2 cm', 24, '1920 x 1080 píxeles', 'IPS', 700000, NULL),
-(UUID_TO_BIN(UUID()), 'Acer', 'CB242Y', '56.9 x 42.1 x 21.8 cm', 23.8, '1920 x 1080 píxeles', 'LED', 750000, NULL),
-(UUID_TO_BIN(UUID()), 'Dell', 'S2719H', '61.1 x 45.2 x 22.5 cm', 27, '1920 x 1080 píxeles', 'IPS', 950000, NULL),
-(UUID_TO_BIN(UUID()), 'HP', '24fw', '53.1 x 40.8 x 20.2 cm', 24, '1920 x 1080 píxeles', 'IPS', 850000, NULL),
-(UUID_TO_BIN(UUID()), 'ASUS', 'VZ239HE', '53.9 x 40.4 x 20.1 cm', 23, '1920 x 1080 píxeles', 'IPS', 800000, NULL),
-(UUID_TO_BIN(UUID()), 'BenQ', 'GW2480', '55.6 x 42.5 x 17.1 cm', 23.8, '1920 x 1080 píxeles', 'IPS', 900000, NULL),
-(UUID_TO_BIN(UUID()), 'MSI', 'Optix G27CQ4', '61.5 x 46.3 x 25.4 cm', 27, '2560 x 1440 píxeles', 'Curvo', 1350000, NULL),
-(UUID_TO_BIN(UUID()), 'Philips', '243V7QDAB', '55.3 x 41.1 x 21.2 cm', 23.8, '1920 x 1080 píxeles', 'IPS', 780000, NULL),
-(UUID_TO_BIN(UUID()), 'ViewSonic', 'VA2419-SH', '54.3 x 40.5 x 18.2 cm', 24, '1920 x 1080 píxeles', 'IPS', 720000, NULL);
+(UUID_TO_BIN(UUID()), 'BenQ', 'EX3501R', '83.7 x 51.2 x 18.2 cm', 35, '3440 x 1440 píxeles', 'Curvo', 1800000, 101),
+(UUID_TO_BIN(UUID()), 'ASUS', 'VZ239HE', '53.9 x 40.4 x 20.1 cm', 23, '1920 x 1080 píxeles', 'IPS', 800000, 102),
+(UUID_TO_BIN(UUID()), 'Dell', 'S2719H', '61.1 x 45.2 x 22.5 cm', 27, '1920 x 1080 píxeles', 'IPS', 950000, 103),
+(UUID_TO_BIN(UUID()), 'HP', '27x', '62.1 x 47.3 x 22.1 cm', 27, '1920 x 1080 píxeles', 'TN', 800000, 104),
+(UUID_TO_BIN(UUID()), 'Acer', 'CB242Y', '56.9 x 42.1 x 21.8 cm', 23.8, '1920 x 1080 píxeles', 'LED', 750000, 105),
+(UUID_TO_BIN(UUID()), 'LG', '24MP59G', '56.1 x 43.6 x 17.2 cm', 24, '1920 x 1080 píxeles', 'IPS', 700000, 106),
+(UUID_TO_BIN(UUID()), 'ViewSonic', 'VX3276', '72.8 x 51.1 x 25.2 cm', 32, '2560 x 1440 píxeles', 'IPS', 1400000, 107),
+(UUID_TO_BIN(UUID()), 'BenQ', 'GW2480', '55.6 x 42.5 x 17.1 cm', 23.8, '1920 x 1080 píxeles', 'IPS', 900000, 108),
+(UUID_TO_BIN(UUID()), 'MSI', 'MAG341CQ', '81.3 x 47.5 x 23.5 cm', 34, '3440 x 1440 píxeles', 'Curvo', 1700000, 109),
+(UUID_TO_BIN(UUID()), 'MSI', 'Optix G27CQ4', '61.5 x 46.3 x 25.4 cm', 27, '2560 x 1440 píxeles', 'Curvo', 1350000, 110),
+(UUID_TO_BIN(UUID()), 'Philips', '243V7QDAB', '55.3 x 41.1 x 21.2 cm', 23.8, '1920 x 1080 píxeles', 'IPS', 780000, 111),
+(UUID_TO_BIN(UUID()), 'Philips', '275E1S', '62.8 x 45.6 x 24.2 cm', 27, '3840 x 2160 píxeles', 'IPS', 1600000, 112),
+(UUID_TO_BIN(UUID()), 'Samsung', 'S27R650FDU', '61.3 x 46.3 x 20.1 cm', 27, '2560 x 1440 píxeles', 'LED', 1200000, 113),
+(UUID_TO_BIN(UUID()), 'HP', '24fw', '53.1 x 40.8 x 20.2 cm', 24, '1920 x 1080 píxeles', 'IPS', 850000, 114),
+(UUID_TO_BIN(UUID()), 'Dell', 'S2421HGF', '56.1 x 42.1 x 18.2 cm', 24, '1920 x 1080 píxeles', 'LED', 900000, 115),
+(UUID_TO_BIN(UUID()), 'LG', '27QN600', '61.1 x 45.2 x 27.5 cm', 27, '2560 x 1440 píxeles', 'IPS', 1300000, 116),
+(UUID_TO_BIN(UUID()), 'Acer', 'ED320QRP', '71.1 x 52.1 x 18.2 cm', 31.5, '1920 x 1080 píxeles', 'Curvo', 850000, 117),
+(UUID_TO_BIN(UUID()), 'ViewSonic', 'VA2419-SH', '54.3 x 40.5 x 18.2 cm', 24, '1920 x 1080 píxeles', 'IPS', 720000, 118),
+(UUID_TO_BIN(UUID()), 'ASUS', 'TUF Gaming VG27VQ', '61.9 x 52.2 x 23.1 cm', 27, '1920 x 1080 píxeles', 'Curvo', 1100000, 119),
+(UUID_TO_BIN(UUID()), 'Samsung', 'LU28R550UQLXZS', '73.2 x 48.9 x 22.5 cm', 28, '3840 x 2160 píxeles', 'LED', 1500000, 120);
 
+
+
+INSERT INTO torreescritorio (id, procesador, grafica, ram, almacenamiento, board, chasis, fuente, refrigeracion, precio, recursos_id_recurso) VALUES
+(UUID_TO_BIN(UUID()), 'Intel Core i5-10400F', 'NVIDIA GeForce GTX 1650', '16GB DDR4', '512GB NVMe SSD', 'GIGABYTE B460M DS3H', 'NZXT H510', 'EVGA 600W 80+ Bronze', 'Refrigeración por aire', 6800000, 121),
+(UUID_TO_BIN(UUID()), 'AMD Ryzen 3 3300X', 'AMD Radeon RX 550', '8GB DDR4', '256GB NVMe SSD', 'ASRock A520M-HDV', 'Phanteks Eclipse P300A', 'Corsair 500W 80+ Bronze', 'Refrigeración por aire', 5000000, 122),
+(UUID_TO_BIN(UUID()), 'Intel Core i7-10700', 'NVIDIA GeForce GTX 1660 Ti', '16GB DDR4', '1TB HDD', 'MSI Z490-A PRO', 'Corsair 4000D Airflow', 'EVGA 600W 80+ Bronze', 'Refrigeración por aire', 7500000, 123),
+(UUID_TO_BIN(UUID()), 'AMD Ryzen 7 5800X', 'AMD Radeon RX 6700 XT', '32GB DDR4', '1TB NVMe SSD', 'ASUS TUF GAMING B550-PLUS', 'Cooler Master MasterBox TD500 Mesh', 'Corsair 650W 80+ Bronze', 'Refrigeración líquida', 10000000, 124),
+(UUID_TO_BIN(UUID()), 'Intel Core i9-10850K', 'NVIDIA GeForce RTX 3070', '32GB DDR4', '1TB NVMe SSD', 'GIGABYTE Z490 AORUS Elite AC', 'NZXT H710i', 'Corsair 750W 80+ Gold', 'Refrigeración por aire', 11000000, 125),
+(UUID_TO_BIN(UUID()), 'AMD Ryzen 9 5900X', 'AMD Radeon RX 6800 XT', '64GB DDR4', '2TB NVMe SSD', 'MSI MAG X570 TOMAHAWK WIFI', 'Fractal Design Meshify C', 'Corsair 850W 80+ Platinum', 'Refrigeración líquida', 15000000, 126),
+(UUID_TO_BIN(UUID()), 'Intel Core i5-11600KF', 'NVIDIA GeForce RTX 3060 Ti', '16GB DDR4', '512GB NVMe SSD', 'ASRock B560 Steel Legend', 'NZXT H510', 'Corsair 650W 80+ Bronze', 'Refrigeración por aire', 8000000, 127),
+(UUID_TO_BIN(UUID()), 'AMD Ryzen 5 5600X', 'AMD Radeon RX 6700', '16GB DDR4', '512GB NVMe SSD', 'ASUS PRIME B550M-A', 'Cooler Master MasterBox MB311L ARGB', 'Corsair 600W 80+ Bronze', 'Refrigeración por aire', 8500000, 128),
+(UUID_TO_BIN(UUID()), 'Intel Core i9-10900F', 'NVIDIA GeForce GTX 1660', '32GB DDR4', '1TB NVMe SSD', 'ASUS ROG STRIX Z490-E GAMING', 'NZXT H510 Elite', 'Corsair 750W 80+ Gold', 'Refrigeración líquida', 13000000, 129),
+(UUID_TO_BIN(UUID()), 'AMD Ryzen 7 3700X', 'NVIDIA GeForce GTX 1660 SUPER', '16GB DDR4', '512GB NVMe SSD', 'GIGABYTE B550 AORUS ELITE', 'Fractal Design Meshify C', 'EVGA 650W 80+ Bronze', 'Refrigeración por aire', 9000000, 130),
+(UUID_TO_BIN(UUID()), 'Intel Core i5-10400F', 'NVIDIA GeForce GTX 1650', '16GB DDR4', '512GB NVMe SSD', 'GIGABYTE B460M DS3H', 'NZXT H510', 'EVGA 600W 80+ Bronze', 'Refrigeración por aire', 6800000, 131),
+(UUID_TO_BIN(UUID()), 'AMD Ryzen 3 3300X', 'AMD Radeon RX 550', '8GB DDR4', '256GB NVMe SSD', 'ASRock A520M-HDV', 'Phanteks Eclipse P300A', 'Corsair 500W 80+ Bronze', 'Refrigeración por aire', 5000000, 132);
 
 -- CONSULTA PARA CELULARES CON SUS FOTOS
 SELECT BIN_TO_UUID(cel.id) AS id, cel.marca, cel.modelo, cel.bateria, cel.procesador, cel.camaraFrontal, cel.camaraPosterior, cel.resolucion, cel.huella, cel.almacenamiento, cel.ram, cel.precio, cel.colores, 

@@ -158,11 +158,11 @@ nav {
   .swiper-button-next,  .swiper-button-prev {
     background-color: #282828;
     width: 50px;
-    top: 25em;
+    top: 27em;
   }
 
   .swiper-button-next2,  .swiper-button-prev2 {
-    top: 56em;
+    top: 62em;
   }
 
   .swiper-button-next svg, .swiper-button-prev svg {
@@ -176,6 +176,7 @@ nav {
   }
 
   .swiper-slide {
+    height: auto;
     border: none;
     border-top: 2px solid #444;
     border-bottom: 2px solid #444;
