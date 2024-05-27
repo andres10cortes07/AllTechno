@@ -32,10 +32,10 @@ export class ControllerPowerSupplies {
     static createPowerSupply = async (req, res) => {
         const result = ValidatePowerSupply(req.body);
 
-        if(result.error) return res.json({error: result.error.message})
+        if(result.error) return res.json({error: JSON.parse(result.error.message)})
 
-        const PowerSupplyModified = await ModelsPowerSupplies.createPowerSupply(result.data)
-        if(PowerSupplyModified) return res.json(PowerSupplyModified)
+        const newPowerSupply = await ModelsPowerSupplies.createPowerSupply(result.data)
+        return res.json(newPowerSupply)
     }
 
     static modifyPowerSupply = async (req, res) => {

@@ -2,6 +2,7 @@ import { ControllerCellphones } from "../controllers/cellphones.mjs";
 import { ControllerLaptops } from "../controllers/laptops.mjs";
 import { ControllerIndex } from "../controllers/index.mjs";
 import { ControllerPowerSupplies } from "../controllers/powerSupplies.mjs";
+import { ControllerProcessors } from "../controllers/processors.mjs"
 
 import { Router } from "express";
 export const router = Router();
@@ -33,6 +34,12 @@ router.patch("/powerSupplies:id", ControllerPowerSupplies.modifyPowerSupply);
 router.delete("/powerSupplies:id", ControllerPowerSupplies.deletePowerSupply);
 
 
+//? processors routes
+router.get("/processors", ControllerProcessors.getAll);
+router.get("/processors:id", ControllerProcessors.getById);
+router.post("/processors", ControllerProcessors.createProcessor);
+router.patch("/processors:id", ControllerProcessors.modifyProcessor);
+router.delete("/processors:id", ControllerProcessors.deleteProcessor);
 
 // Definicion de los origenes aceptados para prevencion de ERROR CORS
 export const ACCEPTED_ORIGINS = [

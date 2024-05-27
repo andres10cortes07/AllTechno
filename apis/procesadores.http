@@ -1,0 +1,27 @@
+### get all processors
+GET http://localhost:5000/allTechno/processors
+
+### get processor by id
+GET http://localhost:5000/allTechno/processors/id
+
+### create processor
+POST http://localhost:5000/allTechno/processors
+
+Content-Type: application/json
+
+{
+    
+}
+
+
+### modify processor
+PATCH http://localhost:5000/allTechno/processors/id
+
+Content-Type: application/json
+
+{
+
+}
+
+### delete processor
+DELETE http://localhost:5000/allTechno/processors/id
