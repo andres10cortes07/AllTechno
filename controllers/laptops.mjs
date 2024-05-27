@@ -11,7 +11,7 @@ export class ControllerLaptops {
         }
 
         const laptops = await laptopModels.getAll();
-        res.json(laptops).status(200)
+        return res.json(laptops).status(200)
     }
 
     static getById = async (req, res) => {

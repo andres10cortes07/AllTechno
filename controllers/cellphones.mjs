@@ -11,7 +11,7 @@ export class ControllerCellphones {
             res.header("Access-Control-Allow-Origin", origin);
         }
         const cellphones = await cellphoneModels.getAll();
-        res.json(cellphones)
+        return res.json(cellphones)
     }
 
     static getById = async (req, res) => {

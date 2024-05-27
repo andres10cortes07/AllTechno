@@ -1,6 +1,7 @@
 import { ControllerCellphones } from "../controllers/cellphones.mjs";
 import { ControllerLaptops } from "../controllers/laptops.mjs";
 import { ControllerIndex } from "../controllers/index.mjs";
+import { ControllerPowerSupplies } from "../controllers/powerSupplies.mjs";
 
 import { Router } from "express";
 export const router = Router();
@@ -22,6 +23,14 @@ router.get("/laptops/:id", ControllerLaptops.getById);
 router.post("/laptops", ControllerLaptops.createLaptop);
 router.patch("/laptops/:id", ControllerLaptops.modifyLaptop);
 router.delete("/laptops/:id", ControllerLaptops.deleteLaptop);
+
+
+//? powerSupplies routes
+router.get("/powerSupplies", ControllerPowerSupplies.getAll);
+router.get("/powerSupplies:id", ControllerPowerSupplies.getById);
+router.post("/powerSupplies", ControllerPowerSupplies.createPowerSupply);
+router.patch("/powerSupplies:id", ControllerPowerSupplies.modifyPowerSupply);
+router.delete("/powerSupplies:id", ControllerPowerSupplies.deletePowerSupply);
 
 
 
