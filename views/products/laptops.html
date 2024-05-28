@@ -108,31 +108,21 @@
 
 
     <script type="module">
-        import { loadProducts, loadProduct } from "../js/loadProduct(s).mjs";
+        import { loadProducts } from "../js/loadProduct(s).mjs";
 
         const category = "laptops";
         loadProducts(category)
 
         // Handle page load with potential state from URL
         window.addEventListener('load', () => {
-            const params = new URLSearchParams(window.location.search);
-            const id = params.get('id');
-            if (id) {
-                loadProduct(category, id);
-            } else {
-                loadProducts(category);
-            }
+            loadProducts(category)
         });
 
         // Handle back/forward buttons
         window.addEventListener('popstate', (event) => {
-            if (id) {
-                loadProduct(category, id);
-            } else {
-                loadProducts(category);
-                const linkProduct = document.querySelector('link[href="../css/style_product.css"]')
-                document.head.removeChild(linkProduct)
-            }
+            loadProducts(category);
+            const linkProduct = document.querySelector('link[href="../css/style_product.css"]')
+            if (linkProduct) document.head.removeChild(linkProduct)
         });
     </script>
 </body>

@@ -2,7 +2,7 @@
 GET http://localhost:5000/allTechno/laptops
 
 ### get laptop by id
-GET http://localhost:5000/allTechno/laptops/c3d789c7-1885-11ef-a2c8-d85ed3ffda3c
+GET http://localhost:5000/allTechno/laptops/309c880b-1d2b-11ef-84c5-00090faa0001
 
 ### create laptop
 POST http://localhost:5000/allTechno/laptops

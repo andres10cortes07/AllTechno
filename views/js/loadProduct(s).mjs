@@ -77,7 +77,7 @@ export const loadProducts = (category) => {
                 const cardClicked = e.target.closest(".swiper-wrapper");
                 const id = cardClicked.dataset.id;
                 
-                if (!(e.target.className == "mySwiper")) loadProduct(category, id)
+                if (!(e.target.className == "mySwiper")) window.location.href = `product.html?id=${id}&category=${category}`
             });
         });
     })
@@ -95,11 +95,11 @@ export const loadProduct = (category, id) => {
         res.json()
     )
     .then (res => {
-        res = res[0];
-
+        res = res[0]
+        let codeMain = ""
         switch (category) {
             case "cellphones":
-                const codeMain = `
+                codeMain = `
                     <div class="row-ttl-home">
                         <h3>Celulares</h3>
                         <div>
@@ -113,35 +113,35 @@ export const loadProduct = (category, id) => {
                         <div class="imgs-pro">
                             <div class="swiper-wrapper" data-id="${res.id}">
                                 <div class="swiper-slide">
-                                    <swiper-container style="--swiper-navigation-color: #777; --swiper-navigation-size: 1.5em; --swiper-pagination-color: #000;" class="mySwiper" pagination="true" pagination-clickable="true" navigation="true" space-between="30" loop="true"
+                                    <swiper-container style="--swiper-navigation-color: #777; --swiper-navigation-size: 1.5em; --swiper-pagination-color: #000;" class="mySwiper" pagination="true" pagination-clickable="true" navigation="true" space-between="30" loop="true">
                                         <swiper-slide>
                                             <div class="swiper-zoom-container">
-                                                <img src="${res.url1} alt="img-product" />
+                                                <img src="../../${res.url1}" alt="img-product" />
                                             </div>
                                         </swiper-slide>
                                         <swiper-slide>
                                             <div class="swiper-zoom-container">
-                                                <img src="${res.url2} alt="img-product" />
+                                                <img src="../../${res.url2}" alt="img-product" />
                                             </div>
                                         </swiper-slide>
                                         <swiper-slide>
                                             <div class="swiper-zoom-container">
-                                                <img src="${res.url3} alt="img-product" />
+                                                <img src="../../${res.url3}" alt="img-product" />
                                             </div>
                                         </swiper-slide>
                                         <swiper-slide>
                                             <div class="swiper-zoom-container">
-                                                <img src="${res.url4} alt="img-product" />
+                                                <img src="../../${res.url4}" alt="img-product" />
                                             </div>
                                         </swiper-slide>
                                         <swiper-slide>
                                             <div class="swiper-zoom-container">
-                                                <img src="${res.url5} alt="img-product" />
+                                                <img src="../../${res.url5}" alt="img-product" />
                                             </div>
                                         </swiper-slide>
                                         <swiper-slide>
                                             <div class="swiper-zoom-container">
-                                                <img src="${res.url6} alt="img-product" />
+                                                <img src="../../${res.url6}" alt="img-product" />
                                             </div>
                                         </swiper-slide>
                                     </swiper-container>
@@ -153,14 +153,14 @@ export const loadProduct = (category, id) => {
                             <div class="info">
                                 <h4>${res.marca + " " + res.modelo}</h4>
                                 <ul>
-                                    <li>Bateria (MaH): ${res.bateria}</li>
+                                    <li>Bateria : ${res.bateria} MaH</li>
                                     <li>Procesador : ${res.procesador}</li>
-                                    <li>Camara frontal (MP) : ${res.camaraFrontal}</li>
-                                    <li>Camara Posterior (MP) : ${res.camaraPosterior}</li>
+                                    <li>Camara frontal : ${res.camaraFrontal} MP</li>
+                                    <li>Camara Posterior : ${res.camaraPosterior} MP</li>
                                     <li>Resolucion : ${res.resolucion}</li>
                                     <li>Huella Digital : ${res.huella}</li>
-                                    <li>Almacenaminto (GB): ${res.almacenamiento}</li>
-                                    <li>RAM (GB): ${res.ram}</li>
+                                    <li>Almacenaminto: ${res.almacenamiento} GB</li>
+                                    <li>RAM: ${res.ram} GB</li>
                                     <li>Colores disponibles: ${res.colores}</li>
                                 </ul>
             
@@ -177,9 +177,82 @@ export const loadProduct = (category, id) => {
 
                 break;
 
-            // case "powersupplies":
-                
-            //     break;
+            case "laptops":
+                codeMain = `
+                    <div class="row-ttl-home">
+                        <a href="laptops.html"><h3>Portatiles</h3></a>
+                        <div>
+                            <hr>
+                        </div>  
+                    </div>
+        
+        
+                    <div class="ctn-details-pro">
+            
+                        <div class="imgs-pro">
+                            <div class="swiper-wrapper" data-id="${res.id}">
+                                <div class="swiper-slide">
+                                    <swiper-container style="--swiper-navigation-color: #777; --swiper-navigation-size: 1.5em; --swiper-pagination-color: #000;" class="mySwiper" pagination="true" pagination-clickable="true" navigation="true" space-between="30" loop="true">
+                                        <swiper-slide>
+                                            <div class="swiper-zoom-container">
+                                                <img src="../../${res.url1}" alt="img-product" />
+                                            </div>
+                                        </swiper-slide>
+                                        <swiper-slide>
+                                            <div class="swiper-zoom-container">
+                                                <img src="../../${res.url2}" alt="img-product" />
+                                            </div>
+                                        </swiper-slide>
+                                        <swiper-slide>
+                                            <div class="swiper-zoom-container">
+                                                <img src="../../${res.url3}" alt="img-product" />
+                                            </div>
+                                        </swiper-slide>
+                                        <swiper-slide>
+                                            <div class="swiper-zoom-container">
+                                                <img src="../../${res.url4}" alt="img-product" />
+                                            </div>
+                                        </swiper-slide>
+                                        <swiper-slide>
+                                            <div class="swiper-zoom-container">
+                                                <img src="../../${res.url5}" alt="img-product" />
+                                            </div>
+                                        </swiper-slide>
+                                        <swiper-slide>
+                                            <div class="swiper-zoom-container">
+                                                <img src="../../${res.url6}" alt="img-product" />
+                                            </div>
+                                        </swiper-slide>
+                                    </swiper-container>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <div class="ctn-info-pro">
+                            <div class="info">
+                                <h4>${res.marca + " " + res.modelo}</h4>
+                                <ul>
+                                    <li>Procesador : ${res.procesador}</li>
+                                    <li>Grafica : ${res.grafica}</li>
+                                    <li>Resolución : ${res.resolucion}</li>
+                                    <li>Tamaño de pantalla : ${res.tamañoPantalla} pulgadas</li>
+                                    <li>Almacenaminto : ${res.almacenamiento} GB</li>
+                                    <li>RAM : ${res.ram} GB</li>
+                                    <li>Colores disponibles: ${res.colores}</li>
+                                </ul>
+            
+            
+                                <h5>$${res.precio.toLocaleString()}</h5>
+                            </div>
+                        </div>
+        
+                    </div>
+                `;
+
+                document.querySelector("main").innerHTML = "";
+                document.querySelector("main").innerHTML = codeMain;
+
+                break;
         
             // case "monitor":
                 
