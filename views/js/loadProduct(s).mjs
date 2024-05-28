@@ -40,9 +40,14 @@ export const loadProducts = (category) => {
                         </swiper-slide>
                     </swiper-container>
                     <div class="data-product">
+                    ${category === "desktopComputers" ? `
+                        <h4 class="product-name">${product.procesador + " + " + product.almacenamiento + " + " + product.ram}</h4>
+                        <span class="product-price">$${product.precio.toLocaleString()}</span>
+                    ` : `
                         <h4 class="product-name">${product.marca} ${product.modelo}</h4>
                         <span class="product-price">$${product.precio.toLocaleString()}</span>
-                    </div>
+                    `}
+                </div>
                 </div>
                 </div>
             `
