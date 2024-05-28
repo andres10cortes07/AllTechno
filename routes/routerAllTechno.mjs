@@ -31,42 +31,42 @@ router.delete("/laptops/:id", ControllerLaptops.deleteLaptop);
 
 //? powerSupplies routes
 router.get("/powerSupplies", ControllerPowerSupplies.getAll);
-router.get("/powerSupplies:id", ControllerPowerSupplies.getById);
+router.get("/powerSupplies/:id", ControllerPowerSupplies.getById);
 router.post("/powerSupplies", ControllerPowerSupplies.createPowerSupply);
-router.patch("/powerSupplies:id", ControllerPowerSupplies.modifyPowerSupply);
-router.delete("/powerSupplies:id", ControllerPowerSupplies.deletePowerSupply);
+router.patch("/powerSupplies/:id", ControllerPowerSupplies.modifyPowerSupply);
+router.delete("/powerSupplies/:id", ControllerPowerSupplies.deletePowerSupply);
 
 
 //? processors routes
 router.get("/processors", ControllerProcessors.getAll);
-router.get("/processors:id", ControllerProcessors.getById);
+router.get("/processors/:id", ControllerProcessors.getById);
 router.post("/processors", ControllerProcessors.createProcessor);
-router.patch("/processors:id", ControllerProcessors.modifyProcessor);
-router.delete("/processors:id", ControllerProcessors.deleteProcessor);
+router.patch("/processors/:id", ControllerProcessors.modifyProcessor);
+router.delete("/processors/:id", ControllerProcessors.deleteProcessor);
 
 
 //? ram routes
 router.get("/ram", ControllerRam.getAll);
-router.get("/ram:id", ControllerRam.getById);
+router.get("/ram/:id", ControllerRam.getById);
 router.post("/ram", ControllerRam.createRam);
-router.patch("/ram:id", ControllerRam.modifyRam);
-router.delete("/ram:id", ControllerRam.deleteRam);
+router.patch("/ram/:id", ControllerRam.modifyRam);
+router.delete("/ram/:id", ControllerRam.deleteRam);
 
 
 //? screens routes
 router.get("/screens", ControllerScreens.getAll);
-router.get("/screens:id", ControllerScreens.getById);
+router.get("/screens/:id", ControllerScreens.getById);
 router.post("/screens", ControllerScreens.createScreen);
-router.patch("/screens:id", ControllerScreens.modifyScreen);
-router.delete("/screens:id", ControllerScreens.deleteScreen);
+router.patch("/screens:/id", ControllerScreens.modifyScreen);
+router.delete("/screens/:id", ControllerScreens.deleteScreen);
 
 
 //? desktopComputers routes
 router.get("/desktopComputers", ControllerDesktops.getAll);
-router.get("/desktopComputers:id", ControllerDesktops.getByid);
+router.get("/desktopComputers/:id", ControllerDesktops.getByid);
 router.post("/desktopComputers", ControllerDesktops.createDesktopPc);
-router.patch("/desktopComputers:id", ControllerDesktops.modifyDesktopPc);
-router.delete("/desktopComputers:id", ControllerDesktops.deleteDesktopPc);
+router.patch("/desktopComputers/:id", ControllerDesktops.modifyDesktopPc);
+router.delete("/desktopComputers/:id", ControllerDesktops.deleteDesktopPc);
 
 
 // Definicion de los origenes aceptados para prevencion de ERROR CORS

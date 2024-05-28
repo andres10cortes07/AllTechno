@@ -178,6 +178,7 @@ export const loadProduct = (category, id) => {
                 break;
 
             case "laptops":
+                
                 codeMain = `
                     <div class="row-ttl-home">
                         <a href="laptops.html"><h3>Portatiles</h3></a>
@@ -254,7 +255,78 @@ export const loadProduct = (category, id) => {
 
                 break;
         
-            // case "monitor":
+            case "powerSupplies":
+                codeMain = `
+                <div class="row-ttl-home">
+                    <a href="powerSupplies.html"><h3>Fuentes de Poder</h3></a>
+                    <div>
+                        <hr>
+                    </div>  
+                </div>
+    
+    
+                <div class="ctn-details-pro">
+        
+                    <div class="imgs-pro">
+                        <div class="swiper-wrapper" data-id="${res.id}">
+                            <div class="swiper-slide">
+                                <swiper-container style="--swiper-navigation-color: #777; --swiper-navigation-size: 1.5em; --swiper-pagination-color: #000;" class="mySwiper" pagination="true" pagination-clickable="true" navigation="true" space-between="30" loop="true">
+                                    <swiper-slide>
+                                        <div class="swiper-zoom-container">
+                                            <img src="../../${res.url1}" alt="img-product" />
+                                        </div>
+                                    </swiper-slide>
+                                    <swiper-slide>
+                                        <div class="swiper-zoom-container">
+                                            <img src="../../${res.url2}" alt="img-product" />
+                                        </div>
+                                    </swiper-slide>
+                                    <swiper-slide>
+                                        <div class="swiper-zoom-container">
+                                            <img src="../../${res.url3}" alt="img-product" />
+                                        </div>
+                                    </swiper-slide>
+                                    <swiper-slide>
+                                        <div class="swiper-zoom-container">
+                                            <img src="../../${res.url4}" alt="img-product" />
+                                        </div>
+                                    </swiper-slide>
+                                    <swiper-slide>
+                                        <div class="swiper-zoom-container">
+                                            <img src="../../${res.url5}" alt="img-product" />
+                                        </div>
+                                    </swiper-slide>
+                                    <swiper-slide>
+                                        <div class="swiper-zoom-container">
+                                            <img src="../../${res.url6}" alt="img-product" />
+                                        </div>
+                                    </swiper-slide>
+                                </swiper-container>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="ctn-info-pro">
+                        <div class="info">
+                            <h4>${res.marca + " " + res.modelo}</h4>
+                            <ul>
+                                <li>Voltaje : ${res.voltaje}</li>
+                                <li>Potencia : ${res.potencia}</li>
+                                <li>Certificación : ${res.certificacion}</li>
+                            </ul>
+        
+        
+                            <h5>$${res.precio.toLocaleString()}</h5>
+                        </div>
+                    </div>
+    
+                </div>
+            `;
+
+            document.querySelector("main").innerHTML = "";
+            document.querySelector("main").innerHTML = codeMain;
+
+            break;
                 
             //     break;
 
