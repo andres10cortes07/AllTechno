@@ -5,6 +5,7 @@ import { ControllerPowerSupplies } from "../controllers/powerSupplies.mjs";
 import { ControllerProcessors } from "../controllers/processors.mjs";
 import { ControllerRam } from "../controllers/ram.mjs";
 import { ControllerScreens } from "../controllers/screens.mjs";
+import { ControllerDesktops } from "../controllers/desktops.mjs";
 
 import { Router } from "express";
 export const router = Router();
@@ -58,6 +59,14 @@ router.get("/screens:id", ControllerScreens.getById);
 router.post("/screens", ControllerScreens.createScreen);
 router.patch("/screens:id", ControllerScreens.modifyScreen);
 router.delete("/screens:id", ControllerScreens.deleteScreen);
+
+
+//? desktopComputers routes
+router.get("/desktopComputers", ControllerDesktops.getAll);
+router.get("/desktopComputers:id", ControllerDesktops.getByid);
+router.post("/desktopComputers", ControllerDesktops.createDesktopPc);
+router.patch("/desktopComputers:id", ControllerDesktops.modifyDesktopPc);
+router.delete("/desktopComputers:id", ControllerDesktops.deleteDesktopPc);
 
 
 // Definicion de los origenes aceptados para prevencion de ERROR CORS

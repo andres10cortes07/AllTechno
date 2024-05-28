@@ -10,8 +10,7 @@ export class ControllerLaptops {
             res.header("Access-Control-Allow-Origin", origin)
         }
 
-        const laptops = await laptopModels.getAll();
-        return res.json(laptops).status(200)
+        return res.json(await laptopModels.getAll())
     }
 
     static getById = async (req, res) => {

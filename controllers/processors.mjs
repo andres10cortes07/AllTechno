@@ -10,8 +10,7 @@ export class ControllerProcessors {
             res.header("Access-Control-Allow-Origin", origin);
         }
 
-        const processors = await ModelsProcessors.getAll();
-        return res.json(processors)
+        return res.json(await ModelsProcessors.getAll())
     }
 
     static getById = async (req, res) => {

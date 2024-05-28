@@ -11,8 +11,7 @@ export class ControllerPowerSupplies {
             res.header("Access-Control-Allow-Origin", origin)
         }
 
-        const powerSupplies = await ModelsPowerSupplies.getAll();
-        return res.json(powerSupplies)
+        return res.json(await ModelsPowerSupplies.getAll())
     }
 
     //! podria mandar error en el origen (si manda usar el || !origin)

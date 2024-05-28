@@ -6,12 +6,13 @@ import { ACCEPTED_ORIGINS } from "../routes/routerAllTechno.mjs";
 export class ControllerCellphones {
 
     static getAll = async (req, res) => {
-        const origin = req.header("origin");
+        const origin = req.header("origin")
+
         if (ACCEPTED_ORIGINS.includes(origin)){
-            res.header("Access-Control-Allow-Origin", origin);
+            res.header("Access-Control-Allow-Origin", origin)
         }
-        const cellphones = await cellphoneModels.getAll();
-        return res.json(cellphones)
+        
+        return res.json(await cellphoneModels.getAll())
     }
 
     static getById = async (req, res) => {
@@ -37,13 +38,13 @@ export class ControllerCellphones {
     static modifyCellphone = async (req, res) => {
         const result = validateModifyCell(req.body);
 
-        if(result.error) return res.status(400).json({error : "Error en la estructura"})
+        if(result.error) return res.status(400).json({error : JSON.parse(result.error.message)})
 
         const { id } = req.params;
         const cellphoneModified = await cellphoneModels.modifyCellphone({id, input: result.data});
 
         if (!cellphoneModified) return res.status(400).json({error : "Cellphone not found"});
-        return res.status(200).json(cellphoneModified)
+        return res.json(cellphoneModified)
     }
 
     static deleteCellphone = async (req, res) => {

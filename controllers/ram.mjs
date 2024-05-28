@@ -11,8 +11,7 @@ export class ControllerRam {
             res.header("Access-Control-Allow-Origin", origin)
         }
 
-        const ram = await ModelsRam.getAll();
-        return res.json(ram)
+        return res.json(await ModelsRam.getAll())
     }
 
     static getById = async (req, res) => {

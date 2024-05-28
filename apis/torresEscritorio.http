@@ -1,0 +1,26 @@
+### get all desktops
+GET http://localhost:5000/allTechno/desktopComputers
+
+### get desktop by id
+GET http://localhost:5000/allTechno/desktopComputers/id
+
+### create desktop
+POST http://localhost:5000/allTechno/desktopComputers
+
+Content-Type: application/json
+
+{
+
+}
+
+### get all desktops
+PATCH http://localhost:5000/allTechno/desktopComputers/id
+
+Content-Type: application/json
+
+{
+
+}
+
+### get all desktops
+DELETE http://localhost:5000/allTechno/desktopComputers/id

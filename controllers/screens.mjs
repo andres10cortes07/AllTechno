@@ -11,8 +11,7 @@ export class ControllerScreens {
             res.header("Access-Control-Allow-Origin", origin)
         }
         
-        const screens = await ModelsScreens.getAll();
-        return res.json(screens)
+        return res.json(await ModelsScreens.getAll())
     }
 
     static getById = async (req, res) => {
