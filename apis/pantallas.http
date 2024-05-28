@@ -1,0 +1,17 @@
+### get all screens
+GET http://localhost:5000/allTechno/screens
+
+### get screen by id
+GET http://localhost:5000/allTechno/screens/id
+
+
+### create screen
+POST http://localhost:5000/allTechno/screens
+
+Content-Type: application/json
+
+### modify screen
+PATCH http://localhost:5000/localhost:5000/allTechno/screens/id
+
+### delete screen
+DELETE http://localhost:5000/allTechno/screens/id
