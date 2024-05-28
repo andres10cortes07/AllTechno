@@ -15,7 +15,7 @@ export const loadProducts = (category) => {
                 swiperSlidesHTML += `
                   <swiper-slide>
                     <div class="swiper-zoom-container">
-                      <img src="${url}" />
+                      <img src="../../${url}" alt="img-product"/>
                     </div>
                   </swiper-slide>
                 `;
@@ -50,25 +50,11 @@ export const loadProducts = (category) => {
 
         }).join("");
 
-        const main = document.querySelector("main");
-        main.innerHTML = `
-            <div class="row-ttl-home">
-                <h3>Portátiles</h3>
-                <div>
-                    <hr>
-                </div>
-                <select name="filter" class="select-filter">
-                    <option value="">Ordenar por más nuevos</option>
-                    <option value="">Ordenar por precio: de menor a mayor</option>
-                    <option value="">Ordenar por precio: de mayor a menor</option>
-                    <option value="">Ordenar por popularidad</option>
-                </select>
-            </div>
-            <div class="slider-card">
+        const container = document.querySelector(".slider-card > .container")
+        container.innerHTML = `
                 <div class="container">
                     ${codeProducts}
                 </div>
-            </div>
         `;
 
         const cards = document.querySelectorAll(".swiper-wrapper");
@@ -130,32 +116,32 @@ export const loadProduct = (category, id) => {
                                     <swiper-container style="--swiper-navigation-color: #777; --swiper-navigation-size: 1.5em; --swiper-pagination-color: #000;" class="mySwiper" pagination="true" pagination-clickable="true" navigation="true" space-between="30" loop="true"
                                         <swiper-slide>
                                             <div class="swiper-zoom-container">
-                                                <img src="${res.url1}" />
+                                                <img src="${res.url1} alt="img-product" />
                                             </div>
                                         </swiper-slide>
                                         <swiper-slide>
                                             <div class="swiper-zoom-container">
-                                                <img src="${res.url2}" />
+                                                <img src="${res.url2} alt="img-product" />
                                             </div>
                                         </swiper-slide>
                                         <swiper-slide>
                                             <div class="swiper-zoom-container">
-                                                <img src="${res.url3}" />
+                                                <img src="${res.url3} alt="img-product" />
                                             </div>
                                         </swiper-slide>
                                         <swiper-slide>
                                             <div class="swiper-zoom-container">
-                                                <img src="${res.url4}" />
+                                                <img src="${res.url4} alt="img-product" />
                                             </div>
                                         </swiper-slide>
                                         <swiper-slide>
                                             <div class="swiper-zoom-container">
-                                                <img src="${res.url5}" />
+                                                <img src="${res.url5} alt="img-product" />
                                             </div>
                                         </swiper-slide>
                                         <swiper-slide>
                                             <div class="swiper-zoom-container">
-                                                <img src="${res.url6}" />
+                                                <img src="${res.url6} alt="img-product" />
                                             </div>
                                         </swiper-slide>
                                     </swiper-container>

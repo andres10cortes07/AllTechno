@@ -65,4 +65,5 @@
 
 .row-ttl-home h3 {
 	font-size: 1.5em;
+	white-space: nowrap;
 }
