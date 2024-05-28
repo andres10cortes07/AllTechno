@@ -32,9 +32,7 @@ export class ControllerProcessors {
         const result = ValidateProcessor(req.body);
 
         if(result.error) return res.json({error : JSON.parse(result.error.message)})
-
-        const newProcessor = await ModelsProcessors.createProcessor(result.data);
-        return res.json(newProcessor)
+        return res.json(await ModelsProcessors.createProcessor(result.data)).status(201)
     }
 
     static modifyProcessor = async (req, res) => {

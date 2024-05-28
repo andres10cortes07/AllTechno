@@ -2,7 +2,8 @@ import { ControllerCellphones } from "../controllers/cellphones.mjs";
 import { ControllerLaptops } from "../controllers/laptops.mjs";
 import { ControllerIndex } from "../controllers/index.mjs";
 import { ControllerPowerSupplies } from "../controllers/powerSupplies.mjs";
-import { ControllerProcessors } from "../controllers/processors.mjs"
+import { ControllerProcessors } from "../controllers/processors.mjs";
+import { ControllerRam } from "../controllers/ram.mjs";
 
 import { Router } from "express";
 export const router = Router();
@@ -40,6 +41,16 @@ router.get("/processors:id", ControllerProcessors.getById);
 router.post("/processors", ControllerProcessors.createProcessor);
 router.patch("/processors:id", ControllerProcessors.modifyProcessor);
 router.delete("/processors:id", ControllerProcessors.deleteProcessor);
+
+
+//? ram router
+router.get("/ram", ControllerRam.getAll);
+router.get("/ram:id", ControllerRam.getById);
+router.post("/ram", ControllerRam.createRam);
+router.patch("/ram:id", ControllerRam.modifyRam);
+router.delete("/ram:id", ControllerRam.deleteRam);
+
+
 
 // Definicion de los origenes aceptados para prevencion de ERROR CORS
 export const ACCEPTED_ORIGINS = [

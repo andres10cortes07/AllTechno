@@ -15,6 +15,7 @@ export class ControllerPowerSupplies {
         return res.json(powerSupplies)
     }
 
+    //! podria mandar error en el origen (si manda usar el || !origin)
     static getById = async (req, res) => {
         const origin = req.header("origin") ;
         const { id } = req.params
@@ -33,9 +34,7 @@ export class ControllerPowerSupplies {
         const result = ValidatePowerSupply(req.body);
 
         if(result.error) return res.json({error: JSON.parse(result.error.message)})
-
-        const newPowerSupply = await ModelsPowerSupplies.createPowerSupply(result.data)
-        return res.json(newPowerSupply)
+        return res.json(await ModelsPowerSupplies.createPowerSupply(result.data)).status(201)
     }
 
     static modifyPowerSupply = async (req, res) => {

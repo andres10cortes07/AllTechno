@@ -31,9 +31,7 @@ export class ControllerCellphones {
         const result = validateCellphone(req.body);
 
         if (result.error) return res.status(400).json({error: JSON.parse(result.error.message)})
-
-        const newCellphone = await cellphoneModels.createCellphone(result.data);
-        res.status(201).json(newCellphone)
+        res.status(201).json(await cellphoneModels.createCellphone(result.data))
     }
 
     static modifyCellphone = async (req, res) => {
