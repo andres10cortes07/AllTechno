@@ -4,53 +4,49 @@ export const loadProducts = (category) => {
     .then (res => res.json())
     .then (products => {
         const codeProducts = products.map(product => {
-            return `
-                <div class="swiper-wrapper" data-id="${product.id}">
-                <div class="swiper-slide">
-                <swiper-container style="--swiper-navigation-color: transparent; --swiper-navigation-size: 1.5em; --swiper-pagination-color: #000;" class="mySwiper" pagination="true" pagination-clickable="true" navigation="true" space-between="30" loop="true">
-                        <swiper-slide>
-                            <div class="swiper-zoom-container">
-                                <img src="${product.url1}" />
+            let swiperSlidesHTML = ""; // Inicializamos una cadena vacía para contener el HTML de los swiper-slide
+
+            // Iteramos sobre cada url y generamos el HTML del swiper-slide correspondiente
+            for (let i = 1; i <= 6; i++) {
+              const url = product[`url${i}`]; // Obtenemos la URL correspondiente
+
+              // Verificamos si la URL no es null
+              if (url !== null && url !== "null") {
+                swiperSlidesHTML += `
+                  <swiper-slide>
+                    <div class="swiper-zoom-container">
+                      <img src="${url}" />
+                    </div>
+                  </swiper-slide>
+                `;
+              }
+            }
+
+            if (swiperSlidesHTML !== "") {
+                return `
+                    <div class="swiper-wrapper" data-id="${product.id}">
+                        <div class="swiper-slide">
+                            <swiper-container style="--swiper-navigation-color: transparent; --swiper-navigation-size: 1.5em; --swiper-pagination-color: #000;" class="mySwiper" pagination="true" pagination-clickable="true" navigation="true" space-between="30" loop="true">
+                                ${swiperSlidesHTML}
+                            </swiper-container>
+                            <div class="data-product">
+
+                                ${category === "desktopComputers" ? `
+                                <h4 class="product-name">${product.procesador + " + " + product.almacenamiento + " + " + product.ram}</h4>
+                                <span class="product-price">$${product.precio.toLocaleString()}</span>
+                                ` : `
+                                    <h4 class="product-name">${product.marca} ${product.modelo}</h4>
+                                    <span class="product-price">$${product.precio.toLocaleString()}</span>
+                                `}
                             </div>
-                        </swiper-slide>
-                        <swiper-slide>
-                            <div class="swiper-zoom-container">
-                                <img src="${product.url2}" />
-                            </div>
-                        </swiper-slide>
-                        <swiper-slide>
-                            <div class="swiper-zoom-container">
-                                <img src="${product.url3}" />
-                            </div>
-                        </swiper-slide>
-                        <swiper-slide>
-                            <div class="swiper-zoom-container">
-                                <img src="${product.url4}" />
-                            </div>
-                        </swiper-slide>
-                        <swiper-slide>
-                            <div class="swiper-zoom-container">
-                                <img src="${product.url5}" />
-                            </div>
-                        </swiper-slide>
-                        <swiper-slide>
-                            <div class="swiper-zoom-container">
-                                <img src="${product.url6}" />
-                            </div>
-                        </swiper-slide>
-                    </swiper-container>
-                    <div class="data-product">
-                    ${category === "desktopComputers" ? `
-                        <h4 class="product-name">${product.procesador + " + " + product.almacenamiento + " + " + product.ram}</h4>
-                        <span class="product-price">$${product.precio.toLocaleString()}</span>
-                    ` : `
-                        <h4 class="product-name">${product.marca} ${product.modelo}</h4>
-                        <span class="product-price">$${product.precio.toLocaleString()}</span>
-                    `}
-                </div>
-                </div>
-                </div>
-            `
+                        </div>
+                    </div>
+
+                `
+            }
+            else {
+                return ""
+            }
 
         }).join("");
 

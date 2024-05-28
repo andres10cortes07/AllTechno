@@ -15,13 +15,13 @@ export class ControllerDesktops {
     }
 
     static getByid = async (req, res) => {
-        const { id } = req.params
         const origin = req.header("origin")
 
         if (ACCEPTED_ORIGINS.includes(origin)){
             res.header("Access-Control-Allow-Origin", origin)
         }
-
+        
+        const { id } = req.params
         const desktopPc = await ModelsDesktops.getByid({ id })
         
         if(desktopPc) return res.json(desktopPc)
@@ -37,11 +37,11 @@ export class ControllerDesktops {
     }
 
     static modifyDesktopPc = async (req, res) => {
-        const { id } = req.params
         const result = ValidateModifyDesktop(req.body)
 
         if (result.error) return res.json({error : JSON.parse(result.error.message)})
 
+        const { id } = req.params
         const desktopPcModified = await ModelsDesktops.modifyDesktopPc({id, input: result.data})
         
         if (desktopPcModified) return res.json(desktopPcModified)
@@ -49,13 +49,13 @@ export class ControllerDesktops {
     }
 
     static deleteDesktopPc = async (req, res) => {
-        const { id } = req.params
         const origin = req.header("origin")
 
         if (ACCEPTED_ORIGINS.includes(origin)){
             res.header("Access-Control-Allow-Origin")
         }
-
+        
+        const { id } = req.params
         const deleteStatus = await ModelsDesktops.deleteDesktopPc({ id })
 
         if (deleteStatus) return res.json({message : "Cellphone deleted successfully"})

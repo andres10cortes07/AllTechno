@@ -17,12 +17,12 @@ export class ControllerPowerSupplies {
     //! podria mandar error en el origen (si manda usar el || !origin)
     static getById = async (req, res) => {
         const origin = req.header("origin") ;
-        const { id } = req.params
 
         if(ACCEPTED_ORIGINS.includes(origin)){
             res.header("Access-Control-Allow-Origin", origin)
         }
 
+        const { id } = req.params
         const powerSupply = await ModelsPowerSupplies.getById({id})
 
         if (powerSupply) return res.json(powerSupply)
@@ -38,9 +38,10 @@ export class ControllerPowerSupplies {
 
     static modifyPowerSupply = async (req, res) => {
         const result = ValidateModifyPowerSupply(req.body);
-        const id = req.params;
 
         if(result.error) return res.json({error: result.error.message})
+
+        const id = req.params;
         const PowerSupplyModified = await ModelsPowerSupplies.createPowerSupply({ id, input:result.data })
 
         if(PowerSupplyModified) return res.json(PowerSupplyModified)
@@ -48,13 +49,13 @@ export class ControllerPowerSupplies {
     }
 
     static deletePowerSupply = async (req, res) => {
-        const { id } = req.params
         const origin = req.header("origin");
 
         if(ACCEPTED_ORIGINS.includes(origin)){
             res.header("Access-Control-Allow-Origin", origin)
         }
 
+        const { id } = req.params
         const elimination = await ModelsPowerSupplies.deletePowerSupply({ id });
         
         if (elimination) return res.json({message: "Power Supply delete successfully"})

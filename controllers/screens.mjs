@@ -16,13 +16,14 @@ export class ControllerScreens {
 
     static getById = async (req, res) => {
         const origin = req.header("origin")
-        const { id } = req.params
 
         if(ACCEPTED_ORIGINS.includes(origin)){
             res.header("Access-Control-Allow-Origin", origin)
         }
 
+        const { id } = req.params
         const screen = await ModelsScreens.getById({ id })
+
         if(screen) return res.json(screen)
         return res.json({error : "Screen not  found"})
     }
@@ -35,11 +36,11 @@ export class ControllerScreens {
     }
 
     static modifyScreen = async (req, res) => {
-        const id = req.params
         const result = ValidateModifyScreen(req.body)
         
         if(result.error) return res.json({error : JSON.parse(result.error.message)}).status(400)
         
+        const id = req.params
         const screenModified = await ModelsScreens.modifyScreen({id, input:result.data})
 
         if(screenModified) return res.json(screenModified)
@@ -47,14 +48,15 @@ export class ControllerScreens {
     }
 
     static deleteScreen = async (req, res) => {
-        const { id } = req.params
         const origin = req.header("origin");
 
         if(ACCEPTED_ORIGINS.includes(origin)){
             res.header("Access-Control-Allow-Origin", origin)
         }
 
+        const { id } = req.params
         const deleteStatus = await ModelsScreens.deleteScreen({ id })
+        
         if(deleteStatus) return res.json({message : "Screen deleted successfully"})
         return res.json({error : "Screen not found"}).status(404)
     }

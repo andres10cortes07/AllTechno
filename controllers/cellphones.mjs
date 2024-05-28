@@ -49,6 +49,7 @@ export class ControllerCellphones {
 
     static deleteCellphone = async (req, res) => {
         const origin = req.header("origin");
+        
         if (ACCEPTED_ORIGINS.includes(origin) || !origin){
             res.header("Access-Control-Allow-Origin", origin);
         }

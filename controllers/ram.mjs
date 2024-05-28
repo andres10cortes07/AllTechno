@@ -16,12 +16,12 @@ export class ControllerRam {
 
     static getById = async (req, res) => {
         const origin = req.header("origin")
-        const { id } = req.params
 
         if(ACCEPTED_ORIGINS.includes(origin)){
             res.header("Access-Control-Allow-Origin", origin)
         }
-
+        
+        const { id } = req.params
         const ram = await ModelsRam.getById({ id });
 
         if(ram) return res.json(ram)
@@ -37,10 +37,10 @@ export class ControllerRam {
 
     static modifyRam = async (req, res) => {
         const result = ValidateModifyRam(req.body);
-        const {id} = req.params
 
         if (result.error) return res.json({error : JSON.parse(result.error.message)}).status(400)
 
+        const {id} = req.params
         const ramModified = await ModelsRam.createRam({id, input:result.data}) 
         
         if (ramModified) return res.json(ramModified)
@@ -49,12 +49,12 @@ export class ControllerRam {
 
     static deleteRam = async (req, res) => {
         const origin = req.header("origin")
-        const {id} = req.params
 
         if(ACCEPTED_ORIGINS.includes(origin)){
             res.header("Access-Control-Allow-Origin", origin)
         }
-
+        
+        const {id} = req.params
         const deleteStatus = await ModelsRam.deleteRam({id})
         
         if(deleteStatus) return res.json({message : "Ram deleted successfully"})
