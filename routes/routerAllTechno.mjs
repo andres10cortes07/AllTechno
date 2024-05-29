@@ -13,6 +13,7 @@ export const router = Router();
 //? index routes
 router.get("/", ControllerIndex.getProducts);
 
+
 //? cellphone routes
 router.get("/cellphones", ControllerCellphones.getAll);
 router.get("/cellphones/:id", ControllerCellphones.getById);
@@ -67,24 +68,3 @@ router.get("/desktopComputers/:id", ControllerDesktops.getByid);
 router.post("/desktopComputers", ControllerDesktops.createDesktopPc);
 router.patch("/desktopComputers/:id", ControllerDesktops.modifyDesktopPc);
 router.delete("/desktopComputers/:id", ControllerDesktops.deleteDesktopPc);
-
-
-// Definicion de los origenes aceptados para prevencion de ERROR CORS
-export const ACCEPTED_ORIGINS = [
-    "http://localhost:5000/allTechno",
-    "http://localhost:5000/allTechno/cellphones",
-    "http://127.0.0.1:5500",
-    "http://127.0.0.1:5500/"
-]
-
-router.options("/cellphones", (req, res) => {
-    const origin = req.header("origin");
-    if(ACCEPTED_ORIGINS.includes(origin) || !origin){
-        res.header("Access-Control-Allow-Origin", origin);
-        res.header("Access-Control-Allow-Methods", "GET, POST, PATCH, DELETE")
-        res.sendStatus(200)
-    }
-    else {
-        res.sendStatus(403)
-    }
-})

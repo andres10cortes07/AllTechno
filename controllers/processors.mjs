@@ -1,25 +1,12 @@
-import { ACCEPTED_ORIGINS } from "../routes/routerAllTechno.mjs" 
 // import { ValidateProcessor, ValidateModifyProcessor } from "../schemas/schemasProce.mjs";
 import { ModelsProcessors } from "../models/processors.mjs";
 
 export class ControllerProcessors {
     static getAll = async (req, res) => {
-        const origin = req.header("origin");
-
-        if(ACCEPTED_ORIGINS.includes(origin)){
-            res.header("Access-Control-Allow-Origin", origin);
-        }
-
         return res.json(await ModelsProcessors.getAll())
     }
 
     static getById = async (req, res) => {
-        const origin = req.header("origin");
-
-        if(ACCEPTED_ORIGINS.includes(origin)){
-            res.header("Access-Control-Allow-Origin", origin)
-        }
-
         const { id } = req.params;
         const processor = await ModelsProcessors.getById({ id });
 
@@ -47,12 +34,6 @@ export class ControllerProcessors {
     }
 
     static deleteProcessor = async (req, res) => {
-        const origin = req.header("origin");
-
-        if(ACCEPTED_ORIGINS.includes(origin)){
-            res.header("Access-Control-Allow-Origin", origin)
-        }
-
         const { id } = req.params;
         const deleteStatus = await this.deleteProcessor({id});
         

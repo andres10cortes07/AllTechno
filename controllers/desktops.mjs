@@ -1,26 +1,13 @@
-import { ACCEPTED_ORIGINS } from "../routes/routerAllTechno.mjs";
 // import { ValidateDesktop, ValidateModifyDesktop } from "../schemas/schemasDesk.mjs";
 import { ModelsDesktops } from "../models/desktops.mjs";
 
 export class ControllerDesktops {
 
     static getAll = async (req, res) => {
-        const origin = req.header("origin");
-
-        if(ACCEPTED_ORIGINS.includes(origin)){
-            res.header("Access-Control-Allow-Origin", origin)
-        }
-
         return res.json(await ModelsDesktops.getAll())
     }
 
     static getByid = async (req, res) => {
-        const origin = req.header("origin")
-
-        if (ACCEPTED_ORIGINS.includes(origin)){
-            res.header("Access-Control-Allow-Origin", origin)
-        }
-        
         const { id } = req.params
         const desktopPc = await ModelsDesktops.getById({ id })
         
@@ -49,12 +36,6 @@ export class ControllerDesktops {
     }
 
     static deleteDesktopPc = async (req, res) => {
-        const origin = req.header("origin")
-
-        if (ACCEPTED_ORIGINS.includes(origin)){
-            res.header("Access-Control-Allow-Origin")
-        }
-        
         const { id } = req.params
         const deleteStatus = await ModelsDesktops.deleteDesktopPc({ id })
 

@@ -1,25 +1,12 @@
-import { ACCEPTED_ORIGINS } from "../routes/routerAllTechno.mjs"; 
 import { validateLaptop, validateModifyLaptop } from "../schemas/schemasLapt.mjs";
 import { laptopModels } from "../models/laptops.mjs"
 
 export class ControllerLaptops {
     static getAll = async (req, res) => {
-        const origin = req.header("origin");
-
-        if (ACCEPTED_ORIGINS.includes(origin)) {
-            res.header("Access-Control-Allow-Origin", origin)
-        }
-
         return res.json(await laptopModels.getAll())
     }
 
     static getById = async (req, res) => {
-        const origin = req.header("origin");
-
-        if (ACCEPTED_ORIGINS.includes(origin) || !origin) {
-            res.header("Access-Control-Allow-Origin", origin)
-        }
-
         const { id } = req.params;
         const laptop = await laptopModels.getById({ id });
 
@@ -48,11 +35,6 @@ export class ControllerLaptops {
     }
 
     static deleteLaptop = async (req, res) => {
-        const origin = req.header("origin");
-        if (ACCEPTED_ORIGINS.includes(origin)) {
-            res.header("Access-Control-Allow-Origin", origin)
-        }
-
         const { id } = req.params;
 
         const deleteStatus = await laptopModels.deleteLaptop({id});

@@ -1,26 +1,13 @@
-import { ACCEPTED_ORIGINS } from "../routes/routerAllTechno.mjs";
 // import { ValidateRam, ValidateModifyRam } from "../schemas/schemasRam.mjs";
 import { ModelsRam } from "../models/ram.mjs";
 
 export class ControllerRam {
 
     static getAll = async (req, res) => {
-        const origin = req.header("origin");
-
-        if(ACCEPTED_ORIGINS.includes(origin)){
-            res.header("Access-Control-Allow-Origin", origin)
-        }
-
         return res.json(await ModelsRam.getAll())
     }
 
     static getById = async (req, res) => {
-        const origin = req.header("origin")
-
-        if(ACCEPTED_ORIGINS.includes(origin)){
-            res.header("Access-Control-Allow-Origin", origin)
-        }
-        
         const { id } = req.params
         const ram = await ModelsRam.getById({ id });
 
@@ -48,12 +35,6 @@ export class ControllerRam {
     }
 
     static deleteRam = async (req, res) => {
-        const origin = req.header("origin")
-
-        if(ACCEPTED_ORIGINS.includes(origin)){
-            res.header("Access-Control-Allow-Origin", origin)
-        }
-        
         const {id} = req.params
         const deleteStatus = await ModelsRam.deleteRam({id})
         

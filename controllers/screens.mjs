@@ -1,26 +1,13 @@
-import { ACCEPTED_ORIGINS } from "../routes/routerAllTechno.mjs";
 // import { ValidateScreen, ValidateModifyScreen } from "../schemas/schemasScreens.mjs";
 import { ModelsScreens } from "../models/screens.mjs";
 
 export class ControllerScreens {
 
     static getAll = async (req, res) => {
-        const origin = req.header("origin")
-
-        if(ACCEPTED_ORIGINS.includes(origin)){
-            res.header("Access-Control-Allow-Origin", origin)
-        }
-        
         return res.json(await ModelsScreens.getAll())
     }
 
     static getById = async (req, res) => {
-        const origin = req.header("origin")
-
-        if(ACCEPTED_ORIGINS.includes(origin)){
-            res.header("Access-Control-Allow-Origin", origin)
-        }
-
         const { id } = req.params
         const screen = await ModelsScreens.getById({ id })
 
@@ -48,12 +35,6 @@ export class ControllerScreens {
     }
 
     static deleteScreen = async (req, res) => {
-        const origin = req.header("origin");
-
-        if(ACCEPTED_ORIGINS.includes(origin)){
-            res.header("Access-Control-Allow-Origin", origin)
-        }
-
         const { id } = req.params
         const deleteStatus = await ModelsScreens.deleteScreen({ id })
         

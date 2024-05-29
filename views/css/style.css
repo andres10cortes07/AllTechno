@@ -271,6 +271,7 @@ nav {
     left: 31vw;
     background-color: #5B5B5B;
     border-radius: 15px;
+    z-index: 5;
   }
 
   .row-1{
