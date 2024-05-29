@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Pagina simulada para añadir a portafolio desarrollada por Franklin Cortés">
     <title>AllTechno</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <link rel="stylesheet" href="views/css/style.css">
     <link type="image/png" sizes="16x16" rel="icon" href="resources/icono.png">
@@ -42,15 +43,20 @@
 
         <div class="dropdown-menu dropdown-menu-user">
               <ul>
-                  <a href="page-login.html"><li>Iniciar Sesión</li></a>
+                  <a href="views/page-login.html"><li>Iniciar Sesión</li></a>
               </ul>
       </div>
 
         <div class="sub-nav">
             <ul>
-                <a href=""><li>Tienda</li></a>
-                <a href="views/products/desktopPcs.html"><li>Equipos armados</li></a>
-                <a href=""><li>Mejores ofertas</li></a>
+                <li>BOG: 3000000000 - 3000000000</li>
+                <li>MED: 3000000000</li>
+                <li>B/QUILLA: 3000000000</li>
+            </ul>
+            <ul>
+              <i class='bx bxl-facebook-square' style="color:black"></i>
+              <i class='bx bxl-tiktok'  style="color:black"></i>
+              <i class='bx bxl-instagram-alt'  style="color:black"></i>
             </ul>
         </div>
     </header>
@@ -190,7 +196,6 @@
                     const cards = document.querySelectorAll(".swiper-slide");
                   
                     cards.forEach(card => {
-                      console.log(card)
                         let activeSwiper;
 
                         card.addEventListener("mouseover", (e) => {
