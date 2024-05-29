@@ -130,7 +130,7 @@
                         if (swiperSlidesHTML !== "") {
                           // Si hay swiper-slide generados, los incluimos dentro de un contenedor swiper-container
                           return `
-                            <div class="swiper-slide" data-id="${newProduct.id}">
+                            <div class="swiper-slide" data-id="${newProduct.id}" data-category="${newProduct.tabla}">
                               <swiper-container style="--swiper-navigation-color: #fff; --swiper-pagination-color: #000" class="mySwiper"
                                                 zoom="true"  pagination="true" pagination-clickable="true" loop="true">
                                 ${swiperSlidesHTML}
@@ -169,7 +169,7 @@
                         if (swiperSlidesHTML !== "") {
                           // Si hay swiper-slide generados, los incluimos dentro de un contenedor swiper-container
                           return `
-                            <div class="swiper-slide" data-id="${mostSelledProduct.id}">
+                            <div class="swiper-slide" data-id="${mostSelledProduct.id}" data-category="${mostSelledProduct.tabla}">
                               <swiper-container style="--swiper-navigation-color: #fff; --swiper-pagination-color: #000" class="mySwiper"
                                                 zoom="true"  pagination="true" pagination-clickable="true" loop="true">
                                 ${swiperSlidesHTML}
@@ -187,6 +187,25 @@
                     document.querySelector(".swiper-container1 > .swiper-wrapper").innerHTML = codeRow1
                     document.querySelector(".swiper-container2 > .swiper-wrapper").innerHTML = codeRow2
 
+                    const cards = document.querySelectorAll(".swiper-slide");
+                  
+                    cards.forEach(card => {
+                      console.log(card)
+                        let activeSwiper;
+
+                        card.addEventListener("mouseover", (e) => {
+                            card.style.cursor = "pointer";
+                        });
+
+                        card.addEventListener("click", (e) => {
+                            const cardClicked = e.target.closest(".swiper-slide");
+                            const id = cardClicked.dataset.id;
+                            const category = cardClicked.dataset.category
+                            console.log(id, category)
+                            
+                            if (!(e.target.className == "mySwiper")) window.location.href = `views/products/product.html?id=${id}&category=${category}`
+                        });
+                    });
                   })
                   .catch(error => console.error("Error: ",error))
 

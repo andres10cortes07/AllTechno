@@ -22,7 +22,7 @@ export class ControllerDesktops {
         }
         
         const { id } = req.params
-        const desktopPc = await ModelsDesktops.getByid({ id })
+        const desktopPc = await ModelsDesktops.getById({ id })
         
         if(desktopPc) return res.json(desktopPc)
         return res.json({error : "Desktop pc not found"}).status(404)
