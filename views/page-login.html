@@ -14,11 +14,16 @@
     <div>
         <i class='bx bx-left-arrow-alt row' id="row-login"></i>
         <script>
-            document.addEventListener("DOMContentLoaded", (e)=> {
+            document.addEventListener("DOMContentLoaded", () => {
                 
                 const elementI = document.getElementById("row-login");
                 elementI.addEventListener("click", (e) => {
-                    window.history.go(-1)
+                    e.preventDefault()
+                    //--------------------POSIBLEMENTE MANDE ERROR EN PRODUCCION POR LA URL----------------
+                    let previousURL = document.referrer
+                    console.log(previousURL)
+                    if(previousURL == "http://127.0.0.1:5500/views/reset-password.html") window.location.href = "../index.html"
+                    else window.history.go(-1)
                 })
             })
 
