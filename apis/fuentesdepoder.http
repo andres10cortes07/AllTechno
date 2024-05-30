@@ -2,7 +2,7 @@
 GET http://localhost:5000/allTechno/powerSupplies
 
 ### get power supply by id
-GET http://localhost:5000/allTechno/powerSupplies/id
+GET http://localhost:5000/allTechno/powerSupplies/309d0879-1d2b-11ef-84c5-00090faa0001
 
 ### create power supply
 POST http://localhost:5000/allTechno/powerSupplies
