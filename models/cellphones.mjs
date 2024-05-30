@@ -13,7 +13,8 @@ export class cellphoneModels {
         // Selecciona el orden válido, por defecto a 'RAND()' si no es válido
         const orderBy = validOrders[order] || "RAND()";
 
-        const query = `
+
+        const [cellphones] = await connection.query(`
             SELECT BIN_TO_UUID(cel.id) AS id, 
             cel.marca, cel.modelo, cel.bateria, cel.procesador, cel.camaraFrontal, 
             cel.camaraPosterior, cel.resolucion, cel.huella, 
@@ -22,9 +23,7 @@ export class cellphoneModels {
             FROM celulares cel 
             INNER JOIN recursos r ON cel.recursos_id_recurso = r.id_recurso 
             ORDER BY ${orderBy};
-        `;
-
-        const [cellphones] = await connection.query(query);
+        `);
         return cellphones;
     }
 

@@ -4,7 +4,8 @@ import { ModelsDesktops } from "../models/desktops.mjs";
 export class ControllerDesktops {
 
     static getAll = async (req, res) => {
-        return res.json(await ModelsDesktops.getAll())
+        const { order } = req.params
+        return res.json(await ModelsDesktops.getAll({ order }))
     }
 
     static getByid = async (req, res) => {

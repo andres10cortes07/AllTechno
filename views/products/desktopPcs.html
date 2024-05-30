@@ -68,10 +68,10 @@
                 <hr>
             </div>
             <select name="filter" class="select-filter">
-                <option value="">Ordenar por más nuevos</option>
-                <option value="">Ordenar por precio: de menor a mayor</option>
-                <option value="">Ordenar por precio: de mayor a menor</option>
-                <option value="">Ordenar por popularidad</option>
+                <option value="RAND()">Ordenar por más nuevos</option>
+                <option value="tor.precio ASC">Ordenar por precio: de menor a mayor</option>
+                <option value="tor.precio DESC">Ordenar por precio: de mayor a menor</option>
+                <option value="RAND()">Ordenar por popularidad</option>
             </select>
         </div>
 
@@ -84,6 +84,13 @@
             
                     const category = "desktopComputers";
                     const id = null;
+                    let order = "RAND()"
+                    const select = document.querySelector(".select-filter")
+
+                    select.addEventListener("change", (e) => {
+                        order = e.target.value
+                        loadProducts(category, order);
+                    })
                     
                     const cards = document.querySelectorAll(".swiper-wrapper");
                     cards.forEach(card => {
@@ -99,7 +106,7 @@
                         if (id !== null) {
                             loadProduct(category, id);
                         } else {
-                            loadProducts(category);
+                            loadProducts(category, order);
                         }
                     });
             
@@ -108,13 +115,11 @@
                         if (id !== null) {
                             loadProduct(category, id);
                         } else {
-                            loadProducts(category);
+                            loadProducts(category, order);
                             const linkProduct = document.querySelector('link[href="../css/style_product.css"]')
                             document.head.removeChild(linkProduct)
                         }
                     });
-
-                    loadProducts(category);
                 </script>
             
             

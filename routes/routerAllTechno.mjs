@@ -64,7 +64,7 @@ router.delete("/screens/:id", ControllerScreens.deleteScreen);
 
 
 //? desktopComputers routes
-router.get("/desktopComputers", ControllerDesktops.getAll);
+router.get("/desktopComputers/:order", ControllerDesktops.getAll);
 router.get("/desktopComputers/:id", ControllerDesktops.getByid);
 router.post("/desktopComputers", ControllerDesktops.createDesktopPc);
 router.patch("/desktopComputers/:id", ControllerDesktops.modifyDesktopPc);
