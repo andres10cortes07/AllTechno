@@ -5,7 +5,8 @@ import { validateCellphone, validateModifyCell } from "../schemas/schemasCell.mj
 export class ControllerCellphones {
 
     static getAll = async (req, res) => {
-        return res.json(await cellphoneModels.getAll())
+        const { order } = req.params
+        return res.json(await cellphoneModels.getAll({ order }))
     }
 
     static getById = async (req, res) => {

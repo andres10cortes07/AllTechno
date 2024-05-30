@@ -16,7 +16,7 @@ router.get("/", ControllerIndex.getProducts);
 
 
 //? cellphone routes
-router.get("/cellphones", ControllerCellphones.getAll);
+router.get("/cellphones/:order", ControllerCellphones.getAll);
 router.get("/cellphones/:id", ControllerCellphones.getById);
 router.post("/cellphones", ControllerCellphones.createCellphone);
 router.patch("/cellphones/:id", ControllerCellphones.modifyCellphone);

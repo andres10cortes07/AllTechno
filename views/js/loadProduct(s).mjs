@@ -35,9 +35,8 @@ const showError = () => {
     return codeErr
 }
 
-export const loadProducts = (category) => {
-
-    fetch(`http://localhost:5000/allTechno/${category}`)
+export const loadProducts = (category, order) => {
+    fetch(`http://localhost:5000/allTechno/${category}/${order}`)
     .then (res => res.json())
     .then (products => {
         const codeProducts = products.map(product => {
