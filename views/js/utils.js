@@ -2,22 +2,28 @@
 const eyeBtn = document.querySelector(".login-eye");
 
 const showInputPass = ()=> {
-    eyeBtn.classList.remove("bx-show");
-    eyeBtn.classList.add("bx-low-vision");
-    document.querySelector(".ctn-pass input").setAttribute("type", "text");
+    if(eyeBtn){
+        eyeBtn.classList.remove("bx-show");
+        eyeBtn.classList.add("bx-low-vision");
+        document.querySelector(".ctn-pass input").setAttribute("type", "text");
+    }
 }
 
 const hideInputPass = ()=> {
-    eyeBtn.classList.remove("bx-low-vision");
-    eyeBtn.classList.add("bx-show");
-    document.querySelector(".ctn-pass input").setAttribute("type", "password");
+    if(eyeBtn){
+        eyeBtn.classList.remove("bx-low-vision");
+        eyeBtn.classList.add("bx-show");
+        document.querySelector(".ctn-pass input").setAttribute("type", "password");
+    }
+}
+if (eyeBtn) {
+    eyeBtn.addEventListener("click", (e) =>{
+        e.preventDefault();
+        if (eyeBtn.classList.contains("bx-show")) showInputPass()
+        else hideInputPass();
+    })    
 }
 
-eyeBtn.addEventListener("click", (e) =>{
-	e.preventDefault();
-	if (eyeBtn.classList.contains("bx-show")) showInputPass()
-    else hideInputPass();
-})
 
 // validacion de formulario de login 
 const inpEmail = document.querySelector(".inp-email");
@@ -57,5 +63,7 @@ const validatePassword = () => {
     }
 }
 
-inpEmail.addEventListener("blur", validateEmail)
-inpPass.addEventListener("blur", validatePassword)
+if (inpEmail) {
+    inpEmail.addEventListener("blur", validateEmail)
+    inpPass.addEventListener("blur", validatePassword)
+}

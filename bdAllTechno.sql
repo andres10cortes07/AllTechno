@@ -41,6 +41,7 @@ CREATE TABLE IF NOT EXISTS `alltechno`.`usuario` (
   `nombres` VARCHAR(100) NOT NULL,
   `apellidos` VARCHAR(100) NOT NULL,
   `correo` VARCHAR(50) NOT NULL,
+  `contraseña` VARCHAR(50) NOT NULL,
   `celular` VARCHAR(10) NOT NULL,
   PRIMARY KEY (`identificacion`))
 ENGINE = InnoDB;
@@ -613,3 +614,6 @@ UNION ALL
   ORDER BY RAND()
   LIMIT 1
 );
+
+INSERT INTO usuario (identificacion, nombres, apellidos, correo, contraseña, celular) VALUES 
+("1025522938", "Franklin Andres", "Cortes Gonzalez", "andres10cortes07@gmail.com", "contraseña", "3204031794");

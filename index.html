@@ -194,10 +194,8 @@
                     document.querySelector(".swiper-container2 > .swiper-wrapper").innerHTML = codeRow2
 
                     const cards = document.querySelectorAll(".swiper-slide");
-                  
-                    cards.forEach(card => {
-                        let activeSwiper;
 
+                    cards.forEach(card => {
                         card.addEventListener("mouseover", (e) => {
                             card.style.cursor = "pointer";
                         });
@@ -206,7 +204,6 @@
                             const cardClicked = e.target.closest(".swiper-slide");
                             const id = cardClicked.dataset.id;
                             const category = cardClicked.dataset.category
-                            console.log(id, category)
                             
                             if (!(e.target.className == "mySwiper")) window.location.href = `views/products/product.html?id=${id}&category=${category}`
                         });

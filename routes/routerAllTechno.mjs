@@ -6,6 +6,7 @@ import { ControllerProcessors } from "../controllers/processors.mjs";
 import { ControllerRam } from "../controllers/ram.mjs";
 import { ControllerScreens } from "../controllers/screens.mjs";
 import { ControllerDesktops } from "../controllers/desktops.mjs";
+import { ControllerUsers } from "../controllers/user.mjs";
 
 import { Router } from "express";
 export const router = Router();
@@ -68,3 +69,6 @@ router.get("/desktopComputers/:id", ControllerDesktops.getByid);
 router.post("/desktopComputers", ControllerDesktops.createDesktopPc);
 router.patch("/desktopComputers/:id", ControllerDesktops.modifyDesktopPc);
 router.delete("/desktopComputers/:id", ControllerDesktops.deleteDesktopPc);
+
+//? user routes
+router.get("/user/:identificacion", ControllerUsers.changePassword);
