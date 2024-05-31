@@ -4,7 +4,8 @@ import { ModelsScreens } from "../models/screens.mjs";
 export class ControllerScreens {
 
     static getAll = async (req, res) => {
-        return res.json(await ModelsScreens.getAll())
+        const {order} = req.params
+        return res.json(await ModelsScreens.getAll({order}))
     }
 
     static getById = async (req, res) => {

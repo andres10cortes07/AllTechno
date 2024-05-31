@@ -36,7 +36,7 @@ const showError = () => {
 }
 
 export const loadProducts = (category, order) => {
-    fetch(`http://localhost:5000/allTechno/${category}/${order}`)
+    fetch(`http://localhost:5000/allTechno/${category}/getAll/${order}`)
     .then (res => res.json())
     .then (products => {
         const codeProducts = products.map(product => {
@@ -571,4 +571,43 @@ export const loadProduct = (category, id) => {
         })
         .catch (error => console.error("Error: ", error))
     }
+}
+
+export const decideFunctionToCall = (category, id) => {
+    const select = document.querySelector(".select-filter")
+    let order = "RAND()"
+
+    select.addEventListener("change", (e) => {
+        order = e.target.value
+        loadProducts(category, order)
+    })
+    
+    const cards = document.querySelectorAll(".swiper-wrapper");
+    cards.forEach(card => {
+        card.addEventListener("click", (e) => {
+            const cardClicked = e.target.closest(card.className);
+            id = cardClicked.dataset.id;
+            loadProduct(category, id)
+        })
+    });
+
+    // Handle page load with potential state from URL
+    window.addEventListener('load', () => {
+        if (id !== null) {
+            loadProduct(category, id);
+        } else {
+            loadProducts(category, order);
+        }
+    });
+
+    // Handle back/forward buttons
+    window.addEventListener('popstate', () => {
+        if (id !== null) {
+            loadProduct(category, id);
+        } else {
+            loadProducts(category, order);
+            const linkProduct = document.querySelector('link[href="../css/style_product.css"]')
+            document.head.removeChild(linkProduct)
+        }
+    })
 }

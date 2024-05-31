@@ -4,7 +4,8 @@ import { ModelsRam } from "../models/ram.mjs";
 export class ControllerRam {
 
     static getAll = async (req, res) => {
-        return res.json(await ModelsRam.getAll())
+        const {order} = req.params
+        return res.json(await ModelsRam.getAll({order}))
     }
 
     static getById = async (req, res) => {

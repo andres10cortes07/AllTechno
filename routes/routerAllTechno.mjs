@@ -16,7 +16,7 @@ router.get("/", ControllerIndex.getProducts);
 
 
 //? cellphone routes
-router.get("/cellphones/:order", ControllerCellphones.getAll);
+router.get("/cellphones/getAll/:order", ControllerCellphones.getAll);
 router.get("/cellphones/:id", ControllerCellphones.getById);
 router.post("/cellphones", ControllerCellphones.createCellphone);
 router.patch("/cellphones/:id", ControllerCellphones.modifyCellphone);
@@ -24,7 +24,7 @@ router.delete("/cellphones/:id", ControllerCellphones.deleteCellphone);
 
 
 //? laptops routes
-router.get("/laptops", ControllerLaptops.getAll);
+router.get("/laptops/getAll/:order", ControllerLaptops.getAll);
 router.get("/laptops/:id", ControllerLaptops.getById);
 router.post("/laptops", ControllerLaptops.createLaptop);
 router.patch("/laptops/:id", ControllerLaptops.modifyLaptop);
@@ -32,7 +32,7 @@ router.delete("/laptops/:id", ControllerLaptops.deleteLaptop);
 
 
 //? powerSupplies routes
-router.get("/powerSupplies", ControllerPowerSupplies.getAll);
+router.get("/powerSupplies/getAll/:order", ControllerPowerSupplies.getAll);
 router.get("/powerSupplies/:id", ControllerPowerSupplies.getById);
 router.post("/powerSupplies", ControllerPowerSupplies.createPowerSupply);
 router.patch("/powerSupplies/:id", ControllerPowerSupplies.modifyPowerSupply);
@@ -40,7 +40,7 @@ router.delete("/powerSupplies/:id", ControllerPowerSupplies.deletePowerSupply);
 
 
 //? processors routes
-router.get("/processors", ControllerProcessors.getAll);
+router.get("/processors/getAll/:order", ControllerProcessors.getAll);
 router.get("/processors/:id", ControllerProcessors.getById);
 router.post("/processors", ControllerProcessors.createProcessor);
 router.patch("/processors/:id", ControllerProcessors.modifyProcessor);
@@ -48,7 +48,7 @@ router.delete("/processors/:id", ControllerProcessors.deleteProcessor);
 
 
 //? ram routes
-router.get("/ram", ControllerRam.getAll);
+router.get("/ram/getAll/:order", ControllerRam.getAll);
 router.get("/ram/:id", ControllerRam.getById);
 router.post("/ram", ControllerRam.createRam);
 router.patch("/ram/:id", ControllerRam.modifyRam);
@@ -56,7 +56,7 @@ router.delete("/ram/:id", ControllerRam.deleteRam);
 
 
 //? screens routes
-router.get("/screens", ControllerScreens.getAll);
+router.get("/screens/getAll/:order", ControllerScreens.getAll);
 router.get("/screens/:id", ControllerScreens.getById);
 router.post("/screens", ControllerScreens.createScreen);
 router.patch("/screens:/id", ControllerScreens.modifyScreen);
@@ -64,7 +64,7 @@ router.delete("/screens/:id", ControllerScreens.deleteScreen);
 
 
 //? desktopComputers routes
-router.get("/desktopComputers/:order", ControllerDesktops.getAll);
+router.get("/desktopComputers/getAll/:order", ControllerDesktops.getAll);
 router.get("/desktopComputers/:id", ControllerDesktops.getByid);
 router.post("/desktopComputers", ControllerDesktops.createDesktopPc);
 router.patch("/desktopComputers/:id", ControllerDesktops.modifyDesktopPc);

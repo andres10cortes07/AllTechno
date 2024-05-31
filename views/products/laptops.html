@@ -69,10 +69,10 @@
                 <hr>
             </div>
             <select name="filter" class="select-filter">
-                <option value="">Ordenar por más nuevos</option>
-                <option value="">Ordenar por precio: de menor a mayor</option>
-                <option value="">Ordenar por precio: de mayor a menor</option>
-                <option value="">Ordenar por popularidad</option>
+                <option value="RAND()">Ordenar por más nuevos</option>
+                <option value="por.precio ASC">Ordenar por precio: de menor a mayor</option>
+                <option value="por.precio DESC">Ordenar por precio: de mayor a menor</option>
+                <option value="RAND()">Ordenar por popularidad</option>
             </select>
         </div>
 
@@ -114,22 +114,10 @@
 
 
     <script type="module">
-        import { loadProducts } from "../js/loadProduct(s).mjs";
-
+        import { decideFunctionToCall } from "../js/loadProduct(s).mjs";
         const category = "laptops";
-        loadProducts(category)
-
-        // Handle page load with potential state from URL
-        window.addEventListener('load', () => {
-            loadProducts(category)
-        });
-
-        // Handle back/forward buttons
-        window.addEventListener('popstate', (event) => {
-            loadProducts(category);
-            const linkProduct = document.querySelector('link[href="../css/style_product.css"]')
-            if (linkProduct) document.head.removeChild(linkProduct)
-        });
+        const id = null;
+        decideFunctionToCall(category, id)
     </script>
 </body>
 </html>

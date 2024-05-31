@@ -69,10 +69,10 @@
                 <hr>
             </div>
             <select name="filter" class="select-filter">
-                <option value="">Ordenar por más nuevos</option>
-                <option value="">Ordenar por precio: de menor a mayor</option>
-                <option value="">Ordenar por precio: de mayor a menor</option>
-                <option value="">Ordenar por popularidad</option>
+                <option value="RAND()">Ordenar por más nuevos</option>
+                <option value="ram.precio ASC">Ordenar por precio: de menor a mayor</option>
+                <option value="ram.precio DESC">Ordenar por precio: de mayor a menor</option>
+                <option value="RAND()">Ordenar por popularidad</option>
             </select>
         </div>
 
@@ -81,41 +81,10 @@
             <div class="container">
 
                 <script type="module">
-                    import { loadProducts, loadProduct } from "../js/loadProduct(s).mjs";
-            
+                    import { decideFunctionToCall } from "../js/loadProduct(s).mjs";
                     const category = "ram";
                     const id = null;
-                    
-                    const cards = document.querySelectorAll(".swiper-wrapper");
-                    cards.forEach(card => {
-                        card.addEventListener("click", (e) => {
-                            const cardClicked = e.target.closest(card.className);
-                            id = cardClicked.dataset.id;
-                            loadProduct(category, id)
-                        })
-                    });
-
-                    // Handle page load with potential state from URL
-                    window.addEventListener('load', () => {
-                        if (id !== null) {
-                            loadProduct(category, id);
-                        } else {
-                            loadProducts(category);
-                        }
-                    });
-            
-                    // Handle back/forward buttons
-                    window.addEventListener('popstate', () => {
-                        if (id !== null) {
-                            loadProduct(category, id);
-                        } else {
-                            loadProducts(category);
-                            const linkProduct = document.querySelector('link[href="../css/style_product.css"]')
-                            document.head.removeChild(linkProduct)
-                        }
-                    });
-
-                    loadProducts(category);
+                    decideFunctionToCall(category, id)
                 </script>
             
             

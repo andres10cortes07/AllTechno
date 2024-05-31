@@ -4,7 +4,8 @@ import { ModelsPowerSupplies } from "../models/powerSupplies.mjs";
 export class ControllerPowerSupplies {
 
     static getAll = async (req, res) => {
-        return res.json(await ModelsPowerSupplies.getAll())
+        const {order} = req.params
+        return res.json(await ModelsPowerSupplies.getAll({order}))
     }
 
     static getById = async (req, res) => {

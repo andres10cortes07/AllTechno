@@ -3,7 +3,8 @@ import { ModelsProcessors } from "../models/processors.mjs";
 
 export class ControllerProcessors {
     static getAll = async (req, res) => {
-        return res.json(await ModelsProcessors.getAll())
+        const {order} = req.params
+        return res.json(await ModelsProcessors.getAll({order}))
     }
 
     static getById = async (req, res) => {

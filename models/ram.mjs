@@ -2,13 +2,23 @@ import { connection } from "../models/connection.mjs";
 
 export class ModelsRam {
 
-    static getAll = async () => {
+    static getAll = async ({order}) => {
+        // Define las órdenes permitidas
+        const validOrders = {
+            "RAND()": "RAND()",
+            "ram.precio ASC": "ram.precio ASC",
+            "ram.precio DESC": "ram.precio DESC"
+        };
+
+        // Selecciona el orden válido, por defecto a 'RAND()' si no es válido
+        const orderBy = validOrders[order] || "RAND()";
+
         const [ram] = await connection.query(
             `
                 SELECT BIN_TO_UUID(ram.id) AS id, ram.marca, ram.modelo, ram.capacidad, ram.velocidad, ram.tipo, 
                 ram.led, ram.precio, r.url1, r.url2, r.url3, r.url4, r.url5, r.url6 
                 
-                FROM ram INNER JOIN recursos r ON ram.recursos_id_recurso = r.id_recurso ;
+                FROM ram INNER JOIN recursos r ON ram.recursos_id_recurso = r.id_recurso ORDER BY ${orderBy};
             `
         )
 

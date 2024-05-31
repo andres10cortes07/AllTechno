@@ -3,7 +3,8 @@ import { laptopModels } from "../models/laptops.mjs"
 
 export class ControllerLaptops {
     static getAll = async (req, res) => {
-        return res.json(await laptopModels.getAll())
+        const { order } = req.params
+        return res.json(await laptopModels.getAll({ order }))
     }
 
     static getById = async (req, res) => {
