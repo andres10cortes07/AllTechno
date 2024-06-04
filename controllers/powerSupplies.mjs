@@ -1,5 +1,5 @@
 import { ModelsPowerSupplies } from "../models/powerSupplies.mjs";
-// import { ValidatePowerSupply, ValidateModifyPowerSupply } from "../schemas/schemasPowerS.mjs"
+import { ValidatePowerSupply, ValidateModifyPowerSupply } from "../schemas/schemasPowerS.mjs"
 
 export class ControllerPowerSupplies {
 

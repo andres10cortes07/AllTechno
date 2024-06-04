@@ -37,4 +37,26 @@ export class ModelsPowerSupplies {
         if(powerSupply.length == 0) return false
         return powerSupply
     }
+
+    static createPowerSupply = async (input) => {
+        const [[{ uuid }]] = await connection.query(`SELECT UUID() AS uuid;`);
+
+        await connection.query(
+            `
+            INSERT INTO fuentesdepoder (id, marca, modelo, voltaje, potencia, certificacion, precio, recursos_id_recurso) 
+            VALUES (UUID_TO_BIN(?), ?, ?, ?, ?, ?, ?, NULL)
+            `, [uuid, input.marca, input.modelo, input.voltaje, input.potencia, input.certificacion, input.precio]
+        )
+
+        const [newPowerSupply] = await connection.query(
+            `
+            SELECT BIN_TO_UUID(id) as id, marca, modelo, voltaje, potencia, certificacion, precio
+            FROM fuentesdepoder 
+            WHERE id = UUID_TO_BIN(?)
+            `, [uuid]
+        )
+
+        if (newPowerSupply.length == 0) return false
+        return newPowerSupply[0]
+    }
 }

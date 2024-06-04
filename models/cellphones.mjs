@@ -45,4 +45,27 @@ export class cellphoneModels {
         if (cellphone.length == 0) return false
         return cellphone
     }
+
+    static createCellphone = async (input) => {
+        const [[{ uuid }]] = await connection.query(`SELECT UUID() AS uuid;`);
+
+        await connection.query(
+        `
+        INSERT INTO celulares (id, marca, modelo, bateria, procesador, camaraFrontal, camaraPosterior, resolucion, huella, almacenamiento, ram, precio, colores, recursos_id_recurso) 
+        VALUES (UUID_TO_BIN(?), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NULL)
+        `, [uuid, input.marca, input.modelo, input.bateria, input.procesador, input.camaraFrontal, input.camaraPosterior, 
+            input.resolucion, input.huella, input.almacenamiento, input.ram, input.precio, input.colores]
+        )
+
+        const [newCellphone] = await connection.query(
+            `
+                SELECT BIN_TO_UUID(id) as id, marca, modelo, bateria, procesador, camaraFrontal, camaraPosterior, resolucion, huella, almacenamiento, ram, precio, colores
+                FROM celulares 
+                WHERE id = UUID_TO_BIN(?)
+            `, [uuid]
+        )
+
+        if (newCellphone.length == 0) return false
+        return newCellphone[0]
+    }
 }
