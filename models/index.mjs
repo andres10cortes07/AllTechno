@@ -70,4 +70,54 @@ export class ModelsIndex {
         if (selledProducts.length == 0) return false
         return selledProducts
     }
+
+    static searchProducts = async ({ search }) => {
+      const [results] = await connection.query(
+        `
+        (
+          SELECT 'cellphones' AS tabla, BIN_TO_UUID(id) AS id, CONCAT(marca, ' ', modelo) AS union_tablas
+          FROM celulares
+          WHERE CONCAT(marca, ' ', modelo) LIKE '%${search}%'
+          )
+          UNION ALL
+          (
+          SELECT 'powerSupplies' AS tabla, BIN_TO_UUID(id) AS id, CONCAT(marca, ' ', modelo) AS union_tablas
+          FROM fuentesdepoder
+          WHERE CONCAT(marca, ' ', modelo) LIKE '%${search}%'
+          )
+          UNION ALL
+          (
+          SELECT 'screens' AS tabla, BIN_TO_UUID(id) AS id, CONCAT(marca, ' ', modelo) AS union_tablas
+          FROM pantallas
+          WHERE CONCAT(marca, ' ', modelo) LIKE '%${search}%'
+          )
+          UNION ALL
+          (
+          SELECT 'laptops' AS tabla, BIN_TO_UUID(id) AS id, CONCAT(marca, ' ', modelo) AS union_tablas
+          FROM portatiles
+          WHERE CONCAT(marca, ' ', modelo) LIKE '%${search}%'
+          )
+          UNION ALL
+          (
+          SELECT 'processors' AS tabla, BIN_TO_UUID(id) AS id, CONCAT(marca, ' ', modelo) AS union_tablas
+          FROM procesadores
+          WHERE CONCAT(marca, ' ', modelo) LIKE '%${search}%'
+          )
+          UNION ALL
+          (
+          SELECT 'ram' AS tabla, BIN_TO_UUID(id) AS id, CONCAT(marca, ' ', modelo) AS union_tablas
+          FROM ram
+          WHERE CONCAT(marca, ' ', modelo) LIKE '%${search}%'
+          )
+        UNION ALL
+        (
+        SELECT 'desktopComputers' AS tabla, BIN_TO_UUID(id) AS id, CONCAT(procesador, ' ' ,grafica, ' ' ,board, ' ' ,chasis) AS componentesInterior FROM torreescritorio
+        WHERE CONCAT(procesador, ' ' ,grafica, ' ' ,board, ' ' ,chasis) LIKE '%${search}%'
+        );
+        `
+      )
+
+      if(results.length == 0) return false
+      return results
+    }
 }

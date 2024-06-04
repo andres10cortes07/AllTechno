@@ -334,3 +334,24 @@ nav {
     width: 10vw;
     padding: 0;
   }
+
+  .dropdown-menu-search {
+    left: 50vw;
+    width: 20vw;
+    padding: 0;
+    overflow-x: hidden;
+    display: none;
+  }
+
+  .dropdown-menu-search ul li{
+    margin: 20px 0 20px 0;
+    text-align: center;
+  }
+
+  .dropdown-menu-search ul{
+    max-height: 15em;
+  }
+
+  .dropdown-menu-search ul li:last-child{
+    padding-bottom: 15px;
+  }

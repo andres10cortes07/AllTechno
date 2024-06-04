@@ -13,6 +13,7 @@ export const router = Router();
 
 //? index routes
 router.get("/", ControllerIndex.getProducts);
+router.get("/:search", ControllerIndex.searchProducts);
 
 
 //? cellphone routes

@@ -9,4 +9,12 @@ export class ControllerIndex {
         if (newProducts && mostSelledProducts) return res.json({newProducts, mostSelledProducts})
         return res.json({error : "Error in product search"}).status(400)
     }
+
+    static searchProducts = async (req, res) => {
+        const { search } = req.params
+        const results = await ModelsIndex.searchProducts({ search })
+
+        if (!results) return res.status(404).json({message : "no products found"})
+        return res.json(results)
+    }
 }
