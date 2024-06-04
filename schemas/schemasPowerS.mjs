@@ -2,7 +2,7 @@ import zod from "zod"
 
 const errorLength = {error: "El dato ingresado es demasiado largo"}
 
-const schemaPowerSupplie = zod.object({
+const schemaPowerSupplies = zod.object({
     marca : zod.string().max(100, (errorLength)),
     modelo : zod.string().max(100, (errorLength)),
     voltaje : zod.number().int(),
@@ -12,9 +12,9 @@ const schemaPowerSupplie = zod.object({
 })
 
 export const ValidatePowerSupply = (object) => {
-    return schemaPowerSupplie.safeParse(object)
+    return schemaPowerSupplies.safeParse(object)
 }
 
 export const ValidateModifyPowerSupply = (object) => {
-    return schemaPowerSupplie.partial().safeParse(object)
+    return schemaPowerSupplies.partial().safeParse(object)
 }

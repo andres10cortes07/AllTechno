@@ -19,8 +19,8 @@ export class ControllerLaptops {
     static createLaptop = async (req, res) => {
         const result = validateLaptop(req.body);
 
-        if (result.error) return res.json({ error : result.error.message}).status(400)
-        return res.json(await laptopModels.createLaptop(result.data)).status(201)
+        if (result.error) return res.status(400).json({ error : result.error.message})
+        return res.status(201).json(await laptopModels.createLaptop(result.data))
     }
 
     static modifyLaptop = async (req, res) => {

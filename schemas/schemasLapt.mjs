@@ -5,16 +5,16 @@ const errorLength = {error : "El dato ingresado es demasiado largo"};
 
 // schema for table laptop
 const schemaLaptop = zod.object ({
-    marca : zod.string().length(100, (errorLength)),
-    modelo : zod.string().length(100, (errorLength)),
-    procesador : zod.string().length(100, (errorLength)),
-    grafica : zod.string().length(100, (errorLength)),
-    resolucion : zod.string().length(20, (errorLength)),
-    tamañoPantalla : zod.number().int().max(1000000),
-    almacenamiento : zod.number().int().max(1000000),
-    ram : zod.number().int().max(10000),
+    marca : zod.string().max(100, errorLength),
+    modelo : zod.string().max(100, errorLength),
+    procesador : zod.string().max(100, errorLength),
+    grafica : zod.string().max(100, errorLength).default("Graficos Integrados"),
+    resolucion : zod.string().max(20, errorLength),
+    tamañoPantalla : zod.number().int(),
+    almacenamiento : zod.number().int(),
+    ram : zod.number().int(),
     precio : zod.number().int(),
-    colores : zod.string().length(100, (errorLength))
+    colores : zod.string().max(100, errorLength)
 })
 
 // function for validate the laptop creation

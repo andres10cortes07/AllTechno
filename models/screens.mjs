@@ -39,4 +39,25 @@ export class ModelsScreens {
         return screen
     }
 
+    static createScreen = async (input) => {
+        const [[{ uuid }]] = await connection.query(`SELECT UUID() AS uuid;`);
+
+        await connection.query(
+            `
+                INSERT INTO pantallas (id, marca, modelo, dimensiones, pulgadas, resolucion, tipo, precio, recursos_id_recurso) 
+                VALUES (UUID_TO_BIN(?), ?, ?, ?, ?, ?, ?, ?, NULL)
+            `, [uuid, input.marca, input.modelo, input.dimensiones, input.pulgadas, input.resolucion, input.tipo, input.precio]
+        )
+
+        const [newScreen] = await connection.query(
+            `
+                SELECT BIN_TO_UUID(id) as id, marca, modelo, dimensiones, pulgadas, resolucion, tipo, precio
+                FROM pantallas WHERE id = UUID_TO_BIN(?)
+            `, [uuid]
+        )
+
+        if (newScreen.length == 0) return false
+        return newScreen[0]
+    }
+
 }

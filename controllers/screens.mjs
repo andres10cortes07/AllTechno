@@ -1,4 +1,4 @@
-// import { ValidateScreen, ValidateModifyScreen } from "../schemas/schemasScreens.mjs";
+import { ValidateScreen, ValidateModifyScreen } from "../schemas/schemasScreens.mjs";
 import { ModelsScreens } from "../models/screens.mjs";
 
 export class ControllerScreens {
@@ -19,8 +19,8 @@ export class ControllerScreens {
     static createScreen = async (req, res) => {
         const result = ValidateScreen(req.body)
 
-        if(result.error) return res.json({error : JSON.parse(result.error.message)}).status(400)
-        return res.json(await ModelsScreens.createScreen(result.data)).status(201)
+        if(result.error) return res.status(400).json({error : JSON.parse(result.error.message)})
+        return res.status(201).json(await ModelsScreens.createScreen(result.data))
     }
 
     static modifyScreen = async (req, res) => {

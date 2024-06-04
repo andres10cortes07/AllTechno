@@ -37,4 +37,27 @@ export class laptopModels {
         if (laptop.length == 0) return false
         return laptop
     }
+
+    static createLaptop = async (input) => {
+        const [[{ uuid }]] = await connection.query(`SELECT UUID() AS uuid;`);
+
+        await connection.query(
+            `
+            INSERT INTO portatiles (id, marca, modelo, procesador, grafica, resolucion, tamañoPantalla, almacenamiento, ram, precio, colores, recursos_id_recurso) 
+            VALUES (UUID_TO_BIN(?), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NULL)
+            `, [uuid, input.marca, input.modelo, input.procesador, input.grafica, input.resolucion, 
+                input.tamañoPantalla, input.almacenamiento, input.ram, input.precio, input.colores]
+        )
+
+        const [newLaptop] = await connection.query(
+            `
+                SELECT BIN_TO_UUID(id) as id, marca, modelo, procesador, grafica, resolucion, tamañoPantalla, almacenamiento, ram, precio, colores
+                FROM portatiles 
+                WHERE id = UUID_TO_BIN(?)
+            `, [uuid]
+        )
+
+        if (newLaptop.length == 0) return false
+        return newLaptop[0]
+    }
 }
