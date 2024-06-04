@@ -38,4 +38,26 @@ export class ModelsRam {
         if (ram.length == 0) return false
         return ram
     }
+
+    static createRam = async (input) => {
+        const [[{ uuid }]] = await connection.query(`SELECT UUID() AS uuid;`);
+
+        await connection.query(
+            `
+            INSERT INTO ram (id, marca, modelo, capacidad, velocidad, tipo, led, precio, recursos_id_recurso) 
+            VALUES (UUID_TO_BIN(?), ?, ?, ?, ?, ?, ?, ?, NULL)
+            `, [uuid, input.marca, input.modelo, input.capacidad, input.velocidad, input.tipo, input.led, input.precio]
+        )
+
+        const [newRam] = await connection.query(
+            `
+                SELECT BIN_TO_UUID(id) as id, marca, modelo, capacidad, velocidad, tipo, led, precio
+                FROM ram 
+                WHERE id = UUID_TO_BIN(?)
+            `, [uuid]
+        )
+
+        if (newRam.length == 0) return false
+        return newRam[0]
+    }
 }

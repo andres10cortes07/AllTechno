@@ -1,4 +1,4 @@
-// import { ValidateRam, ValidateModifyRam } from "../schemas/schemasRam.mjs";
+import { ValidateRam, ValidateModifyRam } from "../schemas/schemasRam.mjs";
 import { ModelsRam } from "../models/ram.mjs";
 
 export class ControllerRam {
