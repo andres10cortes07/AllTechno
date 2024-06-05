@@ -1,4 +1,4 @@
-// import { ValidateProcessor, ValidateModifyProcessor } from "../schemas/schemasProce.mjs";
+import { ValidateProcessor, ValidateModifyProcessor } from "../schemas/schemasProcess.mjs";
 import { ModelsProcessors } from "../models/processors.mjs";
 
 export class ControllerProcessors {
@@ -18,8 +18,8 @@ export class ControllerProcessors {
     static createProcessor = async (req, res) => {
         const result = ValidateProcessor(req.body);
 
-        if(result.error) return res.json({error : JSON.parse(result.error.message)})
-        return res.json(await ModelsProcessors.createProcessor(result.data)).status(201)
+        if(result.error) return res.status(400).json({error : JSON.parse(result.error.message)})
+        return res.status(201).json(await ModelsProcessors.createProcessor(result.data))
     }
 
     static modifyProcessor = async (req, res) => {

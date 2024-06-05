@@ -1,4 +1,4 @@
-// import { ValidateDesktop, ValidateModifyDesktop } from "../schemas/schemasDesk.mjs";
+import { ValidateDesktop, ValidateModifyDesktop } from "../schemas/schemasDesktops.mjs";
 import { ModelsDesktops } from "../models/desktops.mjs";
 
 export class ControllerDesktops {
@@ -19,9 +19,9 @@ export class ControllerDesktops {
     static createDesktopPc = async (req, res) => {
         const result = ValidateDesktop(req.body)
 
-        if (result.error) return res.json({error : JSON.parse(result.error.message)}).status(400)
+        if (result.error) return res.status(400).json({error : JSON.parse(result.error.message)})
         
-        return res.json(await ModelsDesktops.createDesktopPc(result.data)).status(201)
+        return res.status(201).json(await ModelsDesktops.createDesktopPc(result.data))
     }
 
     static modifyDesktopPc = async (req, res) => {

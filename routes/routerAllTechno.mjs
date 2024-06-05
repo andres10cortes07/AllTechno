@@ -72,4 +72,9 @@ router.patch("/desktopComputers/:id", ControllerDesktops.modifyDesktopPc);
 router.delete("/desktopComputers/:id", ControllerDesktops.deleteDesktopPc);
 
 //? user routes
-router.get("/user/:identificacion", ControllerUsers.changePassword);
+router.get("/user/changePass/:identificacion", ControllerUsers.changePassword);
+router.get("/user/getAll/:order", ControllerUsers.getUsers);
+router.get("/user/:identificacion", ControllerUsers.getById);
+router.post("/user", ControllerUsers.createUser);
+router.patch("/user/:identificacion", ControllerUsers.modifyUser);
+router.delete("/user/:identificacion", ControllerUsers.deleteUser);

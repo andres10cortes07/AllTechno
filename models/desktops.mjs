@@ -37,4 +37,24 @@ export class ModelsDesktops {
         return desktopPc
     }
 
+    static createDesktopPc = async (input) => {
+        const [[{uuid}]] = await connection.query(`SELECT UUID() AS uuid`);
+
+        await connection.query(
+            `
+                INSERT INTO torreescritorio (id, procesador, grafica, ram, almacenamiento, board, chasis, fuente, refrigeracion, precio, recursos_id_recurso)
+                VALUES (UUID_TO_BIN(?), ?, ?, ?, ?, ?, ?, ?, ?, ?, NULL);
+            `, [uuid, input.procesador, input.grafica, input.ram, input.almacenamiento, input.board, input.chasis, input.fuente, input.refrigeracion, input.precio]
+        )
+
+        const [newDesktopPc] = await connection.query(
+            `
+                SELECT BIN_TO_UUID(id) AS id, procesador, grafica, ram, almacenamiento, board, chasis, fuente, refrigeracion, precio
+                FROM torreescritorio WHERE id = UUID_TO_BIN(?)
+            `, [uuid]
+        )
+
+        if (newDesktopPc.length == 0) return false
+        return newDesktopPc[0]
+    }
 }

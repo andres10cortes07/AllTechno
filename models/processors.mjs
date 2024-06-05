@@ -38,4 +38,25 @@ export class ModelsProcessors {
         if (processor.length == 0) return false
         return processor
     }
+
+    static createProcessor = async (input) => {
+        const [[{uuid}]] = await connection.query(`SELECT UUID() AS uuid`);
+
+        await connection.query(
+            `
+                INSERT INTO procesadores (id, marca, modelo, numNucleos, numHilos, relojBase, precio, recursos_id_recurso)
+                VALUES (UUID_TO_BIN(?), ?, ?, ?, ?, ?, ?, NULL);
+            `, [uuid, input.marca, input.modelo, input.numNucleos, input.numHilos, input.relojBase, input.precio]
+        )
+
+        const [newProcessor] = await connection.query(
+            `
+                SELECT BIN_TO_UUID(id) AS id, marca, modelo, numNucleos, numHilos, relojBase, precio
+                FROM procesadores WHERE id = UUID_TO_BIN(?)
+            `, [uuid]
+        )
+
+        if (newProcessor.length == 0) return false
+        return newProcessor[0]
+    }
 }
