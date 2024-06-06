@@ -17,7 +17,7 @@ USE `alltechno` ;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `alltechno`.`recursos` (
   `id_recurso` INT NOT NULL AUTO_INCREMENT,
-  `url1` VARCHAR(500) NULL,
+  `url1` VARCHAR(500) NOT NULL,
   `url2` VARCHAR(500) NULL,
   `url3` VARCHAR(500) NULL,
   `url4` VARCHAR(500) NULL,

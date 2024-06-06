@@ -75,6 +75,15 @@ export const loadProducts = (category, order) => {
                                     <span class="product-price">$${product.precio.toLocaleString()}</span>
                                 `}
                             </div>
+
+                            //! aqui validar sesion
+                            ${document.location.pathname.includes("admin") ? `
+                            <div class="ctn-btns-admin">
+                                <button class="btn-editar btn-admin">Editar</button>
+                                <button class="btn-eliminar btn-admin">Eliminar</button>
+                            </div>
+                            ` : ''}
+                                
                         </div>
                     </div>
 
@@ -567,6 +576,19 @@ export const loadProduct = (category, id) => {
                 document.querySelector("main").innerHTML = codeMain;
     
                 break;
+            }
+
+            //! aqui tambien se deberia hacer la validacion de que si esta la sesion activa
+            if (document.location.pathname.includes("admin")){
+                const ctnButtons = document.createElement("div")
+                ctnButtons.classList.add("ctn-btns-admin")
+                ctnButtons.innerHTML = `
+                    <button class="btn-editar btn-admin">Editar</button>
+                    <button class="btn-eliminar btn-admin">Eliminar</button>
+                `
+
+                const ctnInfo = document.querySelector(".info")
+                ctnInfo.insertAdjacentElement("beforeend", ctnButtons)
             }
         })
         .catch (error => console.error("Error: ", error))

@@ -1,0 +1,67 @@
+.ctn-btn-create {
+  width: auto;
+  box-sizing: content-box;
+  padding: 2em;
+  padding-bottom: 0;
+  display: flex;
+  justify-content: end;
+}
+
+.btn-create {
+  padding: 1em 3em;
+  background-color: rgb(16, 100, 16);
+  color: rgb(255, 255, 255);
+  border-radius: 2em;
+  border: 1px solid #676767;
+  font-weight: 700;
+}
+
+.row-ttl-home {
+  align-items: center;
+}
+
+.row-1-home div {
+  width: 70%;
+}
+
+.row-1-home div:last-child {
+    width: auto;
+}
+
+.ctn-btns-admin-home {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ctn-btns-admin {
+  margin-top: 2em;
+  width: 60%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-editar, .btn-eliminar {
+  padding:.5em 1em;
+  border: none;
+  border-radius: .2em;
+}
+
+.btn-editar {
+  background-color: rgb(0, 138, 32);
+  color: white;
+}
+
+.btn-eliminar {
+  background-color: rgb(137, 0, 0);
+  color: white;
+}
+
+.btn-admin {
+  padding: 1em 3em;
+}
+
+.swiper-slide {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
