@@ -207,6 +207,15 @@ CREATE TABLE IF NOT EXISTS `alltechno`.`torreescritorio` (
     ON UPDATE NO ACTION);
 
 
+-- Cambiar collation de todas las tablas, excepto 'usuario' y 'recursos'
+ALTER TABLE celulares CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ALTER TABLE fuentesdepoder CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ALTER TABLE pantallas CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ALTER TABLE portatiles CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ALTER TABLE procesadores CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ALTER TABLE ram CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+ALTER TABLE torreescritorio CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
@@ -596,6 +605,3 @@ INSERT INTO usuario (identificacion, nombres, apellidos, correo, contraseña, ce
 
 INSERT INTO usuario (identificacion, nombres, apellidos, correo, contraseña, celular) VALUES 
 ("1025522939", "Juan David", "Gomez Barrera", "gomez007a@gmail.com", "nuevaClave", "3204031795");
-
-USE alltechno;
-SELECT * FROM usuario WHERE contraseña = "CONTRASEÑA"

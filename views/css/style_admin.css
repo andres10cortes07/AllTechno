@@ -83,3 +83,54 @@
 .swal2-container {
   z-index: 10000;
 }
+
+.ctn-form {
+  margin-top: 3%;
+}
+
+.btn-crear {
+  margin-top: .5em;
+}
+
+.inp-create {
+  display: block;
+  width: 100%;
+  border: 1px solid #e6e6e6;
+  outline: none;
+  padding: 20px 20px 20px 20px;
+  font-size: .9em;
+  margin: 1em 0 2em 0;
+}
+
+.ctn-form div {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ctn-form {
+  width: 60vw;
+}
+
+.ctn-form div div {
+  flex: 1 1 28%;
+  display: block;
+  padding: 0 20px 0 20px;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+    border: none; /* Quita el borde */
+    background-color: transparent; /* Quita el fondo */
+    padding: 0; /* Quita el relleno */
+    outline: none; /* Quita el contorno al hacer clic */
+    cursor: pointer; /* Cambia el cursor al pasar sobre él */
+}
+
+input[type="file"] {
+  color: black;
+}
+
+span {
+  color: white;
+}
