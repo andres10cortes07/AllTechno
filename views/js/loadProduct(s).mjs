@@ -76,11 +76,10 @@ export const loadProducts = (category, order) => {
                                 `}
                             </div>
 
-                            //! aqui validar sesion
                             ${document.location.pathname.includes("admin") ? `
-                            <div class="ctn-btns-admin">
-                                <button class="btn-editar btn-admin">Editar</button>
-                                <button class="btn-eliminar btn-admin">Eliminar</button>
+                            <div class="ctn-btns-admin-home">
+                                <button class="btn-editar">Editar</button>
+                                <button class="btn-eliminar">Eliminar</button>
                             </div>
                             ` : ''}
                                 
@@ -578,7 +577,6 @@ export const loadProduct = (category, id) => {
                 break;
             }
 
-            //! aqui tambien se deberia hacer la validacion de que si esta la sesion activa
             if (document.location.pathname.includes("admin")){
                 const ctnButtons = document.createElement("div")
                 ctnButtons.classList.add("ctn-btns-admin")

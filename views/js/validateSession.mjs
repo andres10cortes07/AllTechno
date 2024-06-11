@@ -18,8 +18,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             }
             else {
-              document.getElementById('loading-overlay').style.display = 'none'; // Ocultar la capa de carga
-              document.getElementById('admin-content').style.display = 'block'; // Mostrar contenido
+                document.getElementById('loading-overlay').style.display = 'none'; // Ocultar la capa de carga
+                document.getElementById('admin-content').style.display = 'block'; // Mostrar contenido
             }
         })
         .catch(error => {
