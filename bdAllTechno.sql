@@ -8,7 +8,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- Schema alltechno
 -- -----------------------------------------------------
 DROP DATABASE IF EXISTS alltechno;
-CREATE SCHEMA IF NOT EXISTS `alltechno` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
+CREATE SCHEMA IF NOT EXISTS `alltechno` DEFAULT CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin;
 
 USE `alltechno` ;
 
@@ -29,8 +29,7 @@ CREATE TABLE IF NOT EXISTS `alltechno`.`recursos` (
   UNIQUE INDEX `url3_UNIQUE` (`url3` ASC),
   UNIQUE INDEX `url4_UNIQUE` (`url4` ASC),
   UNIQUE INDEX `recursoscol_UNIQUE` (`url5` ASC),
-  UNIQUE INDEX `url6_UNIQUE` (`url6` ASC))
-ENGINE = InnoDB;
+  UNIQUE INDEX `url6_UNIQUE` (`url6` ASC));
 
 
 -- -----------------------------------------------------
@@ -43,8 +42,7 @@ CREATE TABLE IF NOT EXISTS `alltechno`.`usuario` (
   `correo` VARCHAR(50) NOT NULL,
   `contraseña` VARCHAR(50) NOT NULL,
   `celular` VARCHAR(10) NOT NULL,
-  PRIMARY KEY (`identificacion`))
-ENGINE = InnoDB;
+  PRIMARY KEY (`identificacion`));
 
 
 
@@ -72,10 +70,7 @@ CREATE TABLE IF NOT EXISTS `alltechno`.`celulares` (
     FOREIGN KEY (`recursos_id_recurso`)
     REFERENCES `alltechno`.`recursos` (`id_recurso`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+    ON UPDATE NO ACTION);
 
 
 -- -----------------------------------------------------
@@ -96,11 +91,7 @@ CREATE TABLE IF NOT EXISTS `alltechno`.`fuentesdepoder` (
     FOREIGN KEY (`recursos_id_recurso`)
     REFERENCES `alltechno`.`recursos` (`id_recurso`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
+    ON UPDATE NO ACTION);
 
 -- -----------------------------------------------------
 -- Table `alltechno`.`pantallas`
@@ -121,10 +112,7 @@ CREATE TABLE IF NOT EXISTS `alltechno`.`pantallas` (
     FOREIGN KEY (`recursos_id_recurso`)
     REFERENCES `alltechno`.`recursos` (`id_recurso`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+    ON UPDATE NO ACTION);
 
 
 -- -----------------------------------------------------
@@ -149,10 +137,7 @@ CREATE TABLE IF NOT EXISTS `alltechno`.`portatiles` (
     FOREIGN KEY (`recursos_id_recurso`)
     REFERENCES `alltechno`.`recursos` (`id_recurso`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+    ON UPDATE NO ACTION);
 
 
 -- -----------------------------------------------------
@@ -173,10 +158,7 @@ CREATE TABLE IF NOT EXISTS `alltechno`.`procesadores` (
     FOREIGN KEY (`recursos_id_recurso`)
     REFERENCES `alltechno`.`recursos` (`id_recurso`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+    ON UPDATE NO ACTION);
 
 
 -- -----------------------------------------------------
@@ -198,10 +180,7 @@ CREATE TABLE IF NOT EXISTS `alltechno`.`ram` (
     FOREIGN KEY (`recursos_id_recurso`)
     REFERENCES `alltechno`.`recursos` (`id_recurso`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+    ON UPDATE NO ACTION);
 
 
 -- -----------------------------------------------------
@@ -225,10 +204,7 @@ CREATE TABLE IF NOT EXISTS `alltechno`.`torreescritorio` (
     FOREIGN KEY (`recursos_id_recurso`)
     REFERENCES `alltechno`.`recursos` (`id_recurso`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+    ON UPDATE NO ACTION);
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
@@ -620,3 +596,6 @@ INSERT INTO usuario (identificacion, nombres, apellidos, correo, contraseña, ce
 
 INSERT INTO usuario (identificacion, nombres, apellidos, correo, contraseña, celular) VALUES 
 ("1025522939", "Juan David", "Gomez Barrera", "gomez007a@gmail.com", "nuevaClave", "3204031795");
+
+USE alltechno;
+SELECT * FROM usuario WHERE contraseña = "CONTRASEÑA"

@@ -41,9 +41,11 @@ const validateEmail = () => {
         `;
         if(document.querySelector(".err-email")) document.querySelector(".err-email").innerHTML = ""
         inpEmail.insertAdjacentHTML("afterend", codeErrEmail)
+        return false
     }
     else {
         if(document.querySelector(".err-email")) document.querySelector(".err-email").innerHTML = ""
+        return true
     }
 }
 
@@ -57,9 +59,11 @@ const validatePassword = () => {
         `;
         if(document.querySelector(".err-pass")) document.querySelector(".err-pass").innerHTML = ""
         ctnPass.insertAdjacentHTML("afterend", codeErrPass)
+        return false
     }
     else {
         if(document.querySelector(".err-pass")) document.querySelector(".err-pass").innerHTML = ""
+        return true
     }
 }
 

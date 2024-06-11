@@ -118,4 +118,15 @@ export class ModelsUser {
             return false
         }
     }
+
+    static login = async (infoUser) => {
+        const [user] = await connection.query(
+            `
+                SELECT identificacion, nombres, apellidos, correo, celular FROM usuario WHERE correo = ? AND contraseña = ?
+            `, [infoUser.correo, infoUser.contraseña]
+        )
+
+        if(user.length == 0) return false
+        return user[0]
+    }
 }

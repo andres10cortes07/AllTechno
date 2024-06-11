@@ -78,3 +78,10 @@ router.get("/user/:identificacion", ControllerUsers.getById);
 router.post("/user", ControllerUsers.createUser);
 router.patch("/user/:identificacion", ControllerUsers.modifyUser);
 router.delete("/user/:identificacion", ControllerUsers.deleteUser);
+
+//? session routes
+router.post("/admin/login", ControllerUsers.login);
+router.get("/admin/logout", ControllerUsers.logout);
+
+// Ruta para verificar la sesión
+router.get('/api/session', ControllerUsers.validateSession);

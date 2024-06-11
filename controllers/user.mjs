@@ -542,5 +542,38 @@ export class ControllerUsers {
       if(!deleteStatus) return res.status(404).json({error : "User not found"})
       return res.json({message : "User deleted successfully"})
     }
+
+    static login = async (req, res) => {
+      const infoUser = req.body
+
+      const userExists = await ModelsUser.login(infoUser)
+
+      if(!userExists) return res.status(401).json({error : "Los datos ingresados son incorrectos"})
+
+      req.sessionStore.user = userExists.correo
+      req.sessionStore.admin = true
+      return res.json(userExists)
+    }
+
+    static logout = (req, res) => {
+      req.sessionStore.admin = null
+      req.sessionStore.user = null
+
+      req.session.save((err) => {
+        if (err) {
+          return res.status(500).json({ error: 'Failed to logout.' });
+        } else {
+          return res.json({ message: 'Logout successful!' });
+        }
+      });
+    }
+
+    static validateSession = (req, res) => {
+      if (req.session && req.sessionStore.user && req.sessionStore.admin) {
+          return res.status(200).json({ loggedIn: true, user: req.sessionStore.user })
+      } else {
+          return res.status(401).json({ loggedIn: false });
+      }
+    };
 }
 
