@@ -102,7 +102,7 @@
   margin: 1em 0 2em 0;
 }
 
-.ctn-form div {
+.ctn-form div, #dynamic-fields {
   display: flex;
   flex-wrap: wrap;
   align-items: center;

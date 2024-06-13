@@ -11,15 +11,18 @@ import { ControllerUsers } from "../controllers/user.mjs";
 import { Router } from "express";
 export const router = Router();
 
+import multer from "multer";
+
 //? index routes
 router.get("/", ControllerIndex.getProducts);
 router.get("/:search", ControllerIndex.searchProducts);
 
 
 //? cellphone routes
+const uploadCellphone = multer({ dest : "./resources/uploads/cellphones"})
 router.get("/cellphones/getAll/:order", ControllerCellphones.getAll);
 router.get("/cellphones/:id", ControllerCellphones.getById);
-router.post("/cellphones", ControllerCellphones.createCellphone);
+router.post("/cellphones", uploadCellphone.array('imagenes', 6), ControllerCellphones.createCellphone);
 router.patch("/cellphones/:id", ControllerCellphones.modifyCellphone);
 router.delete("/cellphones/:id", ControllerCellphones.deleteCellphone);
 

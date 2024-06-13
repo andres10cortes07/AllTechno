@@ -12,7 +12,8 @@ const schemaCellphone = zod.object({
     almacenamiento : zod.number().int(),
     ram : zod.number().int(),
     precio : zod.number().int(),
-    colores : zod.string().max(100)
+    colores : zod.string().max(100),
+    imagenes: zod.array(zod.string()).min(1).max(6)
 })
 
 export const validateCellphone = (object) =>{

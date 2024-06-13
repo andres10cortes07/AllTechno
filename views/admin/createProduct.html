@@ -93,7 +93,7 @@
 
     <main>
         <div class="ctn-form">
-            <form action="" method="post" enctype="multipart/form-data" accept="image/png,image/jpeg, image/jpg,image/webp">
+            <form action="" method="post" enctype="multipart/form-data" accept="image/png, image/jpeg, image/jpg, image/webp">
                 <h2>CREAR PRODUCTO</h2>
     
                 <div>
@@ -114,8 +114,9 @@
                     </div>
                     <div>
                         <label class="label-form" for="precio">Precio</label>
-                        <input type="number" id="precio" class="inp-create">
+                        <input type="number" id="precio" class="inp-create" name="precio">
                     </div>
+                    <section id="dynamic-fields"></section>
 
                     
                 </div>
@@ -166,7 +167,7 @@
   <script src="../../views/js/createProduct.js"></script>
 
   <script type="module">
-    import { SesionManagement } from "../js/login.mjs";
+    import { SesionManagement } from "../js/login-logout.mjs";
 
     document.querySelector(".dropdown-menu-user").addEventListener("click", () => {
       SesionManagement.logout()
