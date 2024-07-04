@@ -1,145 +1,154 @@
-const validateProductData = (productData) => {
-    for (let key in productData) {
-        const value = productData[key];
-        if (!value || isNaN(value) || value == "") { 
-            return false
-        }
-    }
-    return true
-};
+document.addEventListener("DOMContentLoaded", () => {
+    const selectCategory = document.getElementById("category");
+    const dynamicFields = document.getElementById("dynamic-fields");
+    const categoriesAccepteds = ["cellphones", "laptops", "processors", "ram", "screens", "powerSupplies", "desktopComputers"];
+    let currentSubmitHandler = null;
 
-const consumoDeFetch = (optionSelected) => {
-    fetch(`http://localhost:5000/allTechno/${optionSelected}`, {
-        method: 'POST',
-        body: formData
-    })
-        .then(res => {
-            if (res.status !== 201) {
-                return res.json().then((data) => {
-                    throw new Error(data.error);
-                });
+    const validateProductData = (productData) => {
+        for (let key in productData) {
+            const value = productData[key];
+            if (!value || value.length === 0) {
+                return false;
             }
-            return res.json();
-        })
-        .then(res => {
-            return Swal.fire({
-                title: "Producto creado",
-                text: `El producto se ha creado exitosamente`,
-                icon: "success",
-                timer: 5000
-            });
-        })
-        .catch(error => {
-            return Swal.fire({
-                title: "Error",
-                text: error.message || `Error en la creación del producto`,
-                icon: "error",
-                timer: 5000
-            });
-        });
-}
+        }
+        return true;
+    };
 
-const validateSendForm = () => {
-    document.querySelector("form").addEventListener("submit", (e) => {
-        e.preventDefault()
-        
-        const formData = new FormData(e.target)
-        const productData = {}
+    const consumoDeFetch = (optionSelected, formData) => {
+        fetch(`http://localhost:5000/allTechno/${optionSelected}`, {
+            method: 'POST',
+            body: formData
+        })
+            .then(res => {
+                if (res.status !== 201) {
+                    return res.json().then(data => {
+                        if (data.error === 'ER_DUP_ENTRY') {
+                            return Swal.fire({
+                                title: "Error",
+                                text: `Ya existe una imagen con el mismo nombre, modificalo e intentalo de nuevo`,
+                                icon: "error",
+                                timer: 5000
+                            })
+                        }
+                        else {
+                            throw new Error(data.error);
+                        }
+                    });
+                }
+                return res.json();
+            })
+            .then(res => {
+                return Swal.fire({
+                    title: "Producto creado",
+                    text: `El producto se ha creado exitosamente`,
+                    icon: "success",
+                    timer: 5000
+                });
+            })
+            .catch(error => {
+                return Swal.fire({
+                    title: "Error",
+                    text: error || `Error en la creación del producto`,
+                    icon: "error",
+                    timer: 5000
+                })
+            });
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(e.target);
+        let productData = {};
+        const optionSelected = selectCategory.value;
+
         switch (optionSelected) {
             case "cellphones":
-                minLength = 12
-                productData.marca = formData.get("marca")
-                productData.modelo = formData.get("modelo")
-                productData.bateria = parseInt(formData.get("bateria"), 10)
-                productData.procesador = formData.get("procesador")
-                productData.camaraFrontal = parseInt(formData.get("camaraFrontal"), 10)
-                productData.camaraPosterior = parseInt(formData.get("camaraPosterior"), 10)
-                productData.resolucion = formData.get("resolucion")
-                productData.huella = formData.get("huella")
-                productData.almacenamiento = parseInt(formData.get("almacenamiento"), 10)
-                productData.ram = parseInt(formData.get("ram"), 10)
-                productData.precio = parseInt(formData.get("precio"), 10)
-                productData.colores = formData.get("colores")
+                productData.marca = formData.get("marcaCell");
+                productData.modelo = formData.get("modeloCell");
+                productData.bateria = parseInt(formData.get("bateriaCell"), 10);
+                productData.procesador = formData.get("procesadorCell");
+                productData.camaraFrontal = parseInt(formData.get("camaraFrontalCell"), 10);
+                productData.camaraPosterior = parseInt(formData.get("camaraPosteriorCell"), 10);
+                productData.resolucion = formData.get("resolucionCell");
+                productData.huella = formData.get("huellaCell");
+                productData.almacenamiento = parseInt(formData.get("almacenamientoCell"), 10);
+                productData.ram = parseInt(formData.get("ramCell"), 10);
+                productData.precio = parseInt(formData.get("precioCell"), 10);
+                productData.colores = formData.get("coloresCell");
                 break;
 
             case "powerSupplies":
-                minLength = 6
-                productData.marca = formData.get("marca")
-                productData.modelo = formData.get("modelo")
-                productData.voltaje = formData.get("voltaje")
-                productData.potencia = formData.get("potencia")
-                productData.certificacion = formData.get("certificacion")
-                productData.precio = formData.get("precio")
+                productData.marca = formData.get("marcaPow");
+                productData.modelo = formData.get("modeloPow");
+                productData.voltaje = parseInt(formData.get("voltajePow"), 10);
+                productData.potencia = parseInt(formData.get("potenciaPow"), 10);
+                productData.certificacion = formData.get("certificacionPow");
+                productData.precio = parseInt(formData.get("precioPow"), 10);
                 break;
 
             case "screens":
-                minLength = 7
-                productData.marca = formData.get("marca")
-                productData.modelo = formData.get("modelo")
-                productData.dimensiones = formData.get("dimensiones")
-                productData.pulgadas = formData.get("pulgadas")
-                productData.resolucion = formData.get("resolucion")
-                productData.tipo = formData.get("tipo")
-                productData.precio = formData.get("precio")
+                productData.marca = formData.get("marcaScre");
+                productData.modelo = formData.get("modeloScre");
+                productData.dimensiones = formData.get("dimensionesScre");
+                productData.pulgadas = parseInt(formData.get("pulgadasScre"), 10);
+                productData.resolucion = formData.get("resolucionScre");
+                productData.tipo = formData.get("tipoScre");
+                productData.precio = parseInt(formData.get("precioScre"), 10);
                 break;
 
             case "laptops":
-                minLength = 10
-                productData.marca = formData.get("marca")
-                productData.modelo = formData.get("modelo")
-                productData.procesador = formData.get("procesador")
-                productData.grafica = formData.get("grafica")
-                productData.resolucion = formData.get("resolucion")
-                productData.tamañoPantalla = formData.get("tamañoPantalla")
-                productData.almacenamiento = formData.get("almacenamiento")
-                productData.ram = formData.get("ram")
-                productData.precio = formData.get("precio")
-                productData.colores = formData.get("colores")
+                productData.marca = formData.get("marcaLap");
+                productData.modelo = formData.get("modeloLap");
+                productData.procesador = formData.get("procesadorLap");
+                productData.grafica = formData.get("graficaLap");
+                productData.resolucion = formData.get("resolucionLap");
+                productData.tamañoPantalla = parseInt(formData.get("tamañoPantallaLap"), 10);
+                productData.almacenamiento = parseInt(formData.get("almacenamientoLap"), 10);
+                productData.ram = parseInt(formData.get("ramLap"), 10);
+                productData.precio = parseInt(formData.get("precioLap"), 10);
+                productData.colores = formData.get("coloresLap");
                 break;
 
             case "processors":
-                minLength = 6
-                productData.marca = formData.get("marca")
-                productData.modelo = formData.get("modelo")
-                productData.numNucleos = formData.get("numNucleos")
-                productData.numHilos = formData.get("numHilos")
-                productData.relojBase = formData.get("relojBase")
-                productData.precio = formData.get("precio")
+                productData.marca = formData.get("marcaProc");
+                productData.modelo = formData.get("modeloProc");
+                productData.numNucleos = parseInt(formData.get("numeroNucleosProc"), 10);
+                productData.numHilos = parseInt(formData.get("numeroHilosProc"), 10);
+                productData.relojBase = formData.get("relojBaseProc");
+                productData.precio = parseInt(formData.get("precioProc"), 10);
                 break;
 
             case "ram":
-                minLength = 7
-                productData.marca = formData.get("marca")
-                productData.modelo = formData.get("modelo")
-                productData.capacidad = formData.get("capacidad")
-                productData.velocidad = formData.get("velocidad")
-                productData.tipo = formData.get("tipo")
-                productData.led = formData.get("led")
-                productData.precio = formData.get("precio")
+                productData.marca = formData.get("marcaRam");
+                productData.modelo = formData.get("modeloRam");
+                productData.capacidad = parseInt(formData.get("capacidadRam"), 10);
+                productData.velocidad = parseInt(formData.get("velocidadRam"), 10);
+                productData.tipo = formData.get("tipoRam");
+                productData.led = formData.get("ledRam");
+                productData.precio = parseInt(formData.get("precioRam"), 10);
                 break;
 
-            case "desktopPc":
-                minLength = 9
-                productData.procesador = formData.get("procesador")
-                productData.grafica = formData.get("grafica")
-                productData.ram = formData.get("ram")
-                productData.almacenamiento = formData.get("almacenamiento")
-                productData.board = formData.get("board")
-                productData.chasis = formData.get("chasis")
-                productData.fuente = formData.get("fuente")
-                productData.refrigeracion = formData.get("refrigeracion")
-                productData.precio = formData.get("precio")
+            case "desktopComputers":
+                productData.procesador = formData.get("procesadorDesk");
+                productData.grafica = formData.get("graficaDesk");
+                productData.ram = formData.get("ramDesk");
+                productData.almacenamiento = formData.get("almacenamientoDesk")
+                productData.board = formData.get("boardDesk");
+                productData.chasis = formData.get("chasisDesk");
+                productData.fuente = formData.get("fuenteDesk");
+                productData.refrigeracion = formData.get("refrigeracionDesk");
+                productData.precio = parseInt(formData.get("precioDesk"), 10);
                 break;
 
             default:
-                productData = {}
                 break;
         }
 
-        if(!validateProductData(productData)) {
+        if (!validateProductData(productData)) {
             return Swal.fire({
                 title: "Error",
-                text: `Hay campos vacios`,
+                text: `Hay campos vacíos o inválidos`,
                 icon: "error",
                 timer: 5000
             });
@@ -147,87 +156,85 @@ const validateSendForm = () => {
 
         formData.append(`json_data`, JSON.stringify(productData));
 
-        // Obtener referencia al campo de archivos
+        formData.delete('imagenes');
         const fileInput = document.querySelector('input[type="file"]');
         const files = fileInput.files;
 
-        // Agregar cada archivo al FormData
         for (let i = 0; i < files.length; i++) {
             formData.append('imagenes', files[i]);
         }
 
-        consumoDeFetch(optionSelected)
-    });
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-    const selectCategory = document.getElementById("category");
-    const dynamicFields = document.getElementById("dynamic-fields");
-    const categoriesAccepteds = ["cellphones", "laptops", "processors", "ram", "screens", "powerSupplies", "desktopPc"];
+        consumoDeFetch(optionSelected, formData);
+    };
 
     selectCategory.addEventListener("change", (e) => {
-        const optionSelected = selectCategory.value;
+        let optionSelected = selectCategory.value;
         dynamicFields.innerHTML = "";
 
         if (categoriesAccepteds.includes(optionSelected)) {
+            let codeOptions = '';
 
             switch (optionSelected) {
                 case "cellphones":
                     codeOptions = `
-
+                    <div>
+                    <label class="label-form" for="precio">Precio</label>
+                    <input type="number" id="precio" name="precioCell" class="inp-create">
+                    </div>
+                    
                     <div>
                     <label class="label-form" for="marca">Marca</label>
-                    <input type="text" id="marca" name="marca" class="inp-create">
+                    <input type="text" id="marca" name="marcaCell" class="inp-create">
                     </div>
                     
                     <div>
                     <label class="label-form" for="modelo">Modelo</label>
-                    <input type="text" id="modelo" name="modelo" class="inp-create">
+                    <input type="text" id="modelo" name="modeloCell" class="inp-create">
                     </div>
 
                     <div>
                     <label class="label-form" for="bateria">Bateria</label>
-                    <input type="number" id="bateria" name="bateria" class="inp-create">
+                    <input type="number" id="bateria" name="bateriaCell" class="inp-create">
                     </div>
 
                     <div>
                     <label class="label-form" for="procesador">Procesador</label>
-                    <input type="text" id="procesador" name="procesador" class="inp-create">
+                    <input type="text" id="procesador" name="procesadorCell" class="inp-create">
                     </div>
 
                     <div>
                     <label class="label-form" for="camaraFrontal">Camara frontal</label>
-                    <input type="number" id="camaraFrontal" name="camaraFrontal" class="inp-create">
+                    <input type="number" id="camaraFrontal" name="camaraFrontalCell" class="inp-create">
                     </div>
 
                     <div>
                      <label class="label-form" for="camaraPosterior">Camara posterior</label>
-                    <input type="number" id="camaraPosterior" name="camaraPosterior" class="inp-create">
+                    <input type="number" id="camaraPosterior" name="camaraPosteriorCell" class="inp-create">
                     </div>
 
                     <div>
                     <label class="label-form" for="resolucion">Resolución</label>
-                    <input type="text" id="resolucion" name="resolucion" class="inp-create">
+                    <input type="text" id="resolucion" name="resolucionCell" class="inp-create">
                     </div>
 
                     <div>
                     <label class="label-form" for="huella">Huella</label>
-                    <input type="text" id="huella" name="huella" class="inp-create">
+                    <input type="text" id="huella" name="huellaCell" class="inp-create">
                     </div>
 
                     <div>
                     <label class="label-form" for="almacenamiento">Almacenamiento</label>
-                    <input type="number" id="almacenamiento" name="almacenamiento" class="inp-create">
+                    <input type="number" id="almacenamiento" name="almacenamientoCell" class="inp-create">
                     </div>
 
                     <div>
                     <label class="label-form" for="ram">RAM</label>
-                    <input type="number" id="ram" name="ram" class="inp-create">
+                    <input type="number" id="ram" name="ramCell" class="inp-create">
                     </div>
 
-                    <div style="flex: 1 100%">
-                    <label class="label-form" for="colores">Colores disponibles (Separados por coma)</label>
-                    <input type="text" id="colores" name="colores" class="inp-create">
+                    <div>
+                    <label class="label-form" for="colores">Colores disponibles</label>
+                    <input type="text" id="colores" name="coloresCell" class="inp-create">
                     </div>
 
                     <div>
@@ -239,30 +246,34 @@ document.addEventListener("DOMContentLoaded", () => {
                     break;
                 case "powerSupplies":
                     codeOptions = `
+                    <div>
+                    <label class="label-form" for="precio">Precio</label>
+                    <input type="number" id="precio" name="precioPow" class="inp-create">
+                    </div>
 
                     <div>
                     <label class="label-form" for="marca">Marca</label>
-                    <input type="text" id="marca" name="marca" class="inp-create">
+                    <input type="text" id="marca" name="marcaPow" class="inp-create">
                     </div>
                     
                     <div>
                     <label class="label-form" for="modelo">Modelo</label>
-                    <input type="text" id="modelo" name="modelo" class="inp-create">
+                    <input type="text" id="modelo" name="modeloPow" class="inp-create">
                     </div>
         
                     <div>
                     <label class="label-form" for="voltaje">Voltaje</label>
-                    <input type="number" id="voltaje" name="voltaje" class="inp-create">
+                    <input type="number" id="voltaje" name="voltajePow" class="inp-create">
                     </div>
         
                     <div>
                     <label class="label-form" for="potencia">Potencia</label>
-                    <input type="number" id="potencia" name="potencia" class="inp-create">
+                    <input type="number" id="potencia" name="potenciaPow" class="inp-create">
                     </div>
         
                     <div style="flex: 1 100%">
                     <label class="label-form" for="certificacion">Certificación</label>
-                    <input type="text" id="certificacion" name="certificacion" class="inp-create">
+                    <input type="text" id="certificacion" name="certificacionPow" class="inp-create">
                     </div>
         
                     <div>
@@ -273,35 +284,39 @@ document.addEventListener("DOMContentLoaded", () => {
                     break;
                 case "screens":
                     codeOptions = `
+                    <div>
+                    <label class="label-form" for="precio">Precio</label>
+                    <input type="number" id="precio" name="precioScre" class="inp-create">
+                    </div>
 
                     <div>
                     <label class="label-form" for="marca">Marca</label>
-                    <input type="text" id="marca" name="marca" class="inp-create">
+                    <input type="text" id="marca" name="marcaScre" class="inp-create">
                     </div>
                     
                     <div>
                     <label class="label-form" for="modelo">Modelo</label>
-                    <input type="text" id="modelo" name="modelo" class="inp-create">
+                    <input type="text" id="modelo" name="modeloScre" class="inp-create">
                     </div>
         
                     <div>
                     <label class="label-form" for="dimensiones">Dimensiones</label>
-                    <input type="text" id="dimensiones" name="dimensiones" class="inp-create">
+                    <input type="text" id="dimensiones" name="dimensionesScre" class="inp-create">
                     </div>
         
                     <div>
                     <label class="label-form" for="pulgadas">Pulgadas</label>
-                    <input type="number" id="pulgadas" name="pulgadas" class="inp-create">
+                    <input type="number" id="pulgadas" name="pulgadasScre" class="inp-create">
                     </div>
         
                     <div>
                     <label class="label-form" for="resolucion">Resolución</label>
-                    <input type="text" id="resolucion" name="resolucion" class="inp-create">
+                    <input type="text" id="resolucion" name="resolucionScre" class="inp-create">
                     </div>
         
                     <div style="flex: 1 100%">
                     <label class="label-form" for="tipo">Tipo</label>
-                    <input type="text" id="tipo" name="tipo" class="inp-create">
+                    <input type="text" id="tipo" name="tipoScre" class="inp-create">
                     </div>
         
                     <div>
@@ -312,50 +327,54 @@ document.addEventListener("DOMContentLoaded", () => {
                     break;
                 case "laptops":
                     codeOptions = `
+                    <div>
+                    <label class="label-form" for="precio">Precio</label>
+                    <input type="number" id="precio" name="precioLap" class="inp-create">
+                    </div>
 
                     <div>
                     <label class="label-form" for="marca">Marca</label>
-                    <input type="text" id="marca" name="marca" class="inp-create">
+                    <input type="text" id="marca" name="marcaLap" class="inp-create">
                     </div>
                     
                     <div>
                     <label class="label-form" for="modelo">Modelo</label>
-                    <input type="text" id="modelo" name="modelo" class="inp-create">
+                    <input type="text" id="modelo" name="modeloLap" class="inp-create">
                     </div>
         
                     <div>
                     <label class="label-form" for="procesador">Procesador</label>
-                    <input type="text" id="procesador" name="procesador" class="inp-create">
+                    <input type="text" id="procesador" name="procesadorLap" class="inp-create">
                     </div>
         
                     <div>
                     <label class="label-form" for="grafica">Gráfica</label>
-                    <input type="text" id="grafica" name="grafica" class="inp-create">
+                    <input type="text" id="grafica" name="graficaLap" class="inp-create">
                     </div>
         
                     <div>
                     <label class="label-form" for="resolucion">Resolución</label>
-                    <input type="text" id="resolucion" name="resolucion" class="inp-create">
+                    <input type="text" id="resolucion" name="resolucionLap" class="inp-create">
                     </div>
         
                     <div>
                     <label class="label-form" for="tamañoPantalla">Tamaño de Pantalla</label>
-                    <input type="number" id="tamañoPantalla" name="tamañoPantalla" class="inp-create">
+                    <input type="number" id="tamañoPantalla" name="tamañoPantallaLap" class="inp-create">
                     </div>
         
                     <div>
                     <label class="label-form" for="almacenamiento">Almacenamiento</label>
-                    <input type="number" id="almacenamiento" name="almacenamiento" class="inp-create">
+                    <input type="number" id="almacenamiento" name="almacenamientoLap" class="inp-create">
                     </div>
         
                     <div>
                     <label class="label-form" for="ram">RAM</label>
-                    <input type="number" id="ram" name="ram" class="inp-create">
+                    <input type="number" id="ram" name="ramLap" class="inp-create">
                     </div>
         
                     <div style="flex: 1 100%">
                     <label class="label-form" for="colores">Colores (Separados por coma)</label>
-                    <input type="text" id="colores" name="colores" class="inp-create">
+                    <input type="text" id="colores" name="coloresLap" class="inp-create">
                     </div>
         
                     <div>
@@ -366,30 +385,34 @@ document.addEventListener("DOMContentLoaded", () => {
                     break;
                 case "processors":
                     codeOptions = `
+                    <div>
+                    <label class="label-form" for="precio">Precio</label>
+                    <input type="number" id="precio" name="precioProc" class="inp-create">
+                    </div>
 
                     <div>
                     <label class="label-form" for="marca">Marca</label>
-                    <input type="text" id="marca" name="marca" class="inp-create">
+                    <input type="text" id="marca" name="marcaProc" class="inp-create">
                     </div>
                     
                     <div>
                     <label class="label-form" for="modelo">Modelo</label>
-                    <input type="text" id="modelo" name="modelo" class="inp-create">
+                    <input type="text" id="modelo" name="modeloProc" class="inp-create">
                     </div>
         
                     <div>
                     <label class="label-form" for="numeroNucleos">Número de Nucleos</label>
-                    <input type="number" id="numeroNucleos" name="numeroNucleos" class="inp-create">
+                    <input type="number" id="numeroNucleos" name="numeroNucleosProc" class="inp-create">
                     </div>
         
                     <div>
                     <label class="label-form" for="numeroHilos">Número de Hilos</label>
-                    <input type="number" id="numeroHilos" name="numeroHilos" class="inp-create">
+                    <input type="number" id="numeroHilos" name="numeroHilosProc" class="inp-create">
                     </div>
         
                     <div style="flex: 1 100%">
                     <label class="label-form" for="relojBase">Reloj Base</label>
-                    <input type="text" id="relojBase" name="relojBase" class="inp-create">
+                    <input type="text" id="relojBase" name="relojBaseProc" class="inp-create">
                     </div>
         
                     <div>
@@ -400,35 +423,39 @@ document.addEventListener("DOMContentLoaded", () => {
                     break;
                 case "ram":
                     codeOptions = `
+                    <div>
+                    <label class="label-form" for="precio">Precio</label>
+                    <input type="number" id="precio" name="precioRam" class="inp-create">
+                    </div>
 
                     <div>
                     <label class="label-form" for="marca">Marca</label>
-                    <input type="text" id="marca" name="marca" class="inp-create">
+                    <input type="text" id="marca" name="marcaRam" class="inp-create">
                     </div>
                     
                     <div>
                     <label class="label-form" for="modelo">Modelo</label>
-                    <input type="text" id="modelo" name="modelo" class="inp-create">
+                    <input type="text" id="modelo" name="modeloRam" class="inp-create">
                     </div>
         
                     <div>
                     <label class="label-form" for="capacidad">Capacidad</label>
-                    <input type="number" id="capacidad" name="capacidad" class="inp-create">
+                    <input type="number" id="capacidad" name="capacidadRam" class="inp-create">
                     </div>
         
                     <div>
                     <label class="label-form" for="velocidad">Velocidad</label>
-                    <input type="number" id="velocidad" name="velocidad" class="inp-create">
+                    <input type="number" id="velocidad" name="velocidadRam" class="inp-create">
                     </div>
         
                     <div>
                     <label class="label-form" for="tipo">Tipo</label>
-                    <input type="text" id="tipo" name="tipo" class="inp-create">
+                    <input type="text" id="tipo" name="tipoRam" class="inp-create">
                     </div>
         
                     <div style="flex: 1 100%">
                     <label class="label-form" for="led">LED</label>
-                    <input type="text" id="led" name="led" class="inp-create">
+                    <input type="text" id="led" name="ledRam" class="inp-create">
                     </div>
         
                     <div>
@@ -437,47 +464,51 @@ document.addEventListener("DOMContentLoaded", () => {
                     </div>
                 `;
                     break;
-                case "desktopPc":
+                case "desktopComputers":
                     codeOptions = `
+                    <div>
+                    <label class="label-form" for="precio">Precio</label>
+                    <input type="number" id="precio" name="precioDesk" class="inp-create">
+                    </div>
 
                     <div>
                     <label class="label-form" for="procesador">Procesador</label>
-                    <input type="text" id="procesador" name="procesador" class="inp-create">
+                    <input type="text" id="procesador" name="procesadorDesk" class="inp-create">
                     </div>
                     
                     <div>
                     <label class="label-form" for="grafica">Gráfica</label>
-                    <input type="text" id="grafica" name="grafica" class="inp-create">
+                    <input type="text" id="grafica" name="graficaDesk" class="inp-create">
                     </div>
         
                     <div>
                     <label class="label-form" for="ram">RAM</label>
-                    <input type="text" id="ram" name="ram" class="inp-create">
+                    <input type="text" id="ram" name="ramDesk" class="inp-create">
                     </div>
         
                     <div>
                     <label class="label-form" for="almacenamiento">Almacenamiento</label>
-                    <input type="text" id="almacenamiento" name="almacenamiento" class="inp-create">
+                    <input type="text" id="almacenamiento" name="almacenamientoDesk" class="inp-create">
                     </div>
         
                     <div>
                     <label class="label-form" for="board">Board</label>
-                    <input type="text" id="board" name="board" class="inp-create">
+                    <input type="text" id="board" name="boardDesk" class="inp-create">
                     </div>
         
                     <div>
                     <label class="label-form" for="chasis">Chasis</label>
-                    <input type="text" id="chasis" name="chasis" class="inp-create">
+                    <input type="text" id="chasis" name="chasisDesk" class="inp-create">
                     </div>
         
                     <div>
                     <label class="label-form" for="fuente">Fuente</label>
-                    <input type="text" id="fuente" name="fuente" class="inp-create">
+                    <input type="text" id="fuente" name="fuenteDesk" class="inp-create">
                     </div>
         
                     <div style="flex: 1 100%">
                     <label class="label-form" for="refrigeracion">Refrigeración</label>
-                    <input type="text" id="refrigeracion" name="refrigeracion" class="inp-create">
+                    <input type="text" id="refrigeracion" name="refrigeracionDesk" class="inp-create">
                     </div>
         
                     <div>
@@ -488,17 +519,30 @@ document.addEventListener("DOMContentLoaded", () => {
                     break;
 
             }
+
+            // Agregar campos dinámicos según la categoría seleccionada
             dynamicFields.innerHTML = codeOptions;
 
-            validateSendForm()
-
-        } else {
+            // Configurar validación y envío del formulario
+            validateSendForm();
+        }
+        else {
+            console.log("no valida")
             return Swal.fire({
                 title: "Error",
-                text: `Categoria invalida`,
+                text: `La categoria seleccionada no es valida`,
                 icon: "error",
-                timer: 3000
-            });
+                timer: 5000
+            })
         }
-    })
-})
+    });
+
+    const validateSendForm = () => {
+        if (currentSubmitHandler) {
+            document.getElementById("form-create").removeEventListener("submit", currentSubmitHandler);
+        }
+
+        document.getElementById("form-create").addEventListener("submit", handleSubmit);
+        currentSubmitHandler = handleSubmit;
+    };
+});

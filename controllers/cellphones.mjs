@@ -24,8 +24,7 @@ export class ControllerCellphones {
 
     static createCellphone = async (req, res) => {
         // Extraer los datos JSON del cuerpo de la solicitud
-        let data = req.body.json_data;
-        data = JSON.parse(data)
+        let data = JSON.parse(req.body.json_data)
         
         // Manejar las imágenes subidas
         const images = req.files;
@@ -33,16 +32,19 @@ export class ControllerCellphones {
             return res.status(400).json({ error: 'No images uploaded' });
         }
 
-        data.imagenes = req.files.map(file => saveImages(file))
-        const result = validateCellphone(data);
+        let originalNames = []
+        data.imagenes = images.map(image => {
+            originalNames.push(image.originalname)
+            return saveImages(image);
+        })
 
+
+        const result = validateCellphone(data);
         if (result.error) return res.status(400).json({ error: JSON.parse(result.error.message) })
         
-        const newCellphone = await cellphoneModels.createCellphone(result.data)
-        if(newCellphone.error){
-            return res.status(400).json({error : newCellphone.error})
-        }
-        return res.status(201).json(newCellphone)
+        const newCellphone = await cellphoneModels.createCellphone({originalNames, input:result.data})
+        if (newCellphone.error) return res.status(400).json({error : newCellphone.error})
+        return res.status(201).json({ message : "Cellphone created successfully" })
     }
 
     static modifyCellphone = async (req, res) => {

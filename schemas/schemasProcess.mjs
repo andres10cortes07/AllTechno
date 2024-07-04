@@ -8,7 +8,8 @@ const schemaProcessor = zod.object({
     numNucleos : zod.number().int(),
     numHilos : zod.number().int(),
     relojBase : zod.string().max(100, errorLength),
-    precio : zod.number().int()
+    precio : zod.number().int(),
+    imagenes : zod.array(zod.string()).min(1).max(6)
 })
 
 export const ValidateProcessor = (object) => {

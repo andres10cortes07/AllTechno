@@ -1,5 +1,12 @@
 import { ValidateProcessor, ValidateModifyProcessor } from "../schemas/schemasProcess.mjs";
 import { ModelsProcessors } from "../models/processors.mjs";
+import fs from "node:fs"
+
+const saveImages = (file)  => {
+    const newPath = `resources/uploads/processors/${file.originalname}`
+    fs.renameSync(file.path, newPath)
+    return newPath
+}
 
 export class ControllerProcessors {
     static getAll = async (req, res) => {
@@ -16,10 +23,26 @@ export class ControllerProcessors {
     }
 
     static createProcessor = async (req, res) => {
-        const result = ValidateProcessor(req.body);
+        let data = JSON.parse(req.body.json_data)
+        const images = req.files
 
+        if (!images || images.length === 0) {
+            return res.status(400).json({ error : "No images uploaded" })
+        }
+
+        let originalNames = []
+        data.imagenes = images.map(image => {
+            originalNames.push(image.originalname)
+            return saveImages(image);
+        })
+
+        const result = ValidateProcessor(data)
         if(result.error) return res.status(400).json({error : JSON.parse(result.error.message)})
-        return res.status(201).json(await ModelsProcessors.createProcessor(result.data))
+
+        const newProcessor = await ModelsProcessors.createProcessor({originalNames, input:result.data})
+        
+        if (newProcessor.error) return res.status(400).json({ error : newProcessor.error })
+        return res.status(201).json({ message : "Processor created successfully" })
     }
 
     static modifyProcessor = async (req, res) => {

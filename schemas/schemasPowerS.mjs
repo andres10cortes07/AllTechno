@@ -8,7 +8,8 @@ const schemaPowerSupplies = zod.object({
     voltaje : zod.number().int(),
     potencia : zod.number().int(),
     certificacion : zod.string().max(50),
-    precio : zod.number().int()
+    precio : zod.number().int(),
+    imagenes : zod.array(zod.string()).min(1).max(6)
 })
 
 export const ValidatePowerSupply = (object) => {

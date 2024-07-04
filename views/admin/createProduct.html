@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="../css/style_admin.css">
   <link type="image/png" sizes="16x16" rel="icon" href="../../resources/icono.png">
   <script src="../js/validateSession.mjs"></script>
+  <script src="../../views/js/createProduct.js"></script>
 </head>
 
 <body>
@@ -93,7 +94,7 @@
 
     <main>
         <div class="ctn-form">
-            <form action="" method="post" enctype="multipart/form-data" accept="image/png, image/jpeg, image/jpg, image/webp">
+            <form id="form-create" method="post" enctype="multipart/form-data" accept="image/png, image/jpeg, image/jpg, image/webp">
                 <h2>CREAR PRODUCTO</h2>
     
                 <div>
@@ -108,19 +109,15 @@
                                 <option value="ram">RAM</option>
                                 <option value="screens">Monitor</option>
                                 <option value="powerSupplies">Fuente de poder</option>
-                                <option value="desktopPc">Equipo de escritorio</option>
+                                <option value="desktopComputers">Equipo de escritorio</option>
                             </optgroup> 
                         </select>
-                    </div>
-                    <div>
-                        <label class="label-form" for="precio">Precio</label>
-                        <input type="number" id="precio" class="inp-create" name="precio">
                     </div>
                     <section id="dynamic-fields"></section>
 
                     
                 </div>
-                <button class="btn-login btn-crear">CREAR</button>
+                <button type="submit" class="btn-login btn-crear">CREAR</button>
     
             </form>
         </div>
@@ -164,7 +161,6 @@
   <script src="../../views/js/swipers.js"></script>
   <script src="../../views/js/dropdowns.js"></script>
   <script src="../../views/js/showProductsBySearch.mjs"></script>
-  <script src="../../views/js/createProduct.js"></script>
 
   <script type="module">
     import { SesionManagement } from "../js/login-logout.mjs";

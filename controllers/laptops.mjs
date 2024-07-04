@@ -1,5 +1,12 @@
 import { validateLaptop, validateModifyLaptop } from "../schemas/schemasLapt.mjs";
 import { laptopModels } from "../models/laptops.mjs"
+import fs from "node:fs";
+
+const saveImages = (file) => {
+    const newPath = `resources/uploads/laptops/${file.originalname}`
+    fs.renameSync(file.path, newPath)
+    return newPath
+}
 
 export class ControllerLaptops {
     static getAll = async (req, res) => {
@@ -17,10 +24,26 @@ export class ControllerLaptops {
     }
 
     static createLaptop = async (req, res) => {
-        const result = validateLaptop(req.body);
+        let data = JSON.parse(req.body.json_data)
 
-        if (result.error) return res.status(400).json({ error : result.error.message})
-        return res.status(201).json(await laptopModels.createLaptop(result.data))
+        const images = req.files
+        if (!images || images.length === 0){
+            return res.status(400).json({ error : 'No images uploaded' })
+        }
+
+        let originalNames = []
+        data.imagenes = images.map(image => {
+            originalNames.push(image.originalname)
+            return saveImages(image);
+        })
+
+        const result = validateLaptop(data)
+        if (result.error) return res.status(400).json({ error : JSON.parse(result.error.message)})
+
+        const newLaptop = await laptopModels.createLaptop({originalNames, input:result.data})
+
+        if(newLaptop.error) return res.status(400).json({ error : newLaptop.error })
+        return res.status(201).json({ message : "Laptop created successfully" })
     }
 
     static modifyLaptop = async (req, res) => {

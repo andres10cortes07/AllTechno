@@ -19,7 +19,7 @@ router.get("/:search", ControllerIndex.searchProducts);
 
 
 //? cellphone routes
-const uploadCellphone = multer({ dest : "./resources/uploads/cellphones"})
+const uploadCellphone = multer({ dest : "./resources/uploads/cellphones"});
 router.get("/cellphones/getAll/:order", ControllerCellphones.getAll);
 router.get("/cellphones/:id", ControllerCellphones.getById);
 router.post("/cellphones", uploadCellphone.array('imagenes', 6), ControllerCellphones.createCellphone);
@@ -28,49 +28,55 @@ router.delete("/cellphones/:id", ControllerCellphones.deleteCellphone);
 
 
 //? laptops routes
+const uploadLaptop = multer({ dest : "./resources/uploads/laptops"});
 router.get("/laptops/getAll/:order", ControllerLaptops.getAll);
 router.get("/laptops/:id", ControllerLaptops.getById);
-router.post("/laptops", ControllerLaptops.createLaptop);
+router.post("/laptops", uploadLaptop.array("imagenes", 6), ControllerLaptops.createLaptop);
 router.patch("/laptops/:id", ControllerLaptops.modifyLaptop);
 router.delete("/laptops/:id", ControllerLaptops.deleteLaptop);
 
 
 //? powerSupplies routes
+const uploadPowerSupply = multer({ dest : "./resources/uploads/powerSupplies" });
 router.get("/powerSupplies/getAll/:order", ControllerPowerSupplies.getAll);
 router.get("/powerSupplies/:id", ControllerPowerSupplies.getById);
-router.post("/powerSupplies", ControllerPowerSupplies.createPowerSupply);
+router.post("/powerSupplies", uploadPowerSupply.array("imagenes", 6), ControllerPowerSupplies.createPowerSupply);
 router.patch("/powerSupplies/:id", ControllerPowerSupplies.modifyPowerSupply);
 router.delete("/powerSupplies/:id", ControllerPowerSupplies.deletePowerSupply);
 
 
 //? processors routes
+const uploadProcessor = multer({ dest : "./resources/uploads/processors" });
 router.get("/processors/getAll/:order", ControllerProcessors.getAll);
 router.get("/processors/:id", ControllerProcessors.getById);
-router.post("/processors", ControllerProcessors.createProcessor);
+router.post("/processors", uploadProcessor.array("imagenes", 6), ControllerProcessors.createProcessor);
 router.patch("/processors/:id", ControllerProcessors.modifyProcessor);
 router.delete("/processors/:id", ControllerProcessors.deleteProcessor);
 
 
 //? ram routes
+const uploadRam = multer({ dest : "./resources/uploads/ram" });
 router.get("/ram/getAll/:order", ControllerRam.getAll);
 router.get("/ram/:id", ControllerRam.getById);
-router.post("/ram", ControllerRam.createRam);
+router.post("/ram", uploadRam.array("imagenes", 6), ControllerRam.createRam);
 router.patch("/ram/:id", ControllerRam.modifyRam);
 router.delete("/ram/:id", ControllerRam.deleteRam);
 
 
 //? screens routes
+const uploadScreens = multer({ dest : "./resources/uploads/screens" });
 router.get("/screens/getAll/:order", ControllerScreens.getAll);
 router.get("/screens/:id", ControllerScreens.getById);
-router.post("/screens", ControllerScreens.createScreen);
+router.post("/screens", uploadScreens.array("imagenes", 6), ControllerScreens.createScreen);
 router.patch("/screens:/id", ControllerScreens.modifyScreen);
 router.delete("/screens/:id", ControllerScreens.deleteScreen);
 
 
 //? desktopComputers routes
+const uploadDesktopPc = multer({ dest : "./resources/uploads/desktops" });
 router.get("/desktopComputers/getAll/:order", ControllerDesktops.getAll);
 router.get("/desktopComputers/:id", ControllerDesktops.getByid);
-router.post("/desktopComputers", ControllerDesktops.createDesktopPc);
+router.post("/desktopComputers", uploadDesktopPc.array("imagenes", 6), ControllerDesktops.createDesktopPc);
 router.patch("/desktopComputers/:id", ControllerDesktops.modifyDesktopPc);
 router.delete("/desktopComputers/:id", ControllerDesktops.deleteDesktopPc);
 

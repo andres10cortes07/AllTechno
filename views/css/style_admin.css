@@ -30,6 +30,12 @@
   font-weight: 700;
 }
 
+.btn-create:hover {
+  cursor: pointer;
+  background-color: rgb(27, 156, 27);
+  border: 1px solid rgb(27, 156, 27);
+}
+
 .row-ttl-home {
   align-items: center;
 }

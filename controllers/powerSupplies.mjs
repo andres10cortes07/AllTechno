@@ -1,6 +1,12 @@
 import { ModelsPowerSupplies } from "../models/powerSupplies.mjs";
 import { ValidatePowerSupply, ValidateModifyPowerSupply } from "../schemas/schemasPowerS.mjs"
+import fs from "node:fs";
 
+const saveImages = (file) => {
+    const newPath = `resources/uploads/powerSupplies/${file.originalname}`
+    fs.renameSync(file.path, newPath)
+    return newPath
+}
 export class ControllerPowerSupplies {
 
     static getAll = async (req, res) => {
@@ -17,10 +23,26 @@ export class ControllerPowerSupplies {
     }
 
     static createPowerSupply = async (req, res) => {
-        const result = ValidatePowerSupply(req.body);
+        let data = JSON.parse(req.body.json_data)
+        const images = req.files
 
-        if(result.error) return res.json({error: JSON.parse(result.error.message)})
-        return res.json(await ModelsPowerSupplies.createPowerSupply(result.data)).status(201)
+        if (!images || images.length === 0) {
+            return res.status(400).json({ error : "No images uploaded" })
+        }
+
+        let originalNames = []
+        data.imagenes = images.map(image => {
+            originalNames.push(image.originalname)
+            return saveImages(image);
+        })
+
+        const result = ValidatePowerSupply(data)
+        if(result.error) return res.status(400).json({error: JSON.parse(result.error.message)})
+        
+        const newPowerSupply = await ModelsPowerSupplies.createPowerSupply({originalNames, input:result.data})
+
+        if(newPowerSupply.error) return res.status(400).json({error : newPowerSupply.error})
+        return res.status(201).json({ message : "Power supply created successfully" })
     }
 
     static modifyPowerSupply = async (req, res) => {

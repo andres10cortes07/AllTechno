@@ -14,7 +14,8 @@ const schemaLaptop = zod.object ({
     almacenamiento : zod.number().int(),
     ram : zod.number().int(),
     precio : zod.number().int(),
-    colores : zod.string().max(100, errorLength)
+    colores : zod.string().max(100, errorLength),
+    imagenes : zod.array(zod.string()).min(1).max(6)
 })
 
 // function for validate the laptop creation

@@ -1,5 +1,12 @@
 import { ValidateRam, ValidateModifyRam } from "../schemas/schemasRam.mjs";
 import { ModelsRam } from "../models/ram.mjs";
+import fs from "node:fs"
+
+const saveImages = (file) => {
+    const newPath = `resources/uploads/ram/${file.originalname}`
+    fs.renameSync(file.path, newPath)
+    return newPath
+}
 
 export class ControllerRam {
 
@@ -17,10 +24,26 @@ export class ControllerRam {
     }
 
     static createRam = async (req, res) => {
-        const result = ValidateRam(req.body)
+        let data = JSON.parse(req.body.json_data)
+        const images = req.files
 
-        if(result.error) return res.json({error : JSON.parse(result.error.message)}).status(400)
-        return res.json(await ModelsRam.createRam(result.data)).status(201)
+        if (!images || images.length === 0) {
+            return res.status(400).json({ error : "No images uploaded" })
+        }
+
+        let originalNames = []
+        data.imagenes = images.map(image => {
+            originalNames.push(image.originalname)
+            return saveImages(image);
+        })
+
+        const result = ValidateRam(data)
+        if(result.error) return res.status(400).json({error : JSON.parse(result.error.message)})
+
+        const newRam = await ModelsRam.createRam({originalNames, input:result.data})
+
+        if (newRam.error) return res.status(400).json({ error : newRam.error })
+        return res.status(201).json({ message : "Ram created successfully" })
     }
 
     static modifyRam = async (req, res) => {

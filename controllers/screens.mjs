@@ -1,6 +1,12 @@
 import { ValidateScreen, ValidateModifyScreen } from "../schemas/schemasScreens.mjs";
 import { ModelsScreens } from "../models/screens.mjs";
+import fs from "node:fs"
 
+const saveImages = (file) => {
+    const newPath = `resources/uploads/screens/${file.originalname}`
+    fs.renameSync(file.path, newPath)
+    return newPath
+}
 export class ControllerScreens {
 
     static getAll = async (req, res) => {
@@ -17,10 +23,26 @@ export class ControllerScreens {
     }
 
     static createScreen = async (req, res) => {
-        const result = ValidateScreen(req.body)
+        let data = JSON.parse(req.body.json_data)
+        const images = req.files
 
+        if (!images || images.length === 0) {
+            return res.status(400).json({ error : "No images uploaded" })
+        }
+
+        let originalNames = []
+        data.imagenes = images.map(image => {
+            originalNames.push(image.originalname)
+            return saveImages(image);
+        })
+
+        const result = ValidateScreen(data)
         if(result.error) return res.status(400).json({error : JSON.parse(result.error.message)})
-        return res.status(201).json(await ModelsScreens.createScreen(result.data))
+
+        const newScreen = await ModelsScreens.createScreen({originalNames, input:result.data})
+
+        if (newScreen.error) return res.status(400).json({ error : newScreen.error })
+        return res.status(201).json({ message : "Screen created successfully" })
     }
 
     static modifyScreen = async (req, res) => {

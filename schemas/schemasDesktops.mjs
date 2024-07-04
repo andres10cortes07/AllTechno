@@ -11,7 +11,8 @@ const schemaDesktops = zod.object({
     chasis : zod.string().max(100, errorLength),
     fuente : zod.string().max(100, errorLength),
     refrigeracion : zod.string().max(100, errorLength).default("Refrigeracion de stock"),
-    precio :  zod.number().int()
+    precio :  zod.number().int(),
+    imagenes : zod.array(zod.string()).min(1).max(6)
 })
 
 export const ValidateDesktop = (object) => {

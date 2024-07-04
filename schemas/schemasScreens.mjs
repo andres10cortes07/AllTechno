@@ -9,7 +9,8 @@ const schemaScreens = zod.object({
     pulgadas : zod.number().int(),
     resolucion : zod.string().max(50, errorLength),
     tipo : zod.string().max(50, errorLength),
-    precio : zod.number().int()
+    precio : zod.number().int(),
+    imagenes : zod.array(zod.string()).min(1).max(6)
 })
 
 export const ValidateScreen = (object) => {

@@ -423,7 +423,7 @@ INSERT INTO portatiles (id, marca, modelo, procesador, grafica, resolucion, tama
 
 
 
-INSERT INTO `alltechno`.`fuentesdepoder` (`id`, `marca`, `modelo`, `voltaje`, `potencia`, `certificacion`, `precio`, `recursos_id_recurso`) VALUES
+INSERT INTO fuentesdepoder (id, marca, modelo, voltaje, potencia, certificacion, precio, recursos_id_recurso) VALUES
 (UUID_TO_BIN(UUID()), 'Antec', 'Earthwatts Gold Pro 750W', 120, 750, '80 Plus Bronze', 580000, 41),
 (UUID_TO_BIN(UUID()), 'Antec', 'Earthwatts Gold Pro 850W', 120, 850, '80 Plus Bronze', 680000, 42),
 (UUID_TO_BIN(UUID()), 'Thermaltake', 'Toughpower GF1 750W', 120, 750, '80 Plus Bronze', 530000, 43),
@@ -471,7 +471,7 @@ INSERT INTO procesadores (id, marca, modelo, numNucleos, numHilos, relojBase, pr
 
 
 
-INSERT INTO `alltechno`.`ram` (`id`, `marca`, `modelo`, `capacidad`, `velocidad`, `tipo`, `led`, `precio`, `recursos_id_recurso`) VALUES
+INSERT INTO ram (id, marca, modelo, capacidad, velocidad, tipo, led, precio, recursos_id_recurso) VALUES
 (UUID_TO_BIN(UUID()), 'Corsair', 'Vengeance LPX', 16, 3200, 'DDR4', 'No', 550000, 81),
 (UUID_TO_BIN(UUID()), 'Kingston', 'HyperX Fury', 8, 2666, 'DDR4', 'No', 350000, 82),
 (UUID_TO_BIN(UUID()), 'G.Skill', 'Ripjaws V Series', 16, 3600, 'DDR4', 'Sí', 600000, 83),
