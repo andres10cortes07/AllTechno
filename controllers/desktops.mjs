@@ -25,23 +25,27 @@ export class ControllerDesktops {
     }
 
     static createDesktopPc = async (req, res) => {
+        // extract JSON data from request body
         let data = JSON.parse(req.body.json_data)
+        
+        // Manage uploaded images
         const images = req.files
-
         if (!images || images.length === 0) {
             return res.status(400).json({ error : "No images uploaded" })
         }
 
+        // add each of the names of the received images to originalNames
         let originalNames = images.map(image => image.originalname)
-
         const repeatedImages = await QueriesUsed.verifyRepeatedImages(originalNames)
 
         if (repeatedImages.error) {
             return res.status(400).json({error : repeatedImages.error})
         }
 
+        // add the images to the data
         data.imagenes = images.map(image => saveImages(image))
 
+        // validate data with the schemas
         const result = ValidateDesktop(data)
         if (result.error) return res.status(400).json({error : JSON.parse(result.error.message)})
         

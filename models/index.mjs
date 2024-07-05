@@ -1,5 +1,6 @@
 import { connection } from "./connection.mjs";
 
+// query that makes a random selection of all products for the user's home view
 const codeForQueryRandom = `(
   SELECT 'cellphones' AS tabla, BIN_TO_UUID(celulares.id) AS id, celulares.marca, celulares.modelo, celulares.precio,
          recursos.url1, recursos.url2, recursos.url3, recursos.url4, recursos.url5, recursos.url6

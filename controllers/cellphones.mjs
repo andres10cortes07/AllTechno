@@ -25,33 +25,37 @@ export class ControllerCellphones {
     }
 
     static createCellphone = async (req, res) => {
-        // Extraer los datos JSON del cuerpo de la solicitud
+        // extract JSON data from request body
         let data = JSON.parse(req.body.json_data)
         
-        // Manejar las imágenes subidas
+        // Manage uploaded images
         const images = req.files;
         if (!images || images.length === 0) {
             return res.status(400).json({ error: 'No images uploaded' });
         }
 
+        // add each of the names of the received images to originalNames
         let originalNames = images.map(image => image.originalname)
-
         const repeatedImages = await QueriesUsed.verifyRepeatedImages(originalNames)
 
         if (repeatedImages.error) {
             return res.status(400).json({error : repeatedImages.error})
         }
 
+        // add the images to the data
         data.imagenes = images.map(image => saveImages(image))
 
+        // validate data with the schemas
         const result = validateCellphone(data);
         if (result.error) return res.status(400).json({ error: JSON.parse(result.error.message) })
         
         const newCellphone = await cellphoneModels.createCellphone({originalNames, input:result.data})
+
         if (newCellphone.error) return res.status(400).json({error : newCellphone.error})
         return res.status(201).json({ message : "Cellphone created successfully" })
     }
 
+    //! EN TODOS LOS CONTROLADORES FALTA COMENTARIAR DE AQUI PA BAJO
     static modifyCellphone = async (req, res) => {
         const result = validateModifyCell(req.body);
 

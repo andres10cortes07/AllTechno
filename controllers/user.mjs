@@ -11,16 +11,20 @@ export class ControllerUsers {
         const userEmail = await ModelsUser.getEmail({ identificacion })
         if(!userEmail) return res.json({error : "identification not found"})
         
+        // define new key limits
         const passLength = Math.floor(Math.random() * (15 - 30 + 1)) + 30
         let newPass = ""
+        // define the characters that the new key can have
         const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=[]{}|;:,.<>?"
         
         for (let i = 0; i <= passLength; i++) {
             newPass += characters.charAt(Math.floor(Math.random() * characters.length))
         }
 
+        // change of password
         const passwordModified = await ModelsUser.modifyPassword({identificacion, newPass})
 
+        // sending email with user information and new password
         const sendEmail = async () => {
             const config = {
                 host : "smtp.gmail.com",
@@ -252,10 +256,6 @@ export class ControllerUsers {
             res.json({message : "Password changed successfully"})
             sendEmail()
         }
-        
-
-
-
     }
 
     static getUsers = async (req, res) => {
@@ -277,15 +277,17 @@ export class ControllerUsers {
 
       if (result.error) return res.status(400).json({error : JSON.parse(result.error.message)})
 
-      
+      // define new key limits
       const passLength = Math.floor(Math.random() * (15 - 30 + 1)) + 30
       let newPass = ""
+      // define the characters that the new key can have
       const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=[]{}|;:,.<>?"
         
       for (let i = 0; i <= passLength; i++) {
         newPass += characters.charAt(Math.floor(Math.random() * characters.length))
       }
       
+      // create user
       let newUser = await ModelsUser.createUser({newPass, input:result.data})
       if(!newUser) return res.status(400).json({error : "El usuario ingresado ya se encuentra registrado"})
       newUser = newUser[0]

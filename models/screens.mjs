@@ -3,14 +3,14 @@ import { connection } from "../models/connection.mjs";
 export class ModelsScreens {
 
     static getAll = async ({order}) => {
-        // Define las órdenes permitidas
+        // define the allowed orders for the query
         const validOrders = {
             "RAND()": "RAND()",
             "pan.precio ASC": "pan.precio ASC",
             "pan.precio DESC": "pan.precio DESC"
         };
 
-        // Selecciona el orden válido, por defecto a 'RAND()' si no es válido
+        // Selects valid order, defaults to 'RAND()' if invalid
         const orderBy = validOrders[order] || "RAND()";
 
         const [screens] = await connection.query(
@@ -35,54 +35,41 @@ export class ModelsScreens {
             `, [id]
         )
 
+        // record was not found
         if (screen.length == 0) return false
+        // record was found
         return screen
     }
 
     static createScreen = async (data) => {
+        // generate a uuid to give to the product
         const [[{ uuid }]] = await connection.query(`SELECT UUID() AS uuid;`);
         const urlImg = data.input.imagenes
 
-        const [existingImages] = await connection.query(
-            `
-            SELECT id_recurso FROM recursos 
-            WHERE url1 LIKE ? OR
-                  url2 LIKE ? OR
-                  url3 LIKE ? OR
-                  url4 LIKE ? OR
-                  url5 LIKE ? OR
-                  url6 LIKE ?;
-            `, 
-            [`%${data.originalNames[0]}%`, `%${data.originalNames[1]}%`, `%${data.originalNames[2]}%`, `%${data.originalNames[3]}%`, `%${data.originalNames[4]}%`, `%${data.originalNames[5]}%`]
-        );
-    
-        if (existingImages.length > 0) {
-            return {error : 'ER_DUP_ENTRY'};
-        }
-        else {
-            try {
-                await connection.query(
-                    `
+        try {
+            await connection.query(
+                `
                         INSERT INTO recursos (url1, url2, url3, url4, url5, url6) VALUES (?, ?, ?, ?, ?, ?);
                     `, [urlImg[0], urlImg[1], urlImg[2], urlImg[3], urlImg[4], urlImg[5]]
-                )
-        
-                const [[lastId]] = await connection.query(`SELECT id_recurso FROM recursos ORDER BY id_recurso DESC LIMIT 1;`)
-        
-                await connection.query(
+            )
+
+            // access the last record created in resources
+            const [[lastId]] = await connection.query(`SELECT id_recurso FROM recursos ORDER BY id_recurso DESC LIMIT 1;`)
+
+            await connection.query(
                 `
                 INSERT INTO pantallas (id, marca, modelo, dimensiones, pulgadas, resolucion, tipo, precio, recursos_id_recurso)
                 VALUES (UUID_TO_BIN(?), ?, ?, ?, ?, ?, ?, ?, ?)
-                `, [uuid, data.input.marca, data.input.modelo, data.input.dimensiones, data.input.pulgadas, 
-                    data.input.resolucion, data.input.tipo, data.input.precio, lastId.id_recurso]
-                )
-                
-                return true
-            }
-            catch (error){
-                return {error : error.code}
-            }
+                `, [uuid, data.input.marca, data.input.modelo, data.input.dimensiones, data.input.pulgadas,
+                data.input.resolucion, data.input.tipo, data.input.precio, lastId.id_recurso]
+            )
+
+            return true
         }
+        catch (error) {
+            return error
+        }
+
     }
 
 }

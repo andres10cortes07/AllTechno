@@ -2,16 +2,15 @@ import { connection } from "./connection.mjs";
 export class cellphoneModels {
 
     static getAll = async ({ order }) => {
-        // Define las órdenes permitidas
+        // define the allowed orders for the query
         const validOrders = {
             "RAND()": "RAND()",
             "cel.precio ASC": "cel.precio ASC",
             "cel.precio DESC": "cel.precio DESC"
         };
 
-        // Selecciona el orden válido, por defecto a 'RAND()' si no es válido
+        // Selects valid order, defaults to 'RAND()' if invalid
         const orderBy = validOrders[order] || "RAND()";
-
 
         const [cellphones] = await connection.query(`
             SELECT BIN_TO_UUID(cel.id) AS id, 
@@ -23,7 +22,8 @@ export class cellphoneModels {
             INNER JOIN recursos r ON cel.recursos_id_recurso = r.id_recurso 
             ORDER BY ${orderBy};
         `);
-        return cellphones;
+
+        return cellphones
     }
 
     static getById = async ({ id }) => {
@@ -41,22 +41,26 @@ export class cellphoneModels {
             WHERE cel.id = UUID_TO_BIN(?);
             `, [id]);
 
+        // record was not found
         if (cellphone.length == 0) return false
+
+        // record was found
         return cellphone
     }
 
     static createCellphone = async (data) => {
+        // generate a uuid to give to the product
         const [[{ uuid }]] = await connection.query(`SELECT UUID() AS uuid;`);
         const urlImg = data.input.imagenes
-
 
         try {
             await connection.query(
                 `
-                            INSERT INTO recursos (url1, url2, url3, url4, url5, url6) VALUES (?, ?, ?, ?, ?, ?);
-                        `, [urlImg[0], urlImg[1], urlImg[2], urlImg[3], urlImg[4], urlImg[5]]
+                    INSERT INTO recursos (url1, url2, url3, url4, url5, url6) VALUES (?, ?, ?, ?, ?, ?);
+                `, [urlImg[0], urlImg[1], urlImg[2], urlImg[3], urlImg[4], urlImg[5]]
             )
 
+            // access the last record created in resources
             const [[lastId]] = await connection.query(`SELECT id_recurso FROM recursos ORDER BY id_recurso DESC LIMIT 1;`)
 
             await connection.query(
@@ -70,8 +74,7 @@ export class cellphoneModels {
             return true
         }
         catch (error) {
-            return { error: error.code }
+            return error
         }
-
     }
 }

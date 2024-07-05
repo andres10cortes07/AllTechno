@@ -9,7 +9,9 @@ export class ModelsUser {
             `, [identificacion]
         )
 
+        // user was not found
         if(email.length == 0) return false
+        // user was found
         return email
     }
 
@@ -20,18 +22,18 @@ export class ModelsUser {
             `, [newPass, identificacion]
         )
 
-        if(passwordModified.length == 0) return false
+        if (passwordModified.length == 0) return false
         return true
     }
 
     static getAll = async ({order}) => {
-        // Define las órdenes permitidas
+        // define the allowed orders for the query
         const validOrders = {
             "nombres ASC": "nombres ASC",
             "nombres DESC": "nombres DESC"
         };
 
-        // Selecciona el orden válido, por defecto a 'nombre DESC' si no es válido
+        // selects valid order, defaults to 'RAND()' if invalid
         const orderBy = validOrders[order] || "nombres DESC";
 
         const [users] = await connection.query(
@@ -50,7 +52,9 @@ export class ModelsUser {
             `, [identificacion]
         )
 
+        // user was not found
         if (user.length == 0) return false
+        // user was found
         return user
     }
 
@@ -81,6 +85,7 @@ export class ModelsUser {
         const [user] = await this.getById({identificacion})
         if(!user) return false
         
+        // the data is modified depending on whether it is included in the data or not.
         const newData = {
             identificacion: input.identificacion ?? user.identificacion,
             nombres: input.nombres ?? user.nombres,
@@ -110,12 +115,13 @@ export class ModelsUser {
                 `, [identificacion]
             )
 
+            // user was deleted
             if(userDelete.affectedRows == 1) return true
+            // user was not deleted
             return false
 
         } catch (error) {
-            console.log(error)
-            return false
+            return error
         }
     }
 
@@ -126,7 +132,9 @@ export class ModelsUser {
             `, [infoUser.correo, infoUser.contraseña]
         )
 
+        // incorrect credentials
         if(user.length == 0) return false
+        // incorrect credentials
         return user[0]
     }
 }

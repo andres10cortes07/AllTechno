@@ -15,7 +15,7 @@ export class QueriesUsed {
             `,
             [`%${originalNames[0]}%`, `%${originalNames[1]}%`, `%${originalNames[2]}%`, `%${originalNames[3]}%`, `%${originalNames[4]}%`, `%${originalNames[5]}%`]
         );
-
+        
         if (existingImages.length > 0) {
             return { error: 'ER_DUP_ENTRY' }
         }

@@ -3,14 +3,14 @@ import { connection } from "../models/connection.mjs";
 export class ModelsProcessors {
 
     static getAll = async ({order}) => {
-        // Define las órdenes permitidas
+        // define the allowed orders for the query
         const validOrders = {
             "RAND()": "RAND()",
             "pro.precio ASC": "pro.precio ASC",
             "pro.precio DESC": "pro.precio DESC"
         };
 
-        // Selecciona el orden válido, por defecto a 'RAND()' si no es válido
+        // Selects valid order, defaults to 'RAND()' if invalid
         const orderBy = validOrders[order] || "RAND()";
 
         const [processors] = await connection.query(
@@ -35,52 +35,39 @@ export class ModelsProcessors {
         `, [id]
         )
 
+        // record was not found
         if (processor.length == 0) return false
+        // record was found
         return processor
     }
 
     static createProcessor = async (data) => {
-        const [[{uuid}]] = await connection.query(`SELECT UUID() AS uuid`);
+        // generate a uuid to give to the product
+        const [[{ uuid }]] = await connection.query(`SELECT UUID() AS uuid`);
         const urlImg = data.input.imagenes
 
-        const [existingImages] = await connection.query(
-            `
-            SELECT id_recurso FROM recursos 
-            WHERE url1 LIKE ? OR
-                  url2 LIKE ? OR
-                  url3 LIKE ? OR
-                  url4 LIKE ? OR
-                  url5 LIKE ? OR
-                  url6 LIKE ?;
-            `, 
-            [`%${data.originalNames[0]}%`, `%${data.originalNames[1]}%`, `%${data.originalNames[2]}%`, `%${data.originalNames[3]}%`, `%${data.originalNames[4]}%`, `%${data.originalNames[5]}%`]
-        );
-    
-        if (existingImages.length > 0) {
-            return {error : 'ER_DUP_ENTRY'};
-        }
-        else {
-            try {
-
-                await connection.query(
-                    `
+        try {
+            await connection.query(
+                `
                         INSERT INTO recursos (url1, url2, url3, url4, url5, url6) VALUES (?, ?, ?, ?, ?, ?);
                     `, [urlImg[0], urlImg[1], urlImg[2], urlImg[3], urlImg[4], urlImg[5]]
-                )
-            
-                const [[lastId]] = await connection.query(`SELECT id_recurso FROM recursos ORDER BY id_recurso DESC LIMIT 1;`)
-            
-                await connection.query(
+            )
+
+            // access the last record created in resources
+            const [[lastId]] = await connection.query(`SELECT id_recurso FROM recursos ORDER BY id_recurso DESC LIMIT 1;`)
+
+            await connection.query(
                 `
                 INSERT INTO procesadores (id, marca, modelo, numNucleos, numHilos, relojBase, precio, recursos_id_recurso) 
                 VALUES (UUID_TO_BIN(?), ?, ?, ?, ?, ?, ?, ?)
                 `, [uuid, data.input.marca, data.input.modelo, data.input.numNucleos, data.input.numHilos, data.input.relojBase, data.input.precio, lastId.id_recurso]
-                )
-                
-                return true
-            }
-            catch (error){
-                return {error : error.code}}
-            }
+            )
+
+            return true
         }
+        catch (error) {
+            return error
+        }
+
+    }
 }
