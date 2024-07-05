@@ -1,4 +1,4 @@
-// Aparicion de dropdown
+// dropdown appearance
 const btnCategories = document.querySelector(".btn-categories");
 const dropdown = document.querySelector(".dropdown-menu");
 
@@ -17,7 +17,7 @@ btnCategories.addEventListener("mouseleave", () => {
             dropdown.style.animation = "hideDropdown 1s forwards";
             dropdown.style.animationDelay = ".5s";
         }
-    }, 500); // Añadimos un pequeño retraso para evitar que se oculte inmediatamente al salir del botón
+    }, 500); // A small delay is added to prevent immediate hiding when exiting the button
 });
 
 dropdown.addEventListener("mouseenter", () => {
@@ -31,7 +31,7 @@ dropdown.addEventListener("mouseleave", () => {
 });
 
 
-//Dropdown para user
+// dropdown for user button with login/logout option
 const btnUser = document.querySelector(".user-icon");
 const dropdownUser = document.querySelector(".dropdown-menu-user");
 
@@ -50,7 +50,7 @@ btnUser.addEventListener("mouseleave", () => {
             dropdownUser.style.animation = "hideDropdown 1s forwards";
             dropdownUser.style.animationDelay = ".5s";
         }
-    }, 500); // Añadimos un pequeño retraso para evitar que se oculte inmediatamente al salir del botón
+    }, 500); // A small delay is added to prevent immediate hiding when exiting the button
 });
 
 dropdownUser.addEventListener("mouseenter", () => {

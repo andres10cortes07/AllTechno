@@ -1,7 +1,9 @@
 const searchBar = document.querySelector(".search-bar")
-searchBar.addEventListener("input", (e) => {
+
+searchBar.addEventListener("input", () => {
 
     if(searchBar.value.length > 3){
+        // 1 second delay after the user stops typing to search
         setTimeout(() => {
             fetch(`http://localhost:5000/allTechno/${searchBar.value}`)
             .then(res => {
@@ -31,7 +33,7 @@ searchBar.addEventListener("input", (e) => {
             .catch(error => console.error("Error: " + error))
         }, 1000)
     }
-    else if (searchBar.value.length == 0){
+    else {
         document.querySelector(".dropdown-menu-search").style.display = "none"
     }
 

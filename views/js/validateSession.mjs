@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     fetch('http://localhost:5000/allTechno/api/session')
         .then(res => {
             if (!res.ok) {
-                throw new Error('Not authenticated');
+                throw new Error('Debes iniciar sesión para acceder a esta página.');
             }
             return res.json();
         })
@@ -18,14 +18,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             }
             else {
-                document.getElementById('loading-overlay').style.display = 'none'; // Ocultar la capa de carga
-                document.getElementById('admin-content').style.display = 'block'; // Mostrar contenido
+                document.getElementById('loading-overlay').style.display = 'none'; // Hide loading layer
+                document.getElementById('admin-content').style.display = 'block'; // show content
             }
         })
         .catch(error => {
             Swal.fire({
                 title: "No autorizado",
-                text: "Debes iniciar sesión para acceder a esta página.",
+                text: error || "Debes iniciar sesión para acceder a esta página.",
                 icon: "error",
                 confirmButtonText: "OK"
             }).then(() => {

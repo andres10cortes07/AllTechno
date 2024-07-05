@@ -23,12 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (res.status !== 201) {
                     return res.json().then(data => {
                         if (data.error === 'ER_DUP_ENTRY') {
-                            return Swal.fire({
-                                title: "Error",
-                                text: `Ya existe una imagen con el mismo nombre, modificalo e intentalo de nuevo`,
-                                icon: "error",
-                                timer: 5000
-                            })
+                            throw new Error('Ya existe una o más imagenes con el mismo nombre, modificalo e intentalo de nuevo')
                         }
                         else {
                             throw new Error(data.error);

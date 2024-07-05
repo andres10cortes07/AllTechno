@@ -1,10 +1,12 @@
 import { cellphoneModels } from "../models/cellphones.mjs";
 import { validateCellphone, validateModifyCell } from "../schemas/schemasCell.mjs";
+import { QueriesUsed } from "../models/constantQueries.mjs";
 import fs from "node:fs"
+import path from "node:path";
 
 const saveImages = (file) => {
-    const newPath = `resources/uploads/cellphones/${file.originalname}`
-    fs.renameSync(file.path, newPath)
+    const newPath = path.join('resources', 'uploads', 'cellphones', file.originalname);
+    fs.writeFileSync(newPath, file.buffer);
     return newPath
 }
 export class ControllerCellphones {
@@ -32,12 +34,15 @@ export class ControllerCellphones {
             return res.status(400).json({ error: 'No images uploaded' });
         }
 
-        let originalNames = []
-        data.imagenes = images.map(image => {
-            originalNames.push(image.originalname)
-            return saveImages(image);
-        })
+        let originalNames = images.map(image => image.originalname)
 
+        const repeatedImages = await QueriesUsed.verifyRepeatedImages(originalNames)
+
+        if (repeatedImages.error) {
+            return res.status(400).json({error : repeatedImages.error})
+        }
+
+        data.imagenes = images.map(image => saveImages(image))
 
         const result = validateCellphone(data);
         if (result.error) return res.status(400).json({ error: JSON.parse(result.error.message) })

@@ -5,15 +5,12 @@ import {router} from "./routes/routerAllTechno.mjs";
 import session from "express-session";
 import crypto from "crypto";
 
-// desactivar header por defecto de express
+// disable express default header
 app.disable("x-powered-by");
 
 const ACCEPTED_ORIGINS = [
     "http://localhost:5000/allTechno",
-    "http://127.0.0.1:5500",
-    "http://127.0.0.1:5500/views/",
-    "http://127.0.0.1:5500/views/products",
-    "http://127.0.0.1:5500/views/products/product.html"
+    "http://127.0.0.1:5500"
 ]
 
 app.use(cors({
@@ -26,24 +23,24 @@ app.use(cors({
     }
 }));
 
-//middleware
+// middleware
 app.use(json())
 
-const secret = crypto.randomBytes(32).toString("hex")
+// session configuration
 app.use(session({
-    secret: secret, // Usa una variable de entorno para el secreto
-    resave: false, // Considera establecerlo en false para evitar reescribir sesiones no modificadas
-    saveUninitialized: false, // Considera establecerlo en false para evitar guardar sesiones no modificadas
+    secret: crypto.randomBytes(32).toString("hex"),
+    resave: false,
+    saveUninitialized: false,
     cookie: {
-        secure: false, // Asegúrate de usar cookies seguras en producción
-        maxAge: 1000 * 60 * 60// Establece la duración de la cookie (en milisegundos)
+        secure: false, 
+        maxAge: 1000 * 60 * 60
     }
 }));
 
-//definir el router que manejara los endpoints
+// router definition to manage endpoints
 app.use("/allTechno", router);
 
-//definimos puerto e inicio de servidor
+// define server port and boot
 const PORT = process.env.PORT ?? 5000;
 app.listen(PORT, () => {
     console.log(`Servidor escuchando en http://localhost:${PORT}`)

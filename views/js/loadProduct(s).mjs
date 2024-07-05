@@ -1,3 +1,4 @@
+// structure to display the 404 error when it occurs
 const showError = () => {
     const codeErr = `
     <div class="container">
@@ -40,13 +41,13 @@ export const loadProducts = (category, order) => {
     .then (res => res.json())
     .then (products => {
         const codeProducts = products.map(product => {
-            let swiperSlidesHTML = ""; // Inicializamos una cadena vacía para contener el HTML de los swiper-slide
+            let swiperSlidesHTML = ""; // We initialize an empty string to contain the HTML of the swiper-slide
 
-            // Iteramos sobre cada url y generamos el HTML del swiper-slide correspondiente
+            // We iterate over each url and generate the HTML of the corresponding swiper-slide
             for (let i = 1; i <= 6; i++) {
-              const url = product[`url${i}`]; // Obtenemos la URL correspondiente
+              const url = product[`url${i}`]; // We get the corresponding URL
 
-              // Verificamos si la URL no es null
+              // We check if the image URL is not null
               if (url !== null && url !== "null") {
                 swiperSlidesHTML += `
                   <swiper-slide>
@@ -103,6 +104,7 @@ export const loadProducts = (category, order) => {
 
         const cards = document.querySelectorAll(".swiper-wrapper");
 
+        // events to show/hide the carousel arrows when hovering and redirect to the product view when clicking
         cards.forEach(card => {
             let activeSwiper;
 
@@ -125,14 +127,13 @@ export const loadProducts = (category, order) => {
             });
         });
     })
-    .catch(error => console.error("Error al cargar los productos:", error));
+    .catch(error => console.error("Error al cargar los productos"));
 }
 
 export const loadProduct = (category, id) => {
     const categories = ["cellphones", "laptops", "powerSupplies", "screens", "processors", "ram", "desktopComputers"]
 
     if (!categories.includes(category)) showError()
-
     else {
         const link = document.createElement("link");
         link.href = "../css/style_product.css";

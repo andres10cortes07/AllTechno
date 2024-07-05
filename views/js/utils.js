@@ -1,7 +1,7 @@
-//funcionalidad de ver/no ver contraseña en page login
+// view/not view password functionality in page login
 const eyeBtn = document.querySelector(".login-eye");
 
-const showInputPass = ()=> {
+const showInputPass = () => {
     if(eyeBtn){
         eyeBtn.classList.remove("bx-show");
         eyeBtn.classList.add("bx-low-vision");
@@ -16,6 +16,7 @@ const hideInputPass = ()=> {
         document.querySelector(".ctn-pass input").setAttribute("type", "password");
     }
 }
+
 if (eyeBtn) {
     eyeBtn.addEventListener("click", (e) =>{
         e.preventDefault();
@@ -24,11 +25,12 @@ if (eyeBtn) {
     })    
 }
 
-
 // validacion de formulario de login 
 const inpEmail = document.querySelector(".inp-email");
 const inpPass = document.querySelector(".inp-pass");
 const ctnPass = document.querySelector(".ctn-pass");
+
+// minimum structure for email
 let regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
 const validateEmail = () => {
@@ -39,6 +41,7 @@ const validateEmail = () => {
                 <span class='login-err err-email'>Ingresa un correo válido</span>
             </div>
         `;
+
         if(document.querySelector(".err-email")) document.querySelector(".err-email").innerHTML = ""
         inpEmail.insertAdjacentHTML("afterend", codeErrEmail)
         return false
@@ -57,13 +60,12 @@ const validatePassword = () => {
                 <span class='login-err err-pass'>Ingresa una clave valida</span>
             </div>
         `;
+        
         if(document.querySelector(".err-pass")) document.querySelector(".err-pass").innerHTML = ""
         ctnPass.insertAdjacentHTML("afterend", codeErrPass)
-        return false
     }
     else {
         if(document.querySelector(".err-pass")) document.querySelector(".err-pass").innerHTML = ""
-        return true
     }
 }
 
