@@ -66,6 +66,7 @@ const validatePassword = () => {
     }
     else {
         if(document.querySelector(".err-pass")) document.querySelector(".err-pass").innerHTML = ""
+        return true
     }
 }
 

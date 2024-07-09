@@ -9,7 +9,7 @@ export class ControllerUsers {
         const { identificacion } = req.params
 
         const userEmail = await ModelsUser.getEmail({ identificacion })
-        if(!userEmail) return res.json({error : "identification not found"})
+        if(!userEmail) return res.json({error : "La identificacion que ingresaste no está registrada en el sistema"})
         
         // define new key limits
         const passLength = Math.floor(Math.random() * (15 - 30 + 1)) + 30

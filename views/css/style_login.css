@@ -22,7 +22,7 @@
     color: #4e4e4e;
 }
 
-.inp-email, .inp-pass {
+.inp-email, .inp-pass, .inp-identificacion {
     display: block;
     width: 100%;
     border: 1px solid #e6e6e6;
@@ -46,7 +46,7 @@ span:hover {
     text-align: right;
 }
 
-.btn-login {
+.btn-login, .btn-recover-pass {
     color: white;
     background-color: #4e4e4e;
     border-radius: 50px;
@@ -57,7 +57,7 @@ span:hover {
     font-weight: 600;
 }
 
-.btn-login:hover {
+.btn-login:hover , .btn-recover-pass:hover{
     animation: colorChange .3s forwards;
 }
 
