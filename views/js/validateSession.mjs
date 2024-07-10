@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
         .catch(error => {
             Swal.fire({
                 title: "No autorizado",
-                text: error || "Debes iniciar sesión para acceder a esta página.",
+                text: error,
                 icon: "error",
                 confirmButtonText: "OK"
             }).then(() => {

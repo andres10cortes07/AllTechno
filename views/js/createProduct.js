@@ -25,6 +25,9 @@ document.addEventListener("DOMContentLoaded", () => {
                         if (data.error === 'ER_DUP_ENTRY') {
                             throw new Error('Ya existe una o más imagenes con el mismo nombre, modificalo e intentalo de nuevo')
                         }
+                        else if (data.error === 'Too many files') {
+                            throw new Error('No puedes subir mas de 6 imagenes para un producto')
+                        }
                         else {
                             throw new Error(data.error);
                         }

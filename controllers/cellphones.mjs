@@ -31,7 +31,7 @@ export class ControllerCellphones {
         // Manage uploaded images
         const images = req.files;
         if (!images || images.length === 0) {
-            return res.status(400).json({ error: 'No images uploaded' });
+            return res.status(400).json({ error: 'Debes cargar por lo menos una imagen' });
         }
 
         // add each of the names of the received images to originalNames
