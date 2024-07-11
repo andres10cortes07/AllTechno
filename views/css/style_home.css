@@ -1,0 +1,139 @@
+
+.products-management {
+    width: 30%;
+    text-align: center;
+    border-right: 2px solid #676767;  
+    font-size: 1.2em;
+  }
+  
+  .users-management {
+    width: 70%;
+    text-align: center;
+    font-size: 1.2em;
+    display: flex;
+    flex-direction: column;
+    padding-left: 2em;
+  }
+  
+  .btns-products {
+    margin-top: 1.5em;
+  }
+  
+  .btns-products div {
+    margin: 2em;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+  }
+  
+  .btns-products button {
+    border-radius: 20px;
+    height: 4em;
+    width: 150px;
+    margin-right: 2em;
+    font-weight: 500;
+    font-size: 0.8em;
+  }
+  
+  .btns-products button:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+  }
+  
+  .btns-users {
+    margin-top: 3em;
+    display: flex;
+    justify-content: space-evenly;
+  }
+  
+  .btns-users div {
+    display: flex;
+    align-items: center;
+  }
+  
+  .btns-users button {
+    border-radius: 20px;
+    height: 4em;
+    width: 150px;
+    margin-right: 2em;
+    font-weight: 500;
+    font-size: 0.8em;
+  }
+  
+  .btns-users button:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+  }
+  
+  .btns-users span {
+    margin-left: -1em;
+  }
+  
+  .btn-create-home {
+      border: none;
+      color: white;
+      background-color: green;
+  }
+  
+  .btn-pdf {
+      border: none;
+      color: white;
+    background-color: #DD763C;
+  }
+  
+  .btn-excel {
+    background-color: rgb(255, 255, 255);
+    border: 2px solid green;
+    color: black;
+  }
+  
+  table {
+    margin-top: 1.5em;
+    border-collapse: collapse;
+    font-size: 0.8em;
+  }
+  
+  tr:first-child {
+    background-color: #65bb79;
+  }
+  
+  tr th {
+    height: 2em;
+    border: none;
+    padding: 1em;
+  }
+  
+  tr td {
+    height: 2em;
+    padding: 1em;
+    border-bottom: 1px solid rgb(142, 142, 142);
+  }
+  
+  table button:hover {
+    cursor: pointer;
+  }
+  
+  table button {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+
+  .row-ttl-home {
+    align-items: center;
+    display: block;
+    padding: 0;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .row-ttl-home h3 {
+    font-size: 1.5em;
+    margin-top: 2em;
+  }
+  
+  .row-ttl-home p {
+    padding: 1em 10em;
+    margin-top: 1em;
+    line-height: 30px;
+    font-weight: 300;
+  }

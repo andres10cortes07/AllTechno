@@ -38,7 +38,7 @@ export class ModelsUser {
 
         const [users] = await connection.query(
             `
-                SELECT identificacion, nombres, apellidos, correo, celular FROM usuario ORDER BY ${orderBy}
+                SELECT identificacion, nombres, apellidos, correo, celular, rol FROM usuario ORDER BY ${orderBy}
             `
         )
 
@@ -136,5 +136,15 @@ export class ModelsUser {
         if(user.length == 0) return false
         // incorrect credentials
         return user[0]
+    }
+
+    static accessToRol = async (email) => {
+        const [[rol]] = await connection.query(
+            `
+                SELECT rol FROM usuario WHERE correo = ?
+            `
+        , [email])
+
+        return rol.rol
     }
 }

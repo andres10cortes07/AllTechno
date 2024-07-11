@@ -1,295 +1,275 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" lang="es" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Pagina simulada para añadir a portafolio desarrollada por Franklin Cortés"
+    />
+    <title>AllTechno</title>
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/style_admin.css" />
+    <link rel="stylesheet" href="../css/style_home.css" />
+    <link
+      type="image/png"
+      sizes="16x16"
+      rel="icon"
+      href="../../resources/icono.png"
+    />
+    <script src="../js/validateSession.mjs"></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8" lang="es">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Pagina simulada para añadir a portafolio desarrollada por Franklin Cortés">
-  <title>AllTechno</title>
-  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-  <link rel="stylesheet" href="../css/style.css">
-  <link rel="stylesheet" href="../css/style_admin.css">
-  <link type="image/png" sizes="16x16" rel="icon" href="../../resources/icono.png">
-  <script src="../js/validateSession.mjs"></script>
-</head>
+  <body>
+    <div id="loading-overlay"></div>
+    <div id="admin-content">
+      <header>
+        <nav>
+          <a href="#">
+            <h1 class="ttl-nav">AllTechno</h1>
+          </a>
+          <div class="items-nav">
+            <button class="btn-categories">☰ &nbsp;&nbsp; Categorias</button>
+            <input
+              class="search-bar"
+              type="text"
+              placeholder="Ingresa tu busqueda"
+            />
+          </div>
+          <img
+            src="../../resources/cerrar-sesion.png"
+            class="user-icon"
+            alt="user icon"
+            width="30px"
+            height="30px"
+          />
 
-<body>
-  <div id="loading-overlay"></div>
-  <div id="admin-content">
-    <header>
-      <nav>
-        <a href="#">
-          <h1 class="ttl-nav">AllTechno</h1>
-        </a>
-        <div class="items-nav">
-          <button class="btn-categories">☰ &nbsp;&nbsp; Categorias</button>
-          <input class="search-bar" type="text" placeholder="Ingresa tu busqueda">
-        </div>
-        <img src="../../resources/cerrar-sesion.png" class="user-icon" alt="user icon" width="30px" height="30px">
+          <div class="dropdown-menu">
+            <div class="row-1">
+              <ul>
+                <a href="desktopPcs.html">
+                  <li>Equipos de escritorio</li>
+                </a>
+                <a href="processors.html">
+                  <li>Procesadores</li>
+                </a>
+                <a href="ram.html">
+                  <li>RAM</li>
+                </a>
+                <a href="powerSupplies.html">
+                  <li>Fuentes de poder</li>
+                </a>
+              </ul>
+            </div>
+            <div class="row-2">
+              <ul>
+                <a href="laptops.html">
+                  <li>Portatiles</li>
+                </a>
+                <a href="cellphones.html">
+                  <li>Celulares</li>
+                </a>
+                <a href="screens.html">
+                  <li>Pantallas</li>
+                </a>
+              </ul>
+            </div>
+          </div>
 
-        <div class="dropdown-menu">
-          <div class="row-1">
+          <div class="dropdown-menu dropdown-menu-user">
             <ul>
-              <a href="desktopPcs.html">
-                <li>Equipos de escritorio</li>
-              </a>
-              <a href="processors.html">
-                <li>Procesadores</li>
-              </a>
-              <a href="ram.html">
-                <li>RAM</li>
-              </a>
-              <a href="powerSupplies.html">
-                <li>Fuentes de poder</li>
+              <a>
+                <li>Cerrar Sesión</li>
               </a>
             </ul>
           </div>
-          <div class="row-2">
-            <ul>
-              <a href="laptops.html">
-                <li>Portatiles</li>
-              </a>
-              <a href="cellphones.html">
-                <li>Celulares</li>
-              </a>
-              <a href="screens.html">
-                <li>Pantallas</li>
-              </a>
-            </ul>
+
+          <div class="dropdown-menu dropdown-menu-search">
+            <ul></ul>
           </div>
-        </div>
+        </nav>
 
-        <div class="dropdown-menu dropdown-menu-user">
+        <div class="sub-nav">
           <ul>
-            <a>
-              <li>Cerrar Sesión</li>
-            </a>
+            <li>BOG: 3000000000 - 3000000000</li>
+            <li>MED: 3000000000</li>
+            <li>B/QUILLA: 3000000000</li>
+          </ul>
+          <ul>
+            <i class="bx bxl-facebook-square" style="color: black"></i>
+            <i class="bx bxl-tiktok" style="color: black"></i>
+            <i class="bx bxl-instagram-alt" style="color: black"></i>
           </ul>
         </div>
+      </header>
 
-        <div class="dropdown-menu dropdown-menu-search">
-          <ul>
-          </ul>
+      <main>
+        <div class="row-ttl-home">
+          <h3>GESTION DE PRODUCTOS Y USUARIOS</h3>
+          <p>
+            Esta sección está diseñada para que tú, como administrador, puedas
+            ver todos los productos y usuarios registrados en la tienda, agregar
+            nuevos productos y usuarios al sistema, y generar informes
+            detallados en formatos Excel y PDF, facilitando así la gestión y el
+            análisis de datos.
+          </p>
         </div>
-      </nav>
+        <div class="slider-card">
+          <div class="container">
+              <div class="swiper-wrapper">
+
+                <div class="products-management">
+                  <h4>PRODUCTOS</h4>
+
+                  <div class="btns-products">
+                    <div><a href="createProduct.html"><button class="btn-create-home">Agregar +</button></a>
+                    <span>Crear nuevo producto</span>
+                    </div>
+                    <div><button class="btn-pdf">Generar pdf</button>
+                    <span>Reporte .pdf</span>
+                    </div>
+                    <div><button class="btn-excel">Generar excel</button>
+                    <span>Reporte .xlsx</span>
+                    </div>
+                  </div>
+                </div>
 
 
-      <div class="sub-nav">
-        <ul>
-          <li>BOG: 3000000000 - 3000000000</li>
-          <li>MED: 3000000000</li>
-          <li>B/QUILLA: 3000000000</li>
-        </ul>
-        <ul>
-          <i class='bx bxl-facebook-square' style="color:black"></i>
-          <i class='bx bxl-tiktok' style="color:black"></i>
-          <i class='bx bxl-instagram-alt' style="color:black"></i>
-        </ul>
-      </div>
-    </header>
+                <div class="users-management">
+                  <h4>USUARIOS</h4>
+                  <table>
+                    <tr>
+                      <th>Identificación</th>
+                      <th>Nombre</th>
+                      <th>Correo</th>
+                      <th>Celular</th>
+                      <th>Rol</th>
+                      <th class="actions">Acciones</th>
+                    </tr>
+                    <tr>
+                      <td>12312312321</td>
+                      <td>Benito camelo marca</td>
+                      <td>benitoasd@gmail.com</td>
+                      <td>3212342342</td>
+                      <td>Admin</td>
+                      <td class="btns-leader">
+                        <button style="border-radius: 5px; border: none; background-color: green; padding: 5px 10px;"><img src="../../resources/editar.png" alt="" width="20px"></button>
+                        <button style="border-radius: 5px; border: none; background-color: red; padding: 5px 10px;"><img src="../../resources/eliminar.png" alt="" width="20px"></button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>12312312321</td>
+                      <td>Benito camelo marca</td>
+                      <td>benitoasd@gmail.com</td>
+                      <td>3212342342</td>
+                      <td>Admin</td>
+                      <td class="btns-leader">
+                        <button style="border-radius: 5px; border: none; background-color: green; padding: 5px 10px;"><img src="../../resources/editar.png" alt="" width="20px"></button>
+                        <button style="border-radius: 5px; border: none; background-color: red; padding: 5px 10px;"><img src="../../resources/eliminar.png" alt="" width="20px"></button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>12312312321</td>
+                      <td>Benito camelo marca</td>
+                      <td>benitoasd@gmail.com</td>
+                      <td>3212342342</td>
+                      <td>Admin</td>
+                      <td class="btns-leader">
+                        <button style="border-radius: 5px; border: none; background-color: green; padding: 5px 10px;"><img src="../../resources/editar.png" alt="" width="20px"></button>
+                        <button style="border-radius: 5px; border: none; background-color: red; padding: 5px 10px;"><img src="../../resources/eliminar.png" alt="" width="20px"></button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>12312312321</td>
+                      <td>Benito camelo marca</td>
+                      <td>benitoasd@gmail.com</td>
+                      <td>3212342342</td>
+                      <td>Admin</td>
+                      <td class="btns-leader">
+                        <button style="border-radius: 5px; border: none; background-color: green; padding: 5px 10px;"><img src="../../resources/editar.png" alt="" width="20px"></button>
+                        <button style="border-radius: 5px; border: none; background-color: red; padding: 5px 10px;"><img src="../../resources/eliminar.png" alt="" width="20px"></button>
+                      </td>
+                    </tr>
+                  </table>
 
-    <main>
-      <div class="row-ttl-home row-1-home">
-        <h3>NUEVOS PRODUCTOS</h3>
-        <div>
-          <hr>
-        </div>
-        <div class="ctn-btn-create">
-          <a href="createProduct.html"><button class="btn-create">+ CREAR PRODUCTO</button></a>
-        </div>
-      </div>
-      <div class="slider-card">
-        <div class="container">
-          <div class="swiper-button-next swiper-button-next1"></div>
-          <div class="swiper-button-prev swiper-button-prev1"></div>
-          <div class="swiper-container1 mySwiper">
-            <div class="swiper-wrapper">
+                  <div class="btns-users">
+                    <div><button class="btn-create-home">Agregar +</button>
+                    <span>Crear nuevo usuario</span>
+                    </div>
+                    <div><button class="btn-pdf">Generar pdf</button>
+                    <span>Reporte .pdf</span>
+                    </div>
+                    <div><button class="btn-excel">Generar excel</button>
+                    <span>Reporte .xlsx</span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </main>
 
-      <div class="row-ttl-home row2-ttl-home">
-        <h3>MAS VENDIDOS</h3>
-        <div>
-          <hr>
+      <footer>
+        <div class="business-info">
+          <h5>NUESTRA EMPRESA</h5>
+          <p>
+            El nombre de esta página web fue creado con el único propósito de
+            simular una empresa ficticia con el fin de demostrar habilidades de
+            diseño y desarrollo web, y se utiliza exclusivamente con propósitos
+            educativos y como parte de mi portafolio. Es importante destacar que
+            cualquier coincidencia con el nombre de una empresa real es
+            puramente fortuita, y esta página no tiene ninguna relación ni
+            afiliación con dicha entidad comercial.
+          </p>
+
+          <br />
+          <hr />
+          <p>
+            Franklin Cortés ©
+            <span class="year-footer">
+              <script>
+                //access to year for footer
+                const date = new Date();
+                document.querySelector(".year-footer").innerHTML = date.getFullYear();
+              </script>
+            </span>
+          </p>
         </div>
-      </div>
-      <div class="slider-card">
-        <div class="container">
-          <div class="swiper-button-next swiper-button-next2"></div>
-          <div class="swiper-button-prev swiper-button-prev2"></div>
-          <div class="swiper-container2 mySwiper">
-            <div class="swiper-wrapper">
-            </div>
-          </div>
+        <div class="business-contact">
+          <h5>CONTÁCTANOS</h5>
+          <ul>
+            <li>Bogotá D.C</li>
+            <li>alltechnologies@gmail.com</li>
+            <li>+57 300 000 00 00</li>
+          </ul>
         </div>
-      </div>
+      </footer>
+    </div>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+    <script src="../../views/js/swipers.js"></script>
+    <script src="../../views/js/dropdowns.js"></script>
+    <script src="../../views/js/showProductsBySearch.mjs"></script>
 
+    <script type="module">
+      import { SesionManagement } from "../js/login-logout.mjs";
 
-    </main>
-
-
-    <footer>
-      <div class="business-info">
-        <h5>NUESTRA EMPRESA</h5>
-        <p>El nombre de esta página web fue creado con el único propósito de simular una empresa ficticia con el fin de
-          demostrar habilidades de diseño y desarrollo web, y se utiliza exclusivamente con propósitos educativos y como
-          parte de mi portafolio. Es importante destacar que cualquier coincidencia con el nombre de una empresa real es
-          puramente fortuita, y esta página no tiene ninguna relación ni afiliación con dicha entidad comercial.</p>
-
-        <br>
-        <hr>
-        <p>Franklin Cortés ©
-          <span class="year-footer">
-            <script>
-              //acceder a año para el footer
-              const date = new Date()
-              document.querySelector(".year-footer").innerHTML = date.getFullYear();
-
-
-              fetch("http://localhost:5000/allTechno")
-                .then(res => res.json())
-                .then(res => {
-
-                  const codeRow1 = res.mostSelledProducts.map(newProduct => {
-                    let swiperSlidesHTML = ""; // Inicializamos una cadena vacía para contener el HTML de los swiper-slide
-
-                    // Iteramos sobre cada url y generamos el HTML del swiper-slide correspondiente
-                    for (let i = 1; i <= 6; i++) {
-                      const url = newProduct[`url${i}`]; // Obtenemos la URL correspondiente
-
-                      // Verificamos si la URL no es null
-                      if (url !== null && url !== "null") {
-                        swiperSlidesHTML += `
-                                <swiper-slide>
-                                  <div class="swiper-zoom-container">
-                                    <img src="../../${url}" alt="img-product" />
-                                  </div>
-                                </swiper-slide>
-                              `;
-                      }
-                    }
-
-                    // Verificamos si hay al menos un swiper-slide generado
-                    if (swiperSlidesHTML !== "") {
-                      // Si hay swiper-slide generados, los incluimos dentro de un contenedor swiper-container
-                      return `
-                              <div class="swiper-slide" data-id="${newProduct.id}" data-category="${newProduct.tabla}">
-                                <swiper-container style="--swiper-navigation-color: #fff; --swiper-pagination-color: #000" class="mySwiper"
-                                                  zoom="true"  pagination="true" pagination-clickable="true" loop="true">
-                                  ${swiperSlidesHTML}
-                                </swiper-container>
-                                <div class="data-product">
-                                  <h4 class="product-name">${newProduct.marca + " " + newProduct.modelo}</h4>
-                                  <span class="product-price">$${newProduct.precio.toLocaleString()}</span>
-                                </div>
-                                <div class="ctn-btns-admin-home">
-                                  <button class="btn-editar">Editar</button>
-                                  <button class="btn-eliminar">Eliminar</button>
-                                </div>
-                              </div>
-                            `;
-                    } else {
-                      // Si no hay swiper-slide generados, retornamos una cadena vacía
-                      return "";
-                    }
-                  }).join("");
-                  const codeRow2 = res.newProducts.map(mostSelledProduct => {
-                    let swiperSlidesHTML = "";
-
-                    // Iteramos sobre cada url y generamos el HTML del swiper-slide correspondiente
-                    for (let i = 1; i <= 6; i++) {
-                      const url = mostSelledProduct[`url${i}`]; // Obtenemos la URL correspondiente
-
-                      // Verificamos si la URL no es null
-                      if (url !== null && url !== "null") {
-                        swiperSlidesHTML += `
-                                <swiper-slide>
-                                  <div class="swiper-zoom-container">
-                                    <img src="../../${url}" alt="img-product" />
-                                  </div>
-                                </swiper-slide>
-                              `;
-                      }
-                    }
-
-                    // Verificamos si hay al menos un swiper-slide generado
-                    if (swiperSlidesHTML !== "") {
-                      // Si hay swiper-slide generados, los incluimos dentro de un contenedor swiper-container
-                      return `
-                              <div class="swiper-slide" data-id="${mostSelledProduct.id}" data-category="${mostSelledProduct.tabla}">
-                                  <div>
-                                    <swiper-container style="--swiper-navigation-color: #fff; --swiper-pagination-color: #000" class="mySwiper"
-                                                    zoom="true"  pagination="true" pagination-clickable="true" loop="true">
-                                    ${swiperSlidesHTML}
-                                    </swiper-container>
-                                    <div class="data-product">
-                                      <h4 class="product-name">${mostSelledProduct.marca + " " + mostSelledProduct.modelo}</h4>
-                                      <span class="product-price">$${mostSelledProduct.precio.toLocaleString()}</span>
-                                    </div>
-                                  </div>
-
-                                  <div class="ctn-btns-admin-home">
-                                    <button class="btn-editar">Editar</button>
-                                    <button class="btn-eliminar">Eliminar</button>
-                                  </div> 
-                              </div>
-                            `;
-                    } else return ""
-                  }).join("");
-
-
-                  document.querySelector(".swiper-container1 > .swiper-wrapper").innerHTML = codeRow1
-                  document.querySelector(".swiper-container2 > .swiper-wrapper").innerHTML = codeRow2
-
-                  const cards = document.querySelectorAll(".swiper-slide");
-
-                  cards.forEach(card => {
-                    card.addEventListener("mouseover", (e) => {
-                      card.style.cursor = "pointer";
-                    });
-
-                    card.addEventListener("click", (e) => {
-                      const cardClicked = e.target.closest(".swiper-slide");
-                      const id = cardClicked.dataset.id;
-                      const category = cardClicked.dataset.category
-
-                      if (!(e.target.className == "mySwiper")) window.location.href = `product.html?id=${id}&category=${category}`
-                    });
-                  });
-                })
-                .catch(error => console.error("Error: ", error))
-            </script>
-          </span>
-        </p>
-      </div>
-      <div class="business-contact">
-        <h5>CONTÁCTANOS</h5>
-        <ul>
-          <li>Bogotá D.C</li>
-          <li>alltechnologies@gmail.com</li>
-          <li>+57 300 000 00 00</li>
-        </ul>
-      </div>
-    </footer>
-
-  </div>
-  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
-  <script src="../../views/js/swipers.js"></script>
-  <script src="../../views/js/dropdowns.js"></script>
-  <script src="../../views/js/showProductsBySearch.mjs"></script>
-
-  <script type="module">
-    import { SesionManagement } from "../js/login-logout.mjs";
-
-    document.querySelector(".dropdown-menu-user").addEventListener("click", () => {
-      SesionManagement.logout()
-    })
-  </script>
-</body>
-
+      document
+        .querySelector(".dropdown-menu-user")
+        .addEventListener("click", () => {
+          SesionManagement.logout();
+        });
+    </script>
+  </body>
 </html>

@@ -570,9 +570,10 @@ export class ControllerUsers {
       });
     }
 
-    static validateSession = (req, res) => {
+    static validateSession = async (req, res) => {
       if (req.session && req.sessionStore.user && req.sessionStore.admin) {
-          return res.status(200).json({ loggedIn: true, user: req.sessionStore.user })
+          const rol = await ModelsUser.accessToRol(req.sessionStore.user)
+          return res.status(200).json({ loggedIn: true, user: req.sessionStore.user, rol : rol })
       } else {
           return res.status(401).json({ loggedIn: false });
       }
