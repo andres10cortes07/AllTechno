@@ -26,19 +26,10 @@ export class ModelsUser {
         return true
     }
 
-    static getAll = async ({order}) => {
-        // define the allowed orders for the query
-        const validOrders = {
-            "nombres ASC": "nombres ASC",
-            "nombres DESC": "nombres DESC"
-        };
-
-        // selects valid order, defaults to 'RAND()' if invalid
-        const orderBy = validOrders[order] || "nombres DESC";
-
+    static getAll = async () => {
         const [users] = await connection.query(
             `
-                SELECT identificacion, nombres, apellidos, correo, celular, rol FROM usuario ORDER BY ${orderBy}
+                SELECT identificacion, nombres, apellidos, correo, celular, rol FROM usuario ORDER BY nombres ASC
             `
         )
 

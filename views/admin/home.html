@@ -147,65 +147,13 @@
                 <div class="users-management">
                   <h4>USUARIOS</h4>
                   <table>
-                    <tr>
-                      <th>Identificación</th>
-                      <th>Nombre</th>
-                      <th>Correo</th>
-                      <th>Celular</th>
-                      <th>Rol</th>
-                      <th class="actions">Acciones</th>
-                    </tr>
-                    <tr>
-                      <td>12312312321</td>
-                      <td>Benito camelo marca</td>
-                      <td>benitoasd@gmail.com</td>
-                      <td>3212342342</td>
-                      <td>Admin</td>
-                      <td class="btns-leader">
-                        <button style="border-radius: 5px; border: none; background-color: green; padding: 5px 10px;"><img src="../../resources/editar.png" alt="" width="20px"></button>
-                        <button style="border-radius: 5px; border: none; background-color: red; padding: 5px 10px;"><img src="../../resources/eliminar.png" alt="" width="20px"></button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>12312312321</td>
-                      <td>Benito camelo marca</td>
-                      <td>benitoasd@gmail.com</td>
-                      <td>3212342342</td>
-                      <td>Admin</td>
-                      <td class="btns-leader">
-                        <button style="border-radius: 5px; border: none; background-color: green; padding: 5px 10px;"><img src="../../resources/editar.png" alt="" width="20px"></button>
-                        <button style="border-radius: 5px; border: none; background-color: red; padding: 5px 10px;"><img src="../../resources/eliminar.png" alt="" width="20px"></button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>12312312321</td>
-                      <td>Benito camelo marca</td>
-                      <td>benitoasd@gmail.com</td>
-                      <td>3212342342</td>
-                      <td>Admin</td>
-                      <td class="btns-leader">
-                        <button style="border-radius: 5px; border: none; background-color: green; padding: 5px 10px;"><img src="../../resources/editar.png" alt="" width="20px"></button>
-                        <button style="border-radius: 5px; border: none; background-color: red; padding: 5px 10px;"><img src="../../resources/eliminar.png" alt="" width="20px"></button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>12312312321</td>
-                      <td>Benito camelo marca</td>
-                      <td>benitoasd@gmail.com</td>
-                      <td>3212342342</td>
-                      <td>Admin</td>
-                      <td class="btns-leader">
-                        <button style="border-radius: 5px; border: none; background-color: green; padding: 5px 10px;"><img src="../../resources/editar.png" alt="" width="20px"></button>
-                        <button style="border-radius: 5px; border: none; background-color: red; padding: 5px 10px;"><img src="../../resources/eliminar.png" alt="" width="20px"></button>
-                      </td>
-                    </tr>
                   </table>
 
                   <div class="btns-users">
                     <div><button class="btn-create-home">Agregar +</button>
                     <span>Crear nuevo usuario</span>
                     </div>
-                    <div><button class="btn-pdf">Generar pdf</button>
+                    <div><button class="btn-pdf btn-pdf-user">Generar pdf</button>
                     <span>Reporte .pdf</span>
                     </div>
                     <div><button class="btn-excel">Generar excel</button>
@@ -242,6 +190,39 @@
                 //access to year for footer
                 const date = new Date();
                 document.querySelector(".year-footer").innerHTML = date.getFullYear();
+
+                fetch("http://localhost:5000/allTechno/user/getAll")
+                .then(res => res.json())
+                .then(users => {
+                    let codeTable = `
+                      <tr>
+                        <th>Identificación</th>
+                        <th>Nombre</th>
+                        <th>Correo</th>
+                        <th>Celular</th>
+                        <th>Rol</th>
+                        <th class="actions">Acciones</th>
+                      </tr>
+                  `;
+
+                  codeTable += users.map(user => {
+                    return `
+                      <tr>
+                        <td>${user.identificacion}</td>
+                        <td>${user.nombres} ${user.apellidos}</td>
+                        <td>${user.correo}</td>
+                        <td>${user.celular}</td>
+                        <td>${user.rol}</td>
+                        <td class="btns-leader">
+                          <button style="border-radius: 5px; border: none; background-color: green; padding: 5px 10px;"><img src="../../resources/editar.png" alt="" width="20px"></button>
+                          <button style="border-radius: 5px; border: none; background-color: red; padding: 5px 10px;"><img src="../../resources/eliminar.png" alt="" width="20px"></button>
+                        </td>
+                      </tr>
+                    `;
+                  }).join("");
+
+                  document.querySelector("table").innerHTML = codeTable;
+                })
               </script>
             </span>
           </p>
@@ -261,6 +242,7 @@
     <script src="../../views/js/swipers.js"></script>
     <script src="../../views/js/dropdowns.js"></script>
     <script src="../../views/js/showProductsBySearch.mjs"></script>
+    <script src="../../views/js/generateReports.js"></script>
 
     <script type="module">
       import { SesionManagement } from "../js/login-logout.mjs";

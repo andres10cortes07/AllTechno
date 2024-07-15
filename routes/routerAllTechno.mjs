@@ -136,7 +136,7 @@ router.delete("/desktopComputers/:id", ControllerDesktops.deleteDesktopPc);
 
 //? user routes
 router.get("/user/changePass/:identificacion", ControllerUsers.changePassword);
-router.get("/user/getAll/:order", ControllerUsers.getUsers);
+router.get("/user/getAll", ControllerUsers.getUsers);
 router.get("/user/:identificacion", ControllerUsers.getById);
 router.post("/user", ControllerUsers.createUser);
 router.patch("/user/:identificacion", ControllerUsers.modifyUser);
@@ -150,3 +150,6 @@ router.get("/admin/logout", ControllerUsers.logout);
 
 //? route to verify session
 router.get('/api/session', ControllerUsers.validateSession);
+
+//? routes to generate users reports
+router.get("/generate/reportpdf/users", ControllerUsers.generatePDF)

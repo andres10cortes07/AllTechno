@@ -15,14 +15,16 @@ searchBar.addEventListener("input", () => {
             })
             .then(products  => {
                 const codeAllProducts = products.map(product => {
-                    if (document.location.href.includes("index.html")) {
+                    if (!document.location.href.includes("admin")) {
                         return `
                         <a href="views/products/product.html?id=${product.id}&category=${product.tabla}"><li>${product.union_tablas}</li></a>
                         `
                     }
-                    return `
+                    else if (document.location.href.includes("admin")){
+                        return `
                         <a href="product.html?id=${product.id}&category=${product.tabla}"><li>${product.union_tablas}</li></a>
                     `
+                    }
                 }).join("")
 
                 document.querySelector(".dropdown-menu-search").style.display = "block"

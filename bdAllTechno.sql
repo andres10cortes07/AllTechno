@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `alltechno`.`usuario` (
   `apellidos` VARCHAR(100) NOT NULL,
   `correo` VARCHAR(50) NOT NULL,
   `contraseña` VARCHAR(50) NOT NULL,
-  `rol` enum ("admin", "lider") NOT NULL,
+  `rol` enum ("Admin", "Lider") NOT NULL,
   `celular` VARCHAR(10) NOT NULL,
   PRIMARY KEY (`identificacion`));
 
@@ -602,7 +602,7 @@ UNION ALL
 );
 
 INSERT INTO usuario (identificacion, nombres, apellidos, correo, contraseña, rol, celular) VALUES 
-("1025522938", "Franklin Andres", "Cortes Gonzalez", "andres10cortes07@gmail.com", "contraseña", "admin", "3204031794");
+("1025522938", "Franklin Andres", "Cortes Gonzalez", "andres10cortes07@gmail.com", "contraseña", "Admin", "3204031794");
 
 INSERT INTO usuario (identificacion, nombres, apellidos, correo, contraseña, rol, celular) VALUES 
-("1025522939", "Juan David", "Gomez Barrera", "gomez007a@gmail.com", "nuevaClave", "lider", "3204031795");
+("1025522939", "Juan David", "Gomez Barrera", "gomez007a@gmail.com", "nuevaClave", "Lider", "3204031795");

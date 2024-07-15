@@ -1,5 +1,6 @@
 import { ModelsUser } from "../models/user.mjs";
 import { ValidateUser, ValidateModifyUser } from "../schemas/schemasUser.mjs";
+import { usersPDF } from "../controllers/PDFreports.mjs";
 import nodemailer from "nodemailer";
 
 
@@ -259,8 +260,7 @@ export class ControllerUsers {
     }
 
     static getUsers = async (req, res) => {
-      const { order } = req.params
-      return res.json(await ModelsUser.getAll({order}))
+      return res.json(await ModelsUser.getAll())
     }
 
     static getById = async (req, res) => {
@@ -578,5 +578,20 @@ export class ControllerUsers {
           return res.status(401).json({ loggedIn: false });
       }
     };
+
+    static generatePDF = async (req, res) => {
+      
+      const stream = res.writeHead(200, {
+        "Content-Type" : "application/pdf",
+        "Content-Disposition" : "attachment; filename = Reporte de Usuarios.pdf"
+      })
+
+      const users = await ModelsUser.getAll()
+
+      usersPDF((data) => stream.write(data),
+      () => stream.end(),
+      users
+      )
+    }
 }
 
