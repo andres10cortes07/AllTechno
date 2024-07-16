@@ -1,47 +1,62 @@
 import { ModelsUser } from "../models/user.mjs";
 import { ValidateUser, ValidateModifyUser } from "../schemas/schemasUser.mjs";
-import { usersPDF } from "../controllers/PDFreports.mjs";
+import { usersPDF, productsPDF } from "../controllers/PDFreports.mjs";
+import { cellphoneModels } from "../models/cellphones.mjs";
+import { ModelsDesktops } from "../models/desktops.mjs";
+import { laptopModels } from "../models/laptops.mjs";
+import { ModelsPowerSupplies } from "../models/powerSupplies.mjs";
+import { ModelsProcessors } from "../models/processors.mjs";
+import { ModelsRam } from "../models/ram.mjs";
+import { ModelsScreens } from "../models/screens.mjs";
 import nodemailer from "nodemailer";
+import excel4node from "excel4node";
 
+const cellphones = await cellphoneModels.getAll("cel.precio DESC")
+const desktops = await ModelsDesktops.getAll("tor.precio DESC")
+const laptops = await laptopModels.getAll("por.precio DESC")
+const powerSupplies = await ModelsPowerSupplies.getAll("pow.precio DESC")
+const processors = await ModelsProcessors.getAll("pro.precio DESC")
+const ram = await ModelsRam.getAll("ram.precio DESC")
+const screens = await ModelsScreens.getAll("pan.precio DESC")
 
 export class ControllerUsers {
 
-    static changePassword = async (req, res) => {
-        const { identificacion } = req.params
+  static changePassword = async (req, res) => {
+    const { identificacion } = req.params
 
-        const userEmail = await ModelsUser.getEmail({ identificacion })
-        if(!userEmail) return res.json({error : "La identificacion que ingresaste no está registrada en el sistema"})
-        
-        // define new key limits
-        const passLength = Math.floor(Math.random() * (15 - 30 + 1)) + 30
-        let newPass = ""
-        // define the characters that the new key can have
-        const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=[]{}|;:,.<>?"
-        
-        for (let i = 0; i <= passLength; i++) {
-            newPass += characters.charAt(Math.floor(Math.random() * characters.length))
+    const userEmail = await ModelsUser.getEmail({ identificacion })
+    if (!userEmail) return res.json({ error: "La identificacion que ingresaste no está registrada en el sistema" })
+
+    // define new key limits
+    const passLength = Math.floor(Math.random() * (15 - 30 + 1)) + 30
+    let newPass = ""
+    // define the characters that the new key can have
+    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=[]{}|;:,.<>?"
+
+    for (let i = 0; i <= passLength; i++) {
+      newPass += characters.charAt(Math.floor(Math.random() * characters.length))
+    }
+
+    // change of password
+    const passwordModified = await ModelsUser.modifyPassword({ identificacion, newPass })
+
+    // sending email with user information and new password
+    const sendEmail = async () => {
+      const config = {
+        host: "smtp.gmail.com",
+        port: 465,
+        secure: true,
+        auth: {
+          user: "alltechnologysoftware@gmail.com",
+          pass: "flmc ynka fjsp iafq"
         }
+      }
 
-        // change of password
-        const passwordModified = await ModelsUser.modifyPassword({identificacion, newPass})
-
-        // sending email with user information and new password
-        const sendEmail = async () => {
-            const config = {
-                host : "smtp.gmail.com",
-                port: 465,
-                secure : true,
-                auth: {
-                    user : "alltechnologysoftware@gmail.com",
-                    pass : "flmc ynka fjsp iafq"
-                }
-            }
-        
-            const message = {
-                from : "alltechnologysoftware@gmail.com",
-                to : userEmail[0].correo,
-                subject : "Cambio de contraseña",
-                html : `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+      const message = {
+        from: "alltechnologysoftware@gmail.com",
+        to: userEmail[0].correo,
+        subject: "Cambio de contraseña",
+        html: `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                 <html dir="ltr" xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office" lang="es">
                  <head>
                   <meta charset="UTF-8">
@@ -247,67 +262,67 @@ export class ControllerUsers {
                   </div>
                  </body>
                 </html>`
-            }
-            const transport = nodemailer.createTransport(config);
-            await transport.sendMail(message)
-        }
-
-        if(!passwordModified) return res.json({error : "Error al cambiar la clave"})
-        else {
-            res.json({message : "Password changed successfully"})
-            sendEmail()
-        }
-    }
-
-    static getUsers = async (req, res) => {
-      return res.json(await ModelsUser.getAll())
-    }
-
-    static getById = async (req, res) => {
-      const { identificacion } = req.params
-
-      const user = await ModelsUser.getById({ identificacion })
-
-      if (!user) return res.status(404).json({error : "User not found"})
-      return res.json(user)
-    }
-
-    static createUser = async (req, res) => {
-      const result = ValidateUser(req.body)
-
-      if (result.error) return res.status(400).json({error : JSON.parse(result.error.message)})
-
-      // define new key limits
-      const passLength = Math.floor(Math.random() * (15 - 30 + 1)) + 30
-      let newPass = ""
-      // define the characters that the new key can have
-      const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=[]{}|;:,.<>?"
-        
-      for (let i = 0; i <= passLength; i++) {
-        newPass += characters.charAt(Math.floor(Math.random() * characters.length))
       }
-      
-      // create user
-      let newUser = await ModelsUser.createUser({newPass, input:result.data})
-      if(!newUser) return res.status(400).json({error : "El usuario ingresado ya se encuentra registrado"})
-      newUser = newUser[0]
+      const transport = nodemailer.createTransport(config);
+      await transport.sendMail(message)
+    }
 
-      const sendEmail = async () => {
-        const config = {
-            host : "smtp.gmail.com",
-            port: 465,
-            secure : true,
-            auth: {
-                user : "alltechnologysoftware@gmail.com",
-                pass : "flmc ynka fjsp iafq"
-            }
+    if (!passwordModified) return res.json({ error: "Error al cambiar la clave" })
+    else {
+      res.json({ message: "Password changed successfully" })
+      sendEmail()
+    }
+  }
+
+  static getUsers = async (req, res) => {
+    return res.json(await ModelsUser.getAll())
+  }
+
+  static getById = async (req, res) => {
+    const { identificacion } = req.params
+
+    const user = await ModelsUser.getById({ identificacion })
+
+    if (!user) return res.status(404).json({ error: "User not found" })
+    return res.json(user)
+  }
+
+  static createUser = async (req, res) => {
+    const result = ValidateUser(req.body)
+
+    if (result.error) return res.status(400).json({ error: JSON.parse(result.error.message) })
+
+    // define new key limits
+    const passLength = Math.floor(Math.random() * (15 - 30 + 1)) + 30
+    let newPass = ""
+    // define the characters that the new key can have
+    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=[]{}|;:,.<>?"
+
+    for (let i = 0; i <= passLength; i++) {
+      newPass += characters.charAt(Math.floor(Math.random() * characters.length))
+    }
+
+    // create user
+    let newUser = await ModelsUser.createUser({ newPass, input: result.data })
+    if (!newUser) return res.status(400).json({ error: "El usuario ingresado ya se encuentra registrado" })
+    newUser = newUser[0]
+
+    const sendEmail = async () => {
+      const config = {
+        host: "smtp.gmail.com",
+        port: 465,
+        secure: true,
+        auth: {
+          user: "alltechnologysoftware@gmail.com",
+          pass: "flmc ynka fjsp iafq"
         }
-    
-        const message = {
-            from : "alltechnologysoftware@gmail.com",
-            to : newUser.correo,
-            subject : "Nuevo Usuario!!!",
-            html : `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+      }
+
+      const message = {
+        from: "alltechnologysoftware@gmail.com",
+        to: newUser.correo,
+        subject: "Nuevo Usuario!!!",
+        html: `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
             <html dir="ltr" xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office" lang="es">
              <head>
               <meta charset="UTF-8">
@@ -514,84 +529,498 @@ export class ControllerUsers {
               </div>
              </body>
             </html>`
-        }
-        const transport = nodemailer.createTransport(config);
-        await transport.sendMail(message)
       }
-      sendEmail()
-
-      return res.status(201).json({message: "Usuario creado con exito, hemos enviado la clave al correo ingresado", newUser})
+      const transport = nodemailer.createTransport(config);
+      await transport.sendMail(message)
     }
+    sendEmail()
 
-    static modifyUser = async (req, res) => {
-      const { identificacion } = req.params
-      const result = ValidateModifyUser(req.body)
+    return res.status(201).json({ message: "Usuario creado con exito, hemos enviado la clave al correo ingresado", newUser })
+  }
 
-      if (result.error) return res.status(400).json({error : JSON.parse(result.error.message)})
+  static modifyUser = async (req, res) => {
+    const { identificacion } = req.params
+    const result = ValidateModifyUser(req.body)
+
+    if (result.error) return res.status(400).json({ error: JSON.parse(result.error.message) })
 
 
-      const userModified = await ModelsUser.modifyUser({ identificacion, input:result.data })
-      
-      if (!userModified) return res.status(404).json({error : "User not found"})
-      return res.json(userModified)
-    }
+    const userModified = await ModelsUser.modifyUser({ identificacion, input: result.data })
 
-    static deleteUser = async (req, res) => {
-      const { identificacion } = req.params
+    if (!userModified) return res.status(404).json({ error: "User not found" })
+    return res.json(userModified)
+  }
 
-      const deleteStatus = await ModelsUser.deleteUser({ identificacion })
+  static deleteUser = async (req, res) => {
+    const { identificacion } = req.params
 
-      if(!deleteStatus) return res.status(404).json({error : "User not found"})
-      return res.json({message : "User deleted successfully"})
-    }
+    const deleteStatus = await ModelsUser.deleteUser({ identificacion })
 
-    static login = async (req, res) => {
-      const infoUser = req.body
+    if (!deleteStatus) return res.status(404).json({ error: "User not found" })
+    return res.json({ message: "User deleted successfully" })
+  }
 
-      const userExists = await ModelsUser.login(infoUser)
+  static login = async (req, res) => {
+    const infoUser = req.body
 
-      if(!userExists) return res.status(401).json({error : "Los datos ingresados son incorrectos"})
+    const userExists = await ModelsUser.login(infoUser)
 
-      req.sessionStore.user = userExists.correo
-      req.sessionStore.admin = true
-      return res.json(userExists)
-    }
+    if (!userExists) return res.status(401).json({ error: "Los datos ingresados son incorrectos" })
 
-    static logout = (req, res) => {
-      req.sessionStore.admin = null
-      req.sessionStore.user = null
+    req.sessionStore.user = userExists.correo
+    req.sessionStore.admin = true
+    return res.json(userExists)
+  }
 
-      req.session.save((err) => {
-        if (err) {
-          return res.status(500).json({ error: 'Failed to logout.' });
-        } else {
-          return res.json({ message: 'Logout successful!' });
-        }
-      });
-    }
+  static logout = (req, res) => {
+    req.sessionStore.admin = null
+    req.sessionStore.user = null
 
-    static validateSession = async (req, res) => {
-      if (req.session && req.sessionStore.user && req.sessionStore.admin) {
-          const rol = await ModelsUser.accessToRol(req.sessionStore.user)
-          return res.status(200).json({ loggedIn: true, user: req.sessionStore.user, rol : rol })
+    req.session.save((err) => {
+      if (err) {
+        return res.status(500).json({ error: 'Failed to logout.' });
       } else {
-          return res.status(401).json({ loggedIn: false });
+        return res.json({ message: 'Logout successful!' });
       }
-    };
+    });
+  }
 
-    static generatePDF = async (req, res) => {
-      
-      const stream = res.writeHead(200, {
-        "Content-Type" : "application/pdf",
-        "Content-Disposition" : "attachment; filename = Reporte de Usuarios.pdf"
-      })
+  static validateSession = async (req, res) => {
+    if (req.session && req.sessionStore.user && req.sessionStore.admin) {
+      const rol = await ModelsUser.accessToRol(req.sessionStore.user)
+      return res.status(200).json({ loggedIn: true, user: req.sessionStore.user, rol: rol })
+    } else {
+      return res.status(401).json({ loggedIn: false });
+    }
+  };
 
-      const users = await ModelsUser.getAll()
+  static generateUsersPDF = async (req, res) => {
 
-      usersPDF((data) => stream.write(data),
+    const stream = res.writeHead(200, {
+      "Content-Type": "application/pdf",
+      "Content-Disposition": "attachment; filename = Reporte de Usuarios.pdf"
+    })
+
+    const users = await ModelsUser.getAll()
+
+    usersPDF((data) => stream.write(data),
       () => stream.end(),
       users
-      )
+    )
+  }
+
+  static generateUsersExcel = async (req, res) => {
+    try {
+      const users = await ModelsUser.getAll();
+
+      // Crear libro de trabajo
+      const wb = new excel4node.Workbook();
+
+      // Crear hoja de trabajo
+      const ws = wb.addWorksheet("Usuarios");
+
+      // Estilo para la celda combinada del título
+      const titleStyle = wb.createStyle({
+        font: {
+          color: 'white',
+          size: 12,
+          bold: true,
+        },
+        alignment: {
+          horizontal: 'center',
+          vertical: 'center'
+        },
+        fill: {
+          type: 'pattern',
+          patternType: 'solid',
+          fgColor: 'black'
+        }
+      });
+
+      // Estilo para los encabezados
+      const headerStyle = wb.createStyle({
+        font: {
+          color: 'black',
+          size: 12,
+          bold: true,
+        },
+        alignment: {
+          horizontal: 'center',
+          vertical: 'center'
+        },
+        fill: {
+          type: 'pattern',
+          patternType: 'solid',
+          fgColor: '#D9D9D9'
+        },
+        border: {
+          left: {
+            style: 'thin',
+            color: 'black'
+          },
+          right: {
+            style: 'thin',
+            color: 'black'
+          },
+          top: {
+            style: 'thin',
+            color: 'black'
+          },
+          bottom: {
+            style: 'thin',
+            color: 'black'
+          }
+        }
+      });
+
+      // Estilo para celdas con texto centrado y bordes
+      const centeredStyle = wb.createStyle({
+        font: {
+          color: 'black',
+          size: 12,
+        },
+        alignment: {
+          horizontal: 'center',
+          vertical: 'center'
+        },
+        border: {
+          left: {
+            style: 'thin',
+            color: 'black'
+          },
+          right: {
+            style: 'thin',
+            color: 'black'
+          },
+          top: {
+            style: 'thin',
+            color: 'black'
+          },
+          bottom: {
+            style: 'thin',
+            color: 'black'
+          }
+        }
+      });
+
+      // Fusionar celdas para el título del reporte
+      ws.cell(1, 1, 2, 5, true).string('REPORTE DE USUARIOS ALLTECHNO').style(titleStyle);
+
+      // Establecer anchos de columna
+      ws.column(1).setWidth(20); // Identificación
+      ws.column(2).setWidth(30); // Nombre
+      ws.column(3).setWidth(30); // Correo
+      ws.column(4).setWidth(20); // Celular
+      ws.column(5).setWidth(20); // Rol
+
+      // Agregar encabezados
+      const headers = ["Identificación", "Nombre", "Correo", "Celular", "Rol"];
+      headers.forEach((header, index) => {
+        ws.cell(3, index + 1).string(header).style(headerStyle);
+      });
+
+      // Agregar datos de usuarios
+      users.forEach((user, rowIndex) => {
+        ws.cell(rowIndex + 4, 1).string(user.identificacion).style(centeredStyle);
+        ws.cell(rowIndex + 4, 2).string(`${user.nombres} ${user.apellidos}`).style(centeredStyle);
+        ws.cell(rowIndex + 4, 3).string(user.correo).style(centeredStyle);
+        ws.cell(rowIndex + 4, 4).string(user.celular).style(centeredStyle);
+        ws.cell(rowIndex + 4, 5).string(user.rol).style(centeredStyle);
+      });
+
+      // Generar un buffer con el archivo Excel
+      const buffer = await wb.writeToBuffer();
+
+      // Generar un nombre único para el archivo
+      const fileName = `Reporte_Usuarios.xlsx`;
+
+      // Configurar las cabeceras de respuesta para la descarga automática
+      res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+      res.setHeader('Content-Disposition', `attachment; filename="${fileName}"`);
+
+      // Enviar el archivo Excel al cliente
+      res.send(buffer);
+
+    } catch (error) {
+      console.error("Error al generar el archivo Excel:", error);
+      res.status(500).send('Error al generar el archivo Excel');
     }
+  }
+
+  static generateProductsPDF = async (req, res) => {
+    const stream = res.writeHead(200, {
+      "Content-Type": "application/pdf",
+      "Content-Disposition": "attachment; filename = Reporte de Productos.pdf"
+    })
+
+    productsPDF((data) => stream.write(data),
+      () => stream.end(),
+      cellphones, desktops, laptops, powerSupplies, processors, ram, screens
+    )
+  }
+
+  static generateProductsExcel = async (req, res) => {
+    try { // Crear libro de trabajo
+      const wb = new excel4node.Workbook();
+  
+      // Estilo para la celda combinada del título
+      const titleStyle = wb.createStyle({
+          font: {
+              color: 'white',
+              size: 12,
+              bold: true,
+          },
+          alignment: {
+              horizontal: 'center',
+              vertical: 'center'
+          },
+          fill: {
+              type: 'pattern',
+              patternType: 'solid',
+              fgColor: 'black'
+          }
+      });
+  
+      // Estilo para los encabezados
+      const headerStyle = wb.createStyle({
+          font: {
+              color: 'black',
+              size: 12,
+              bold: true,
+          },
+          alignment: {
+              horizontal: 'center',
+              vertical: 'center',
+              wrapText: true
+          },
+          fill: {
+              type: 'pattern',
+              patternType: 'solid',
+              fgColor: '#D9D9D9'
+          },
+          border: {
+              left: {
+                  style: 'thin',
+                  color: 'black'
+              },
+              right: {
+                  style: 'thin',
+                  color: 'black'
+              },
+              top: {
+                  style: 'thin',
+                  color: 'black'
+              },
+              bottom: {
+                  style: 'thin',
+                  color: 'black'
+              }
+          }
+      });
+  
+      // Estilo para celdas con texto centrado y bordes
+      const centeredStyle = wb.createStyle({
+          font: {
+              color: 'black',
+              size: 12,
+          },
+          alignment: {
+              horizontal: 'center',
+              vertical: 'center',
+              wrapText: true
+          },
+          border: {
+              left: {
+                  style: 'thin',
+                  color: 'black'
+              },
+              right: {
+                  style: 'thin',
+                  color: 'black'
+              },
+              top: {
+                  style: 'thin',
+                  color: 'black'
+              },
+              bottom: {
+                  style: 'thin',
+                  color: 'black'
+              }
+          }
+      });
+  
+      const headerMapping = {
+          'Marca': 'marca',
+          'Modelo': 'modelo',
+          'Bateria': 'bateria',
+          'Procesador': 'procesador',
+          'Cámara Frontal': 'camaraFrontal',
+          'Cámara Posterior': 'camaraPosterior',
+          'Resolución': 'resolucion',
+          'Huella': 'huella',
+          'Almacenamiento': 'almacenamiento',
+          'RAM': 'ram',
+          'Precio': 'precio',
+          'Colores': 'colores',
+          'Voltaje': 'voltaje',
+          'Potencia': 'potencia',
+          'Certificación': 'certificacion',
+          'Dimensiones': 'dimensiones',
+          'Pulgadas': 'pulgadas',
+          'Tipo': 'tipo',
+          'Gráfica': 'grafica',
+          'Tamaño Pantalla': 'tamañoPantalla',
+          'Num Nucleos': 'numNucleos',
+          'Num Hilos': 'numHilos',
+          'Reloj Base': 'relojBase',
+          'Capacidad': 'capacidad',
+          'Velocidad': 'velocidad',
+          'LED': 'led',
+          'Procesador': 'procesador',
+          'Gráfica': 'grafica',
+          'RAM': 'ram',
+          'Almacenamiento': 'almacenamiento',
+          'Board': 'board',
+          'Chasis': 'chasis',
+          'Fuente': 'fuente'
+      };
+  
+      const calculateColumnWidths = (headers, data) => {
+          const columnWidths = headers.map(header => {
+              switch (header) {
+                  case 'Marca':
+                  case 'Modelo':
+                  case 'Procesador':
+                  case 'Dimensiones':
+                  case 'Tipo':
+                  case 'Certificación':
+                      return 20; // Ajuste de ancho aproximado para columnas largas
+                  case 'Bateria':
+                  case 'Cámara Frontal':
+                  case 'Cámara Posterior':
+                  case 'Resolución':
+                  case 'Huella':
+                  case 'Almacenamiento':
+                  case 'RAM':
+                  case 'Precio':
+                  case 'Colores':
+                  case 'Voltaje':
+                  case 'Potencia':
+                  case 'Pulgadas':
+                  case 'Tamaño Pantalla':
+                  case 'Num Nucleos':
+                  case 'Num Hilos':
+                  case 'Reloj Base':
+                  case 'Capacidad':
+                  case 'Velocidad':
+                  case 'LED':
+                      return 15; // Ajuste de ancho aproximado para columnas medianas
+                  default:
+                      return 12; // Ajuste de ancho aproximado para columnas cortas
+              }
+          });
+  
+          data.forEach(item => {
+              headers.forEach((header, index) => {
+                  const field = headerMapping[header];
+                  const valueLength = (item[field]?.toString() || '').length;
+                  if (valueLength > columnWidths[index]) {
+                      columnWidths[index] = valueLength;
+                  }
+              });
+          });
+  
+          return columnWidths;
+      };
+  
+      // Estilo para precios
+const priceStyle = wb.createStyle({
+  font: {
+      color: 'black',
+      size: 12,
+  },
+  alignment: {
+      horizontal: 'right', // Alineación a la derecha para los precios
+      vertical: 'center',
+  },
+  numberFormat: '"$"#,##0;[Red]\\-"$"#,##0',
+  border: {
+    left: {
+        style: 'thin',
+        color: 'black'
+    },
+    right: {
+        style: 'thin',
+        color: 'black'
+    },
+    top: {
+        style: 'thin',
+        color: 'black'
+    },
+    bottom: {
+        style: 'thin',
+        color: 'black'
+    }
+},
+alignment: {
+  horizontal: 'center',
+  vertical: 'center',// Formato de número para precios
+}})
+
+const addSectionToSheet = (wb, sheetName, sectionTitle, headers, data) => {
+  const ws = wb.addWorksheet(sheetName);
+
+  // Fusionar celda para el título del reporte
+  ws.cell(1, 1, 1, headers.length, true).string(sectionTitle).style(titleStyle);
+
+  let currentRow = 2; // Comenzar en la fila 3 después del título
+
+  headers.forEach((header, index) => {
+      ws.column(index + 1).setWidth(calculateColumnWidths(headers, data)[index] + 2); // Ajustar el ancho de columna
+      ws.cell(currentRow, index + 1).string(header).style(headerStyle);
+  });
+  currentRow++;
+
+  data.forEach(item => {
+      headers.forEach((header, colIndex) => {
+          const field = headerMapping[header];
+          if (header === 'Precio') {
+              // Aplicar el estilo de precio para la columna de precios
+              ws.cell(currentRow, colIndex + 1).number(item[field] || 0).style(priceStyle);
+          } else {
+              ws.cell(currentRow, colIndex + 1).string(item[field]?.toString() || '').style(centeredStyle);
+          }
+      });
+      currentRow++;
+  });
+};
+  
+      // Agregar cada sección de productos como una hoja separada
+      addSectionToSheet(wb, 'Celulares', 'PRODUCTOS ALLTECHNO - CELULARES', ['Marca', 'Modelo', 'Bateria', 'Procesador', 'Cámara Frontal', 'Cámara Posterior', 'Resolución', 'Huella', 'Almacenamiento', 'RAM', 'Precio', 'Colores'], cellphones);
+      addSectionToSheet(wb, 'FuentesDePoder', 'PRODUCTOS ALLTECHNO - FUENTES DE PODER', ['Marca', 'Modelo', 'Voltaje', 'Potencia', 'Certificación', 'Precio'], powerSupplies);
+      addSectionToSheet(wb, 'Pantallas', 'PRODUCTOS ALLTECHNO - PANTALLAS', ['Marca', 'Modelo', 'Dimensiones', 'Pulgadas', 'Resolución', 'Tipo', 'Precio'], screens);
+      addSectionToSheet(wb, 'Portatiles', 'PRODUCTOS ALLTECHNO - PORTÁTILES', ['Marca', 'Modelo', 'Procesador', 'Gráfica', 'Resolución', 'Tamaño Pantalla', 'Almacenamiento', 'RAM', 'Precio', 'Colores'], laptops);
+      addSectionToSheet(wb, 'Procesadores', 'PRODUCTOS ALLTECHNO - PROCESADORES', ['Marca', 'Modelo', 'Num Nucleos', 'Num Hilos', 'Reloj Base', 'Precio'], processors);
+      addSectionToSheet(wb, 'RAM', 'PRODUCTOS ALLTECHNO - RAM', ['Marca', 'Modelo', 'Capacidad', 'Velocidad', 'Tipo', 'LED', 'Precio'], ram);
+      addSectionToSheet(wb, 'TorreEscritorio', 'PRODUCTOS ALLTECHNO - TORRE DE ESCRITORIO', ['Procesador', 'Gráfica', 'RAM', 'Almacenamiento', 'Board', 'Chasis', 'Fuente', 'Precio'], desktops);
+  
+      // Generar un buffer con el archivo Excel
+      const buffer = await wb.writeToBuffer();
+  
+      // Generar un nombre único para el archivo
+      const fileName = `Reporte_Productos_Alltechno.xlsx`;
+  
+      // Configurar las cabeceras de respuesta para la descarga automática
+      res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+      res.setHeader('Content-Disposition', `attachment; filename="${fileName}"`);
+  
+      // Enviar el archivo Excel al cliente
+      res.send(buffer);
+  
+  } catch (error) {
+      console.error("Error al generar el archivo Excel:", error);
+      res.status(500).send('Error al generar el archivo Excel');
+  }
+  }
 }
 

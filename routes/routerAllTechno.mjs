@@ -152,4 +152,9 @@ router.get("/admin/logout", ControllerUsers.logout);
 router.get('/api/session', ControllerUsers.validateSession);
 
 //? routes to generate users reports
-router.get("/generate/reportpdf/users", ControllerUsers.generatePDF)
+router.get("/generate/reportpdf/users", ControllerUsers.generateUsersPDF)
+router.get("/generate/reporteexcel/users", ControllerUsers.generateUsersExcel)
+
+//? routes to generate products reports
+router.get("/generate/reportpdf/products", ControllerUsers.generateProductsPDF)
+router.get("/generate/reporteexcel/products", ControllerUsers.generateProductsExcel)
