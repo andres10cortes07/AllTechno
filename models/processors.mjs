@@ -70,4 +70,17 @@ export class ModelsProcessors {
         }
 
     }
+
+    static modifyProcessor = async () => {
+
+    }
+
+    static deleteProcessor = async ({ id }) => {
+        const [deleteStatus] = await connection.query(
+            `DELETE FROM procesadores WHERE id = UUID_TO_BIN(?);` , [id]
+        )
+
+        if (deleteStatus.affectedRows == 1) return true
+        return false
+    }
 }

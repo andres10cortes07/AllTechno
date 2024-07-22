@@ -71,4 +71,17 @@ export class ModelsRam {
         }
 
     }
+
+    static modifyRam = async () => {
+
+    }
+
+    static deleteRam = async ({ id }) => {
+        const [deleteStatus] = await connection.query(
+            `DELETE FROM ram WHERE id = UUID_TO_BIN(?);` , [id]
+        )
+
+        if (deleteStatus.affectedRows == 1) return true
+        return false
+    }
 }

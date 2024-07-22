@@ -19,7 +19,8 @@ document.addEventListener("DOMContentLoaded", () => {
             }
             else {
                 if(window.location.href.includes("admin/home")){
-                    if(data.rol === "admin"){
+                    console.log(data.rol)
+                    if(data.rol === "Admin"){
                         document.querySelector(".actions").style.display = "none"
                         document.querySelector(".btns-users div:first-child").style.display = "none"
                         document.querySelector(".btns-users").style.justifyContent = "start"

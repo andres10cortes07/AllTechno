@@ -69,9 +69,9 @@ export class ControllerProcessors {
 
     static deleteProcessor = async (req, res) => {
         const { id } = req.params;
-        const deleteStatus = await this.deleteProcessor({id});
+        const deleteStatus = await ModelsProcessors.deleteProcessor({ id })
         
-        if (deleteStatus) return res.json({message : "Processor deleted successfully"});
-        return res.json({error : "Processor not found"})
+        if (deleteStatus) return res.status(200).json({message : "Processor deleted successfully"});
+        return res.status(404).json({error : "Processor not found"})
     }
 }

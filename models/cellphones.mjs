@@ -77,4 +77,17 @@ export class cellphoneModels {
             return error
         }
     }
+
+    static modifyCellphone = async () => {
+
+    }
+
+    static deleteCellphone = async ({ id }) => {
+        const [deleteStatus] = await connection.query(
+            `DELETE FROM celulares WHERE id = UUID_TO_BIN(?);` , [id]
+        )
+
+        if (deleteStatus.affectedRows == 1) return true
+        return false
+    }
 }

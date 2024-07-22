@@ -74,6 +74,6 @@ export class ControllerLaptops {
         const deleteStatus = await laptopModels.deleteLaptop({id});
         
         if (!deleteStatus) return res.status(404).json({ error : "Laptop not found" })
-        return res.status(200).json({ message : "successful" })
+        return res.status(200).json({ message : "Laptop deleted successful" })
     }
 }

@@ -11,14 +11,6 @@ import { ModelsScreens } from "../models/screens.mjs";
 import nodemailer from "nodemailer";
 import excel4node from "excel4node";
 
-const cellphones = await cellphoneModels.getAll("cel.precio DESC")
-const desktops = await ModelsDesktops.getAll("tor.precio DESC")
-const laptops = await laptopModels.getAll("por.precio DESC")
-const powerSupplies = await ModelsPowerSupplies.getAll("pow.precio DESC")
-const processors = await ModelsProcessors.getAll("pro.precio DESC")
-const ram = await ModelsRam.getAll("ram.precio DESC")
-const screens = await ModelsScreens.getAll("pan.precio DESC")
-
 export class ControllerUsers {
 
   static changePassword = async (req, res) => {
@@ -748,16 +740,28 @@ export class ControllerUsers {
   }
 
   static generateProductsPDF = async (req, res) => {
-    const stream = res.writeHead(200, {
-      "Content-Type": "application/pdf",
-      "Content-Disposition": "attachment; filename = Reporte de Productos.pdf"
-    })
-
-    productsPDF((data) => stream.write(data),
-      () => stream.end(),
-      cellphones, desktops, laptops, powerSupplies, processors, ram, screens
-    )
-  }
+    try {
+      const cellphones = await cellphoneModels.getAll({ order:"cel.precio ASC"})
+      const desktops = await ModelsDesktops.getAll({ order:"tor.precio ASC"})
+      const laptops = await laptopModels.getAll({ order:"por.precio ASC"})
+      const powerSupplies = await ModelsPowerSupplies.getAll({ order:"pow.precio ASC"})
+      const processors = await ModelsProcessors.getAll({ order:"pro.precio ASC"})
+      const ram = await ModelsRam.getAll({ order:"ram.precio ASC"})
+      const screens = await ModelsScreens.getAll({ order:"pan.precio ASC"})
+  
+      const stream = res.writeHead(200, {
+        "Content-Type": "application/pdf",
+        "Content-Disposition": "attachment; filename=Reporte de Productos.pdf"
+      });
+  
+      productsPDF((data) => stream.write(data),
+        () => stream.end(),
+        cellphones, desktops, laptops, powerSupplies, processors, ram, screens
+      );
+    } catch (error) {
+      res.status(500).send("Error al generar el PDF");
+    }
+  };
 
   static generateProductsExcel = async (req, res) => {
     try { // Crear libro de trabajo

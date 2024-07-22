@@ -71,7 +71,7 @@ export class ControllerDesktops {
         const { id } = req.params
         const deleteStatus = await ModelsDesktops.deleteDesktopPc({ id })
 
-        if (deleteStatus) return res.json({message : "Cellphone deleted successfully"})
-        return res.json({error : "Desktop pc not found"})
+        if (deleteStatus) return res.status(200).json({message : "Desktop pc deleted successfully"})
+        return res.status(404).json({error : "Desktop pc not found"})
     }
 }

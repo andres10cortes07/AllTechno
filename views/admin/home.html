@@ -208,14 +208,14 @@
                   codeTable += users.map(user => {
                     return `
                       <tr>
-                        <td>${user.identificacion}</td>
+                        <td class="identificacion">${user.identificacion}</td>
                         <td>${user.nombres} ${user.apellidos}</td>
                         <td>${user.correo}</td>
                         <td>${user.celular}</td>
                         <td>${user.rol}</td>
                         <td class="btns-leader">
-                          <button style="border-radius: 5px; border: none; background-color: green; padding: 5px 10px;"><img src="../../resources/editar.png" alt="" width="20px"></button>
-                          <button style="border-radius: 5px; border: none; background-color: red; padding: 5px 10px;"><img src="../../resources/eliminar.png" alt="" width="20px"></button>
+                          <button class="btn-edit-user" style="border-radius: 5px; border: none; background-color: green; padding: 5px 10px;"><img src="../../resources/editar.png" alt="" width="20px"></button>
+                          <button class="btn-delete-user" style="border-radius: 5px; border: none; background-color: red; padding: 5px 10px;"><img src="../../resources/eliminar.png" alt="" width="20px"></button>
                         </td>
                       </tr>
                     `;
@@ -243,15 +243,16 @@
     <script src="../../views/js/dropdowns.js"></script>
     <script src="../../views/js/showProductsBySearch.mjs"></script>
     <script src="../../views/js/generateReports.js"></script>
+    <script type="module" src="../../views/js/deleteProducts-User.mjs"></script>
 
     <script type="module">
       import { SesionManagement } from "../js/login-logout.mjs";
 
-      document
-        .querySelector(".dropdown-menu-user")
-        .addEventListener("click", () => {
+      document.querySelector(".dropdown-menu-user").addEventListener("click", () => {
           SesionManagement.logout();
-        });
+      });
+
     </script>
+  
   </body>
 </html>

@@ -1,3 +1,5 @@
+import { deleteProducts } from "./deleteProducts-User.mjs";
+
 // structure to display the 404 error when it occurs
 const showError = () => {
     const codeErr = `
@@ -61,8 +63,9 @@ export const loadProducts = (category, order) => {
 
             if (swiperSlidesHTML !== "") {
                 return `
-                    <div class="swiper-wrapper" data-id="${product.id}">
+                    <div class="swiper-wrapper">
                         <div class="swiper-slide">
+                            <div class="card-for-click" data-id="${product.id}">
                             <swiper-container style="--swiper-navigation-color: transparent; --swiper-navigation-size: 1.5em; --swiper-pagination-color: #000;" class="mySwiper" pagination="true" pagination-clickable="true" navigation="true" space-between="30" loop="true">
                                 ${swiperSlidesHTML}
                             </swiper-container>
@@ -76,7 +79,7 @@ export const loadProducts = (category, order) => {
                                     <span class="product-price">$${product.precio.toLocaleString()}</span>
                                 `}
                             </div>
-
+                            </div>
                             ${document.location.pathname.includes("admin") ? `
                             <div class="ctn-btns-admin-home">
                                 <button class="btn-editar">Editar</button>
@@ -102,7 +105,7 @@ export const loadProducts = (category, order) => {
                 </div>
         `;
 
-        const cards = document.querySelectorAll(".swiper-wrapper");
+        const cards = document.querySelectorAll(".card-for-click");
 
         // events to show/hide the carousel arrows when hovering and redirect to the product view when clicking
         cards.forEach(card => {
@@ -120,12 +123,16 @@ export const loadProducts = (category, order) => {
             });
 
             card.addEventListener("click", (e) => {
-                const cardClicked = e.target.closest(".swiper-wrapper");
+                const cardClicked = e.target.closest(".card-for-click");
                 const id = cardClicked.dataset.id;
                 
                 if (!(e.target.className == "mySwiper")) window.location.href = `product.html?id=${id}&category=${category}`
             });
         });
+
+        // access the delete buttons after they have been created to obtain information about the products and thus delete them
+        const btnsDelete = document.querySelectorAll(".btn-eliminar")
+        deleteProducts(btnsDelete, category)
     })
     .catch(error => console.error("Error al cargar los productos"));
 }
@@ -589,6 +596,10 @@ export const loadProduct = (category, id) => {
                 const ctnInfo = document.querySelector(".info")
                 ctnInfo.insertAdjacentElement("beforeend", ctnButtons)
             }
+
+            // access the delete buttons after they have been created to obtain information about the products and thus delete them
+            const btnsDelete = document.querySelectorAll(".btn-eliminar")
+            deleteProducts(btnsDelete, category)
         })
         .catch (error => console.error("Error: ", error))
     }

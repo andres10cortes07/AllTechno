@@ -70,4 +70,17 @@ export class ModelsPowerSupplies {
 
         }
     }
+
+    static modifyPowerSupply = async () => {
+
+    }
+
+    static deletePowerSupply = async ({ id }) => {
+        const [deleteStatus] = await connection.query(
+            `DELETE FROM fuentesdepoder WHERE id = UUID_TO_BIN(?);` , [id]
+        )
+
+        if (deleteStatus.affectedRows == 1) return true
+        return false
+    }
 }

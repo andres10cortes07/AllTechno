@@ -75,12 +75,14 @@ export function productsPDF(dataCallback, endCallback, cellphones, desktops, lap
     doc.on('data', dataCallback);
     doc.on('end', endCallback);
 
-    // register font "Zen Dots"
+    // Register font "Zen Dots"
     const fontPath = path.join(__dirname, '..', 'resources', 'fonts', 'ZenDots-Regular.ttf');
     doc.registerFont('ZenDots', fontPath);
 
     // Banner
     const pageWidth = doc.page.width;
+    const pageHeight = doc.page.height;
+
     doc.rect(0, 0, pageWidth, 60).fill('#000000');
     doc.font('ZenDots')
         .fontSize(30)
@@ -89,7 +91,7 @@ export function productsPDF(dataCallback, endCallback, cellphones, desktops, lap
 
     doc.moveDown(1);
 
-    // title
+    // Title
     doc.font('Helvetica-Bold')
         .fontSize(20)
         .fillColor('black')
@@ -97,14 +99,80 @@ export function productsPDF(dataCallback, endCallback, cellphones, desktops, lap
 
     doc.moveDown(1);
 
-    doc.font('Helvetica-Bold')
-        .fontSize(16)
-        .fillColor('black')
-        .text('Celulares', { indent: 50 });
+    let currentY = doc.y;
 
-    doc.moveUp(1.7);
+    // Table options
+    const tableOptionsThreeColumns = {
+        width: pageWidth - 100,
+        x: 50,
+        prepareHeader: () => {
+            doc.font('Helvetica-Bold')
+                .fontSize(12)
+                .fillColor('black');
+        },
+        prepareRow: (row, i) => {
+            doc.font('Helvetica')
+                .fontSize(10)
+                .fillColor('black');
+        },
+        padding: 5,
+        columnSpacing: 10,
+    };
 
-    const tableData = {
+    const tableOptionsTwoColumns = {
+        width: pageWidth - 100,
+        x: 50,
+        prepareHeader: () => {
+            doc.font('Helvetica-Bold')
+                .fontSize(12)
+                .fillColor('black');
+        },
+        prepareRow: (row, i) => {
+            doc.font('Helvetica')
+                .fontSize(10)
+                .fillColor('black');
+        },
+        padding: 5,
+        columnSpacing: 10,
+    };
+
+    // Helper function to calculate height of a title
+    const getTitleHeight = (title, fontSize) => doc.heightOfString(title, { fontSize });
+
+    // Helper function to calculate height of a table
+    const getTableHeight = (rows, rowHeight) => rows.length * rowHeight + 20; // Added padding
+
+    // Helper function to check if a new page is needed
+    const checkPageBreak = (contentHeight) => {
+        const buffer = 80;
+        if (currentY + contentHeight + buffer > pageHeight - 80) {
+            doc.addPage();
+            currentY = 60; // Reset position on new page
+        }
+    };
+
+    // Function to render a section
+    const renderSection = (title, tableData, options, rowHeight, titleIndent = 0, titleSpacing = 10) => {
+        const titleHeight = getTitleHeight(title, 16);
+        const tableHeight = getTableHeight(tableData.rows, rowHeight);
+
+        // Check if there's enough space for the title and the table
+        checkPageBreak(titleHeight + tableHeight + titleSpacing);
+
+        doc.font('Helvetica-Bold')
+            .fontSize(16)
+            .fillColor('black')
+            .text(title, { indent: titleIndent });
+
+        currentY = doc.y + titleSpacing; // Reduce space before the table
+        doc.moveDown();
+        doc.table(tableData, { ...options, y: currentY });
+
+        currentY = doc.y + tableHeight + 20; // Adjust space after the table
+    };
+
+    // Table Data for Cellphones
+    const tableDataCellphones = {
         headers: ['Equipo', 'Colores Disponibles', 'Precio'],
         rows: cellphones.map(cellphone => [
             cellphone.marca + " " + cellphone.modelo,
@@ -113,58 +181,9 @@ export function productsPDF(dataCallback, endCallback, cellphones, desktops, lap
         ]),
     };
 
-    // table styles with three columns
-    const tableOptionsThreeColumns = {
-        width: pageWidth - 100,
-        x: 50,
-        y: doc.y + 50,
-        prepareHeader: () => {
-            doc.font('Helvetica-Bold')
-                .fontSize(12)
-                .fillColor('black');
-        },
-        prepareRow: (row, i) => {
-            doc.font('Helvetica')
-                .fontSize(10)
-                .fillColor('black');
-        },
-        padding: 5,
-        columnSpacing: 10,
-    };
+    renderSection('Celulares', tableDataCellphones, tableOptionsThreeColumns, 15, 50, 30);
 
-    // table styles with only two columns
-    const tableOptionsTwoColumns = {
-        width: pageWidth - 100,
-        x: 50,
-        y: doc.y + 50,
-        prepareHeader: () => {
-            doc.font('Helvetica-Bold')
-                .fontSize(12)
-                .fillColor('black');
-        },
-        prepareRow: (row, i) => {
-            doc.font('Helvetica')
-                .fontSize(10)
-                .fillColor('black');
-        },
-        padding: 5,
-        columnSpacing: 10,
-    };
-
-    // Create first table
-    doc.table(tableData, tableOptionsThreeColumns);
-
-
-    //* desktops computers section
-    doc.moveDown(3);
-
-    doc.font('Helvetica-Bold')
-        .fontSize(16)
-        .fillColor('black')
-        .text('Portátiles');
-
-    doc.moveDown(2);
-
+    // Table Data for Laptops
     const tableDataLaptops = {
         headers: ['Equipo', 'Colores Disponibles', 'Precio'],
         rows: laptops.map(laptop => [
@@ -174,131 +193,63 @@ export function productsPDF(dataCallback, endCallback, cellphones, desktops, lap
         ]),
     };
 
-    doc.table(tableDataLaptops, { ...tableOptionsThreeColumns, y: 240 });
-
-
-
-    //* processors section
-    doc.moveDown(3);
-
-    doc.font('Helvetica-Bold')
-        .fontSize(16)
-        .fillColor('black')
-        .text('Procesadores');
+    renderSection('Portátiles', tableDataLaptops, tableOptionsThreeColumns, 15, 20, 30);
 
     doc.moveDown(2);
 
+    // Table Data for Desktops
+    const tableDataDesktops = {
+        headers: ['Producto', 'Precio'],
+        rows: desktops.map(desktop => [
+            `${desktop.procesador} + ${desktop.grafica} + ${desktop.ram} + ${desktop.almacenamiento} + ${desktop.board} + ${desktop.chasis} + ${desktop.fuente}`,
+            `$${desktop.precio.toLocaleString()}`
+        ]),
+    };
+    renderSection('Equipos de escritorio', tableDataDesktops, tableOptionsTwoColumns, 15, 20, 30);
+
+    // Table Data for Power Supplies
+    const tableDataPowerSupplies = {
+        headers: ['Producto', 'Precio'],
+        rows: powerSupplies.map(powerSupply => [
+            powerSupply.modelo,
+            `$${powerSupply.precio.toLocaleString()}`
+        ]),
+    };
+
+    renderSection('Fuentes de Poder', tableDataPowerSupplies, tableOptionsTwoColumns, 15, 20, 30);
+
+    // Table Data for Processors
     const tableDataProcessors = {
         headers: ['Producto', 'Precio'],
         rows: processors.map(processor => [
-            processor.marca + " " + processor.modelo + " " + processor.numNucleos + " nucleos " +
-            processor.numHilos + " hilos " + processor.relojBase,
-
+            processor.modelo,
             `$${processor.precio.toLocaleString()}`
         ]),
     };
 
-    doc.table(tableDataProcessors, { ...tableOptionsTwoColumns, y: 300 });
+    renderSection('Procesadores', tableDataProcessors, tableOptionsTwoColumns, 15, 20, 30);
 
-
-
-    //* ram section
-    doc.moveDown(3);
-
-    doc.font('Helvetica-Bold')
-        .fontSize(16)
-        .fillColor('black')
-        .text('RAM');
-
-    doc.moveDown(2);
-
+    // Table Data for RAM
     const tableDataRam = {
         headers: ['Producto', 'Precio'],
-        rows: ram.map(ram => [
-            ram.marca + " " + ram.modelo + " " + ram.capacidad + " GB " + ram.velocidad + " MHz",
-            `$${ram.precio.toLocaleString()}`
+        rows: ram.map(ramItem => [
+            ramItem.modelo,
+            `$${ramItem.precio.toLocaleString()}`
         ]),
     };
 
-    doc.table(tableDataRam, { ...tableOptionsTwoColumns, y: 360 });
+    renderSection('Memorias RAM', tableDataRam, tableOptionsTwoColumns, 15, 20, 30);
 
-
-
-    //* screens section
-    doc.moveDown(3);
-
-    doc.font('Helvetica-Bold')
-        .fontSize(16)
-        .fillColor('black')
-        .text('Monitores');
-
-    doc.moveDown(2);
-
+    // Table Data for Screens
     const tableDataScreens = {
         headers: ['Producto', 'Precio'],
         rows: screens.map(screen => [
-            screen.marca + " " + screen.modelo + " " + screen.resolucion + " MHz",
+            screen.modelo,
             `$${screen.precio.toLocaleString()}`
         ]),
     };
 
-    doc.table(tableDataScreens, { ...tableOptionsTwoColumns, y: 430 });
-
-
-
-    //* powerSupplies section
-    doc.moveDown(3);
-
-    doc.font('Helvetica-Bold')
-        .fontSize(16)
-        .fillColor('black')
-        .text('Fuentes de poder');
-
-    doc.moveDown(2);
-
-    const tableDataPowerSupplies = {
-        headers: ['Producto', 'Certificación', 'Precio'],
-        rows: powerSupplies.map(power => [
-            power.marca + " " + power.modelo + " " + power.voltaje + " V" + " " + power.potencia + "P",
-            power.certificacion,
-            `$${power.precio.toLocaleString()}`
-        ]),
-    };
-
-    doc.table(tableDataPowerSupplies, { ...tableOptionsThreeColumns, y: 505 });
-
-
-
-    //* desktop Computers section
-    doc.moveDown(12);
-
-    doc.font('Helvetica-Bold')
-        .fontSize(16)
-        .fillColor('black')
-        .text('Equipos de escritorio');
-
-    doc.moveDown(2);
-
-    const tableDataDesktop = {
-        headers: ['Producto', 'Precio'],
-        rows: desktops.map(desktop => [
-            desktop.procesador + " + " + desktop.grafica + " + " + desktop.ram + " + " + desktop.almacenamiento + " + " +
-            desktop.board + " + " + desktop.chasis + " + " + desktop.fuente + " + ",
-            `$${desktop.precio.toLocaleString()}`
-        ]),
-    };
-
-    doc.table(tableDataDesktop, { ...tableOptionsTwoColumns, y: 80 });
-
-    const pageHeight = doc.page.height;
-// Dibujar el rectángulo del pie de página
-doc.rect(0, pageHeight - 80, pageWidth, 80).fill('#000000'); 
-
-// Añadir el texto en el pie de página
-doc.font('Helvetica')
-    .fontSize(12)
-    .fillColor('white')
-    .text('Soporte: alltechnologysoftware@gmail.com', 0, pageHeight - 50, { width: pageWidth, align: 'center' });
+    renderSection('Pantallas', tableDataScreens, tableOptionsTwoColumns, 15, 20, 30);
 
     doc.end();
 }

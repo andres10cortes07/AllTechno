@@ -71,7 +71,7 @@ export class ControllerScreens {
         const { id } = req.params
         const deleteStatus = await ModelsScreens.deleteScreen({ id })
         
-        if(deleteStatus) return res.json({message : "Screen deleted successfully"})
-        return res.json({error : "Screen not found"}).status(404)
+        if(deleteStatus) return res.status(200).json({message : "Screen deleted successfully"})
+        return res.status(404).json({error : "Screen not found"})
     }
 }

@@ -130,12 +130,14 @@ export class ModelsUser {
     }
 
     static accessToRol = async (email) => {
-        const [[rol]] = await connection.query(
-            `
-                SELECT rol FROM usuario WHERE correo = ?
-            `
-        , [email])
 
-        return rol.rol
+            const [[rol]] = await connection.query(
+                `
+                    SELECT rol FROM usuario WHERE correo = ?
+                `
+            , [email])
+    
+            return rol.rol
+    
     }
 }

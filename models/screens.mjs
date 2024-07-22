@@ -72,4 +72,17 @@ export class ModelsScreens {
 
     }
 
+    static modifyScreen = async () => {
+
+    }
+
+    static deleteScreen = async ({ id }) => {
+        const [deleteStatus] = await connection.query(
+            `DELETE FROM pantallas WHERE id = UUID_TO_BIN(?);` , [id]
+        )
+
+        if (deleteStatus.affectedRows == 1) return true
+        return false
+    }
+
 }

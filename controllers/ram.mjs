@@ -69,10 +69,10 @@ export class ControllerRam {
     }
 
     static deleteRam = async (req, res) => {
-        const {id} = req.params
-        const deleteStatus = await ModelsRam.deleteRam({id})
+        const { id } = req.params
+        const deleteStatus = await ModelsRam.deleteRam({ id })
         
-        if(deleteStatus) return res.json({message : "Ram deleted successfully"})
-        return res.json({error : "Ram not found"}).status(404)
+        if(deleteStatus) return res.status(200).json({message : "Ram deleted successfully"})
+        return res.status(404).json({error : "Ram not found"})
     }
 }

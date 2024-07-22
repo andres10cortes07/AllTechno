@@ -71,4 +71,20 @@ export class laptopModels {
         }
 
     }
+
+    static modifyLaptop = async () => {
+
+    }
+
+    static deleteLaptop = async ({ id }) => {
+        const [deleteStatus] = await connection.query(
+            `
+                DELETE FROM portatiles WHERE id = UUID_TO_BIN(?);
+            `,
+            [id]
+        )
+
+        if (deleteStatus.affectedRows == 1) return true
+        return false
+    }
 }

@@ -71,7 +71,7 @@ export class ControllerPowerSupplies {
         const { id } = req.params
         const elimination = await ModelsPowerSupplies.deletePowerSupply({ id });
         
-        if (elimination) return res.json({message: "Power Supply delete successfully"})
-        return res.json({error : "Power Supply not found"}).status(404)
+        if (elimination) return res.status(200).json({message: "Power Supply deleted successfully"})
+        return res.status(404).json({error : "Power Supply not found"})
     }
 }

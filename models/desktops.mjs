@@ -73,4 +73,17 @@ export class ModelsDesktops {
         }
 
     }
+
+    static modifyDesktopPc = async () => {
+
+    }
+
+    static deleteDesktopPc = async ({ id }) => {
+        const [deleteStatus] = await connection.query(
+            `DELETE FROM torreescritorio WHERE id = UUID_TO_BIN(?);` , [id]
+        )
+
+        if (deleteStatus.affectedRows == 1) return true
+        return false
+    }
 }
