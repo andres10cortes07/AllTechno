@@ -135,12 +135,13 @@ router.delete("/desktopComputers/:id", ControllerDesktops.deleteDesktopPc);
 
 
 //? user routes
-router.get("/user/changePass/:identificacion", ControllerUsers.changePassword);
+router.get("/user/recoverPass/:identificacion", ControllerUsers.recoverPassword);
 router.get("/user/getAll", ControllerUsers.getUsers);
 router.get("/user/:identificacion", ControllerUsers.getById);
 router.post("/user", ControllerUsers.createUser);
 router.patch("/user/:identificacion", ControllerUsers.modifyUser);
 router.delete("/user/:identificacion", ControllerUsers.deleteUser);
+router.post("/user/changePass", ControllerUsers.changePassword);
 
 
 //? session routes

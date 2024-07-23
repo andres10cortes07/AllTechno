@@ -13,7 +13,7 @@ import excel4node from "excel4node";
 
 export class ControllerUsers {
 
-  static changePassword = async (req, res) => {
+  static recoverPassword = async (req, res) => {
     const { identificacion } = req.params
 
     const userEmail = await ModelsUser.getEmail({ identificacion })
@@ -296,7 +296,15 @@ export class ControllerUsers {
 
     // create user
     let newUser = await ModelsUser.createUser({ newPass, input: result.data })
-    if (!newUser) return res.status(400).json({ error: "El usuario ingresado ya se encuentra registrado" })
+    if (newUser.error){
+      if(newUser.error === 'ER_DUP_ENTRY'){
+        return res.status(400).json({ error : "Algunos de los datos ingresados ya se encuentran registrados en el sistema"})
+      }
+      else {
+        return res.status(400).json({ error : newUser.error})
+      }
+    }
+
     newUser = newUser[0]
 
     const sendEmail = async () => {
@@ -527,7 +535,7 @@ export class ControllerUsers {
     }
     sendEmail()
 
-    return res.status(201).json({ message: "Usuario creado con exito, hemos enviado la clave al correo ingresado", newUser })
+    return res.status(201).json({newUser : newUser})
   }
 
   static modifyUser = async (req, res) => {
@@ -1025,6 +1033,10 @@ const addSectionToSheet = (wb, sheetName, sectionTitle, headers, data) => {
       console.error("Error al generar el archivo Excel:", error);
       res.status(500).send('Error al generar el archivo Excel');
   }
+  }
+
+  static changePassword = async (req, res) => {
+    
   }
 }
 

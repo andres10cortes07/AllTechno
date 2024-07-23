@@ -65,6 +65,9 @@
 
                 <div class="dropdown-menu dropdown-menu-user">
                     <ul>
+                        <a href="changePassword.html">
+                            <li>Cambiar Clave</li>
+                        </a>
                         <a>
                             <li>Cerrar Sesión</li>
                         </a>
@@ -152,7 +155,7 @@
         const date = new Date()
         document.querySelector(".year-footer").innerHTML = date.getFullYear()
 
-        document.querySelector(".dropdown-menu-user").addEventListener("click", () => {
+        document.querySelector(".dropdown-menu-user a:last-child").addEventListener("click", () => {
             SesionManagement.logout()
         })
 

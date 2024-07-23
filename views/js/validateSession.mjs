@@ -19,7 +19,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }
             else {
                 if(window.location.href.includes("admin/home")){
-                    console.log(data.rol)
                     if(data.rol === "Admin"){
                         document.querySelector(".actions").style.display = "none"
                         document.querySelector(".btns-users div:first-child").style.display = "none"
@@ -30,6 +29,18 @@ document.addEventListener("DOMContentLoaded", () => {
                         btnsForLeader.forEach(btn => {
                             btn.style.display = "none"
                         })
+                    }
+                }
+                else if (window.location.href.includes("createUser")){
+                    if(data.rol === "Admin"){
+                        return Swal.fire({
+                            title: "No autorizado",
+                            text: "No cuentas con el rol necesario para acceder a esta página",
+                            icon: "error",
+                            confirmButtonText: "OK"
+                        }).then(() => {
+                            window.history.back();
+                        });
                     }
                 }
                 document.getElementById('loading-overlay').style.display = 'none'; // Hide loading layer

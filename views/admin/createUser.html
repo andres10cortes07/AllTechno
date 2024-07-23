@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="../css/style_admin.css">
   <link type="image/png" sizes="16x16" rel="icon" href="../../resources/icono.png">
   <script src="../js/validateSession.mjs"></script>
-  <script src="../../views/js/createProduct.js"></script>
+  <script src="../js/createUser.js"></script>
 </head>
 
 <body>
@@ -98,28 +98,45 @@
 
     <main>
       <div class="ctn-form">
-        <form id="form-create" method="post" enctype="multipart/form-data"
-          accept="image/png, image/jpeg, image/jpg, image/webp">
-          <h2>CREAR PRODUCTO</h2>
+        <form id="form-create-user" method="post">
+          <h2>CREAR USUARIO</h2>
 
           <div>
-            <div>
-              <label class="label-form" for="category">Categoria del producto</label>
-              <select name="category" id="category" class="inp-create">
-                <optgroup label="Categoria">
-                  <option value="">Elige una opción</option>
-                  <option value="cellphones">Celular</option>
-                  <option value="laptops">Portatil</option>
-                  <option value="processors">Procesador</option>
-                  <option value="ram">RAM</option>
-                  <option value="screens">Monitor</option>
-                  <option value="powerSupplies">Fuente de poder</option>
-                  <option value="desktopComputers">Equipo de escritorio</option>
-                </optgroup>
+            <div style="flex: 1 1 48%;">
+              <label class="label-form" for="identificacion">identificación</label>
+              <input type="number" id="identificacion" name="identificacion" class="inp-create">
+            </div>
+
+            <div style="flex: 1 1 48%;">
+              <label class="label-form" for="correo">Correo Electrónico</label>
+              <input type="email" id="correo" name="correo" class="inp-create">
+            </div>
+
+            <div style="flex: 1 1 48%;">
+              <label class="label-form" for="marca">Nombres</label>
+              <input type="text" id="nombres" name="nombres" class="inp-create">
+            </div>
+
+            <div style="flex: 1 1 48%;">
+              <label class="label-form" for="modelo">Apellidos</label>
+              <input type="text" id="apellidos" name="apellidos" class="inp-create">
+            </div>
+
+            <div style="flex: 1 1 48%;">
+              <label class="label-form" for="celular">Celular</label>
+              <input type="tel" id="celular" name="celular" class="inp-create">
+            </div>
+
+            <div style="flex: 1 1 48%;">
+              <label class="label-form" for="camaraFrontal">Rol</label>
+              <select id="" class="inp-create" name="rol">
+                <option value="">Elige una opción</option>
+                <option value="Admin">Admin (Unicamente podrá hacer gestión de productos)</option>
+                <option value="Lider">Lider (Gestión tanto de productos como de usuarios)</option>
               </select>
             </div>
-            <section id="dynamic-fields"></section>
 
+            <section id="dynamic-fields"></section>
 
           </div>
           <button type="submit" class="btn-login btn-crear">CREAR</button>

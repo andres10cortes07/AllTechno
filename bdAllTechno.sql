@@ -39,10 +39,10 @@ CREATE TABLE IF NOT EXISTS `alltechno`.`usuario` (
   `identificacion` VARCHAR(11) NOT NULL,
   `nombres` VARCHAR(100) NOT NULL,
   `apellidos` VARCHAR(100) NOT NULL,
-  `correo` VARCHAR(50) NOT NULL,
+  `correo` VARCHAR(50) NOT NULL UNIQUE,
   `contraseña` VARCHAR(50) NOT NULL,
   `rol` enum ("Admin", "Lider") NOT NULL,
-  `celular` VARCHAR(10) NOT NULL,
+  `celular` VARCHAR(10) NOT NULL UNIQUE,
   PRIMARY KEY (`identificacion`));
 
 

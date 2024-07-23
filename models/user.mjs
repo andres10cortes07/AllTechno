@@ -53,21 +53,21 @@ export class ModelsUser {
         try {
             await connection.query(
                 `
-                    INSERT INTO usuario (identificacion, nombres, apellidos, correo, contraseña, celular)
-                    VALUES (?, ?, ?, ?, ?, ?)            
-                `, [input.identificacion, input.nombres, input.apellidos, input.correo, newPass, input.celular]
+                    INSERT INTO usuario (identificacion, nombres, apellidos, correo, contraseña, celular, rol)
+                    VALUES (?, ?, ?, ?, ?, ?, ?)            
+                `, [input.identificacion, input.nombres, input.apellidos, input.correo, newPass, input.celular, input.rol]
             )
     
             const [newUser] = await connection.query(
                 `
-                    SELECT identificacion, nombres, apellidos, correo, celular FROM usuario WHERE identificacion = ?
+                    SELECT identificacion, nombres, apellidos, correo, celular, rol FROM usuario WHERE identificacion = ?
                 `, [input.identificacion]
             )
     
             return newUser
         }
         catch (error){
-            return false
+            return { error : error.code}
         }
         
     }
