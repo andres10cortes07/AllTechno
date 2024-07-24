@@ -548,7 +548,7 @@ export class ControllerUsers {
     const userModified = await ModelsUser.modifyUser({ identificacion, input: result.data })
 
     if (!userModified) return res.status(404).json({ error: "User not found" })
-    return res.json(userModified)
+    return res.status(200).json(userModified)
   }
 
   static deleteUser = async (req, res) => {

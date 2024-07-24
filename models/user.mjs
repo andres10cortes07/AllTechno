@@ -39,7 +39,7 @@ export class ModelsUser {
     static getById = async ({identificacion}) => {
         const [user] = await connection.query(
             `
-                SELECT identificacion, nombres, apellidos, correo, celular FROM usuario WHERE identificacion = ?
+                SELECT identificacion, nombres, apellidos, correo, celular, rol FROM usuario WHERE identificacion = ?
             `, [identificacion]
         )
 
@@ -82,13 +82,14 @@ export class ModelsUser {
             nombres: input.nombres ?? user.nombres,
             apellidos: input.apellidos ?? user.apellidos,
             correo: input.correo ?? user.correo ,
-            celular: input.celular ?? user.celular
+            celular: input.celular ?? user.celular,
+            rol: input.rol ?? user.rol
         }
 
         await connection.query(
             `
-                UPDATE usuario SET identificacion = ?, nombres = ?, apellidos = ?, correo = ?, celular = ? WHERE identificacion = ?
-            `, [newData.identificacion, newData.nombres, newData.apellidos, newData.correo, newData.celular, user.identificacion]
+                UPDATE usuario SET identificacion = ?, nombres = ?, apellidos = ?, correo = ?, celular = ?, rol = ? WHERE identificacion = ?
+            `, [newData.identificacion, newData.nombres, newData.apellidos, newData.correo, newData.celular, newData.rol, user.identificacion]
         )
 
 

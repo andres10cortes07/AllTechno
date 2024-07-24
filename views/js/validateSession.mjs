@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         })
                     }
                 }
-                else if (window.location.href.includes("createUser")){
+                else if (window.location.href.includes("createUser") || window.location.href.includes("editUser")){
                     if(data.rol === "Admin"){
                         return Swal.fire({
                             title: "No autorizado",
