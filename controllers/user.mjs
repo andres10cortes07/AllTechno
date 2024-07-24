@@ -30,7 +30,7 @@ export class ControllerUsers {
     }
 
     // change of password
-    const passwordModified = await ModelsUser.modifyPassword({ identificacion, newPass })
+    const passwordModified = await ModelsUser.recoverPassword({ identificacion, newPass })
 
     // sending email with user information and new password
     const sendEmail = async () => {
@@ -1036,7 +1036,21 @@ const addSectionToSheet = (wb, sheetName, sectionTitle, headers, data) => {
   }
 
   static changePassword = async (req, res) => {
-    
+    const data = req.body
+    const userEmail = req.sessionStore.user
+
+    if (data.currentPassword.length > 7 && data.newPassword.length > 7 && data.currentPassword.length < 50 && data.newPassword.length < 50) {
+
+      const modificationStatus = await ModelsUser.modifyPassword( userEmail, data )
+
+      if (modificationStatus.error) return res.status(400).json({ error: modificationStatus.error })
+
+      return res.status(200).json({ message : "Contraseña cambiada exitosamente"})
+
+    }
+    else {
+      return res.status(400).json({error : "Longitudes de credenciales incorrectas"})
+    }
   }
 }
 

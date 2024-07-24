@@ -15,7 +15,7 @@ export class ModelsUser {
         return email
     }
 
-    static modifyPassword = async ({identificacion, newPass}) => {
+    static recoverPassword = async ({identificacion, newPass}) => {
         const [passwordModified] = await connection.query(
             `
                 UPDATE usuario SET contraseña = ? WHERE identificacion = ?;
@@ -113,6 +113,25 @@ export class ModelsUser {
 
         } catch (error) {
             return error
+        }
+    }
+
+    static modifyPassword = async (userEmail, data) => {
+        try {
+            const [result] = await connection.query(
+              `
+                UPDATE usuario SET contraseña = ? WHERE correo = ? AND contraseña = ?;
+              `, [data.newPassword, userEmail, data.currentPassword]
+            );
+
+            if (result.affectedRows > 0) {
+              return true
+            } else {
+              return {error : 'No se encontró el usuario con los datos proporcionados'}
+            }
+        } 
+        catch (error) {
+           return {error : error}
         }
     }
 

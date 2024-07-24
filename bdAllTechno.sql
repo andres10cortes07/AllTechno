@@ -599,7 +599,7 @@ UNION ALL
   LEFT JOIN recursos ON ram.recursos_id_recurso = recursos.id_recurso
   ORDER BY RAND()
   LIMIT 1
-);
+);		
 
 INSERT INTO usuario (identificacion, nombres, apellidos, correo, contraseña, rol, celular) VALUES 
 ("1025522938", "Franklin Andres", "Cortes Gonzalez", "andres10cortes07@gmail.com", "contraseña", "Admin", "3204031794");

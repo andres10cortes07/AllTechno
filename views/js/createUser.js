@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
-        fetchConsume(productData, formData)
+        fetchConsume(productData)
     })
 })
 
