@@ -2,7 +2,7 @@ import mysql from "mysql2/promise"
 
 const config = {
     host: "localhost",
-    password: "Sanvicenteferrer10.",
+    password: "admin",
     user: "root",
     port: 3350,
     bd: "alltechno"
